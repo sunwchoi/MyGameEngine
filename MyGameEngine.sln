@@ -1,9 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameEngine", "MyGameEngine\MyGameEngine.vcxproj", "{9821D6CB-4FAC-4D35-817C-7A9E9B4675B7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameEngine_Window", "MyGameEngine_Window\MyGameEngine_Window.vcxproj", "{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameEngine_Source", "MyGameEngine_Source\MyGameEngine_Source.vcxitems", "{F8639170-7D89-4F0D-A4D5-32AF4A7D5FB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB90D215-EEAF-4AFD-BA1A-521315E69459}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +30,21 @@ Global
 		{9821D6CB-4FAC-4D35-817C-7A9E9B4675B7}.Release|x64.Build.0 = Release|x64
 		{9821D6CB-4FAC-4D35-817C-7A9E9B4675B7}.Release|x86.ActiveCfg = Release|Win32
 		{9821D6CB-4FAC-4D35-817C-7A9E9B4675B7}.Release|x86.Build.0 = Release|Win32
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Debug|x64.ActiveCfg = Debug|x64
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Debug|x64.Build.0 = Debug|x64
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Debug|x86.ActiveCfg = Debug|Win32
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Debug|x86.Build.0 = Debug|Win32
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Release|x64.ActiveCfg = Release|x64
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Release|x64.Build.0 = Release|x64
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Release|x86.ActiveCfg = Release|Win32
+		{3A35FAF5-F5A7-4C32-B90A-5BD652509C71}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{3a35faf5-f5a7-4c32-b90a-5bd652509c71}*SharedItemsImports = 4
+		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{9821d6cb-4fac-4d35-817c-7a9e9b4675b7}*SharedItemsImports = 4
+		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{f8639170-7d89-4f0d-a4d5-32af4a7d5fb8}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
