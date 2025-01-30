@@ -22,8 +22,6 @@ namespace my
 		HDC		_backHdc;			// 더블버퍼링 백버퍼 DC 핸들 
 		UINT	_width;				// 창 너비
 		UINT	_height;			// 창 높이
-
-		GameObject _player;
 	};
 
 }

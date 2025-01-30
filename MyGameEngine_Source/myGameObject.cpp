@@ -3,6 +3,23 @@
 
 namespace my
 {
+	GameObject::GameObject()
+		: _x( 0 )
+		, _y( 0 )
+	{
+	}
+
+	GameObject::GameObject( float x, float y )
+		: _x ( x )
+		, _y ( y )
+	{
+	}
+
+	GameObject::~GameObject()
+	{
+	}
+
+
 	void GameObject::Update()
 	{
 		float speed = 100.f;
@@ -19,12 +36,17 @@ namespace my
 			_y += speed * Time::DeltaTime();
 	}
 
+	void GameObject::LateUpdate()
+	{
+	}
+
 	void GameObject::Render( HDC hdc )
 	{
 		HBRUSH blueBrush = CreateSolidBrush( RGB( 0, 0, 255 ) );
 		HBRUSH oldBrush = ( HBRUSH )SelectObject( hdc, blueBrush );
 
-		Rectangle( hdc, 100 + _x, 100 + _y, 200 + _x, 200 + _y );
+		float size = 100.f;
+		Rectangle( hdc, _x, _y, _x + size, _y + size);
 
 		SelectObject( hdc, oldBrush );
 		DeleteObject( blueBrush );

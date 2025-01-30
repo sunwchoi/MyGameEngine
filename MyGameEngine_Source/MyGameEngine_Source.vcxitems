@@ -16,11 +16,15 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
   </ItemGroup>
 </Project>

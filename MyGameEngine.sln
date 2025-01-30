@@ -44,7 +44,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{3a35faf5-f5a7-4c32-b90a-5bd652509c71}*SharedItemsImports = 4
-		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{9821d6cb-4fac-4d35-817c-7a9e9b4675b7}*SharedItemsImports = 4
 		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{f8639170-7d89-4f0d-a4d5-32af4a7d5fb8}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
