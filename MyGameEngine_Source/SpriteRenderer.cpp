@@ -22,10 +22,6 @@ namespace my
 
 	void SpriteRenderer::Render( HDC hdc )
 	{
-
-		HBRUSH blueBrush = CreateSolidBrush( RGB( 0, 0, 255 ) );
-		HBRUSH oldBrush = ( HBRUSH ) SelectObject( hdc, blueBrush );
-
 		float size = 100.f;
 
 		Transform* transform = GetOwner()->GetComponent<Transform>();
@@ -36,7 +32,14 @@ namespace my
 		float y = transform->getPosY();
 		Rectangle( hdc, x, y, x + size, y + size );
 
-		SelectObject( hdc, oldBrush );
-		DeleteObject( blueBrush );
+		Gdiplus::Graphics graphics( hdc );
+		graphics.DrawImage( _image, Gdiplus::Rect( x, y, _width, _height ) );
+	}
+
+	void SpriteRenderer::ImageLoad( const std::wstring& path )
+	{
+		_image = Gdiplus::Image::FromFile( path.c_str() );
+		_width = _image->GetWidth();
+		_height = _image->GetHeight();
 	}
 }

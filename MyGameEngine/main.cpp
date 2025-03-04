@@ -6,9 +6,20 @@
 
 #include "../MyGameEngine_Source/myApplication.h"
 
+#include <mmsystem.h>
+#include <dinput.h>
+#pragma comment(lib, "Msimg32.lib");
+#pragma comment(lib, "winmm.lib");
+
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus.lib");
+
 #define MAX_LOADSTRING 100
 
 my::Application application;
+
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -71,6 +82,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     //        DispatchMessage(&msg);
     //    }
     //}
+    Gdiplus::GdiplusShutdown( gpToken );
 
     return (int) msg.wParam;
 }
@@ -126,6 +138,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    {
       return FALSE;
    }
+
+   Gdiplus::GdiplusStartup( &gpToken , &gpsi , NULL );
 
    application.Initialize( hWnd, width, height );
 

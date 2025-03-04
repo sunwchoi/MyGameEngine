@@ -23,7 +23,9 @@ namespace my
 
 		GameObject* object = new GameObject();
 		object->AddComponent<Transform>();
-		object->AddComponent<SpriteRenderer>();
+		SpriteRenderer* spriteRenderer = object->AddComponent<SpriteRenderer>();
+
+		spriteRenderer->ImageLoad( L"..\\Resource\\CloudOcean.png" );
 		AddGameObject( object );
 	}
 
