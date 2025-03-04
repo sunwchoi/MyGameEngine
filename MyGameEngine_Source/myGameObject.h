@@ -1,6 +1,8 @@
 #pragma once
 
 #include <windows.h>
+#include "Component.h"
+#include <vector>
 
 namespace my
 {
@@ -8,20 +10,39 @@ namespace my
 	{
 	public:
 		GameObject();
-		explicit GameObject( float x, float y );
 		~GameObject();
-		
+
+		template<typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+
+			comp->SetOwner( this );
+			_comps.push_back( comp );
+
+			return comp;
+		}
+
+		template<typename T>
+		T* GetComponent()
+		{
+			T* ret = nullptr;
+			for ( Component* comp : _comps )
+			{
+				ret = dynamic_cast< T* >( comp );
+				if ( ret )
+					break;
+			}
+
+			return ret;
+		}
+
 		void Update();
 		void LateUpdate();
 		void Render( HDC hdc );
 
-		void setPos( float x, float y ) { _x = x; _y = y; }
-		float getPosX() { return _x; }
-		float getPosY() { return _y; }
-	
 	private:
-		float _x;
-		float _y;
+		std::vector<Component*> _comps;
 	};
 }
 

@@ -1,5 +1,7 @@
 #include "myPlayScene.h"
 #include "myGameObject.h"
+#include "Transform.h"
+#include "SpriteRenderer.h"
 
 namespace my
 {
@@ -19,7 +21,9 @@ namespace my
 	{
 		Scene::Initialize();
 
-		GameObject* object = new GameObject( 0, 0 );
+		GameObject* object = new GameObject();
+		object->AddComponent<Transform>();
+		object->AddComponent<SpriteRenderer>();
 		AddGameObject( object );
 	}
 
