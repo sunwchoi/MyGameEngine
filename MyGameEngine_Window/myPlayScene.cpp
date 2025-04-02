@@ -2,6 +2,8 @@
 #include "myGameObject.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
+#include "Input.h"
+#include "mySceneManager.h"
 
 namespace my
 {
@@ -22,12 +24,12 @@ namespace my
 	{
 		Scene::Initialize();
 
-		GameObject* object = new GameObject();
-		object->AddComponent<Transform>();
-		SpriteRenderer* spriteRenderer = object->AddComponent<SpriteRenderer>();
+		_player = new GameObject();
+		_player->AddComponent<Transform>();
+		SpriteRenderer* spriteRenderer = _player->AddComponent<SpriteRenderer>();
 
 		spriteRenderer->ImageLoad( L"..\\Resource\\CloudOcean.png" );
-		AddGameObject( object , eLayerType::BackGround);
+		AddGameObject(_player, eLayerType::BackGround);
 	}
 
 	void PlayScene::Update()
@@ -38,10 +40,20 @@ namespace my
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
+
+		if (Input::GetKeyDown(eKeyCode::N))
+			SceneManager::LoadScene(L"TitleScene");
 	}
 
 	void PlayScene::Render( HDC hdc )
 	{
 		Scene::Render( hdc );
+	}
+
+	void PlayScene::OnExit()
+	{
+		Transform* transform = _player->GetComponent<Transform>();
+	
+		transform->setPos(0, 0);
 	}
 }

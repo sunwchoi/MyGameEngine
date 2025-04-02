@@ -3,6 +3,8 @@
 
 namespace my
 {
+	class GameObject;
+
 	class PlayScene :
 		public Scene
 	{
@@ -15,6 +17,11 @@ namespace my
 		void Update() override;
 		void LateUpdate() override;
 		void Render( HDC hdc ) override;
+
+		void OnExit() override;
+
+	private:
+		GameObject* _player;
 	};
 }
 

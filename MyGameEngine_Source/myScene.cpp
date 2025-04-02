@@ -46,4 +46,12 @@ namespace my
 		_layers[(uint8)layerType]->AddGameObject(gameObject);
 	}
 
+	void Scene::OnEnter()
+	{
+	}
+
+	void Scene::OnExit()
+	{
+	}
+
 }

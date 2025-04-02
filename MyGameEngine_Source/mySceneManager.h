@@ -31,13 +31,18 @@ namespace my
 
 		static Scene* LoadScene( const std::wstring& name )
 		{
+			if (_activeScene)
+				_activeScene->OnExit();
+
 			std::map<std::wstring, Scene*>::iterator it = _scenes.find( name );
 
 			if ( it == _scenes.end() )
 				return nullptr;
 
-			// 로드된 Scene 리턴
-			return _activeScene = it->second;
+			_activeScene = it->second;
+			_activeScene->OnEnter();
+
+			return _activeScene;
 		}
 
 

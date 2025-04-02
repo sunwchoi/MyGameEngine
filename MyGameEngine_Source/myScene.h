@@ -24,6 +24,9 @@ namespace my
 
 		void AddGameObject(GameObject* gameObject, eLayerType layerType);
 
+		virtual void OnEnter();
+		virtual void OnExit();
+
 	private:
 		std::vector<Layer*> _layers;
 		std::wstring _name;

@@ -5,8 +5,10 @@
     <ClInclude Include="myPlayScene.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
+    <ClInclude Include="myTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myPlayScene.cpp" />
+    <ClCompile Include="myTitleScene.cpp" />
   </ItemGroup>
 </Project>
