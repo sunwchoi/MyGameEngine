@@ -1,6 +1,6 @@
 #include "Transform.h"
 #include "myTime.h"
-
+#include "Input.h"
 
 namespace my
 {
@@ -21,16 +21,16 @@ namespace my
 	void Transform::Update()
 	{
 		float speed = 100.f;
-		if ( GetAsyncKeyState( VK_LEFT ) & 0x8000 )
+		if (Input::GetKey(eKeyCode::A))
 			_x -= speed * Time::DeltaTime();
 
-		if ( GetAsyncKeyState( VK_RIGHT ) & 0x8000 )
+		if (Input::GetKey(eKeyCode::D))
 			_x += speed * Time::DeltaTime();
 
-		if ( GetAsyncKeyState( VK_UP ) & 0x8000 )
+		if (Input::GetKey(eKeyCode::W))
 			_y -= speed * Time::DeltaTime();
 
-		if ( GetAsyncKeyState( VK_DOWN ) & 0x8000 )
+		if (Input::GetKey(eKeyCode::S))
 			_y += speed * Time::DeltaTime();
 	}
 

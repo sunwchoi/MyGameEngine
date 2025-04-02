@@ -1,6 +1,7 @@
 #include "myApplication.h"
 #include "myTime.h"
 #include "mySceneManager.h"
+#include "Input.h"
 #include "../MyGameEngine_Window/myLoadScene.h"
 
 namespace my
@@ -26,8 +27,10 @@ namespace my
 		ShowWindow( _hwnd, 0 );
 
 		//¿£Áø initialize
-		SceneManager::Initialize();
+		Input::Initialize();
 		Time::Initialize();
+
+		SceneManager::Initialize();
 
 		LoadScene();
 	}
@@ -41,8 +44,10 @@ namespace my
 
 	void Application::Update()
 	{
-		SceneManager::Update();
+		Input::Update();
 		Time::Update();
+
+		SceneManager::Update();
 	}
 
 	void Application::LateUpdate()
