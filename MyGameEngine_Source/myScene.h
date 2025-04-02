@@ -3,10 +3,12 @@
 #include <vector>
 #include <string>
 #include <windows.h>
+#include "myEnum.h"
 
 namespace my
 {
 	class GameObject;
+	class Layer;
 
 	class Scene
 	{
@@ -20,10 +22,10 @@ namespace my
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
 
-		void AddGameObject( GameObject* object );
-	
+		void AddGameObject(GameObject* gameObject, eLayerType layerType);
+
 	private:
-		std::vector<GameObject*> _gameObjects;
+		std::vector<Layer*> _layers;
 		std::wstring _name;
 	};
 }

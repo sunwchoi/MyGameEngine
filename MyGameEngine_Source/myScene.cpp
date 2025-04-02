@@ -1,5 +1,5 @@
 #include "myScene.h"
-#include "myGameObject.h"
+#include "Layer.h"
 
 namespace my
 {
@@ -18,25 +18,32 @@ namespace my
 
 	void Scene::Initialize()
 	{
+		size_t count = (size_t)eLayerType::Count;
+		
+		_layers.resize(count);
+		for (int i = 0; i < count; i++)
+			_layers[i] = new Layer();
 	}
 
 	void Scene::Update()
 	{
-		for (GameObject* object : _gameObjects)
+		for (Layer* object : _layers)
 			object->Update();
 	}
 	void Scene::LateUpdate()
 	{
-		for (GameObject* object : _gameObjects)
+		for (Layer* object : _layers)
 			object->LateUpdate();
 	}
 	void Scene::Render(HDC hdc)
 	{
-		for (GameObject* object : _gameObjects)
+		for (Layer* object : _layers)
 			object->Render( hdc );
 	}
-	void Scene::AddGameObject(GameObject* object)
+
+	void Scene::AddGameObject(GameObject* gameObject, eLayerType layerType)
 	{
-		_gameObjects.push_back( object );
+		_layers[(uint8)layerType]->AddGameObject(gameObject);
 	}
+
 }

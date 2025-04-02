@@ -17,6 +17,7 @@ namespace my
 	PlayScene::~PlayScene()
 	{
 	}
+
 	void PlayScene::Initialize()
 	{
 		Scene::Initialize();
@@ -26,7 +27,7 @@ namespace my
 		SpriteRenderer* spriteRenderer = object->AddComponent<SpriteRenderer>();
 
 		spriteRenderer->ImageLoad( L"..\\Resource\\CloudOcean.png" );
-		AddGameObject( object );
+		AddGameObject( object , eLayerType::BackGround);
 	}
 
 	void PlayScene::Update()
