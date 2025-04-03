@@ -2,12 +2,15 @@
 #include "myTime.h"
 #include "mySceneManager.h"
 #include "Input.h"
-#include "../MyGameEngine_Window/myLoadScene.h"
+#include "../MyGameEngine_Window/myLoad.h"
 
 namespace my
 {
 	void Application::Initialize( HWND hwnd, UINT width, UINT height )
 	{
+		LoadResource();
+		LoadScene();
+
 		// 멤버변수 초기화
 		_hwnd = hwnd;
 		_hdc = GetDC( hwnd );
@@ -31,8 +34,6 @@ namespace my
 		Time::Initialize();
 
 		SceneManager::Initialize();
-
-		LoadScene();
 	}
 
 	void Application::Run()

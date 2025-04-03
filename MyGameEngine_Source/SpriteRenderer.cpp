@@ -1,6 +1,15 @@
 #include "SpriteRenderer.h"
 #include "myGameObject.h"
 #include "Transform.h"
+#include "myTexture.h"
+
+#include <mmsystem.h>
+#include <dinput.h>
+#pragma comment(lib, "Msimg32.lib");
+#pragma comment(lib, "winmm.lib");
+
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus.lib");
 
 namespace my
 {
@@ -33,13 +42,6 @@ namespace my
 		Rectangle( hdc, x, y, x + size, y + size );
 
 		Gdiplus::Graphics graphics( hdc );
-		graphics.DrawImage( _image, Gdiplus::Rect( x, y, _width, _height ) );
-	}
-
-	void SpriteRenderer::ImageLoad( const std::wstring& path )
-	{
-		_image = Gdiplus::Image::FromFile( path.c_str() );
-		_width = _image->GetWidth();
-		_height = _image->GetHeight();
+		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(x, y, _texture->GetWidth(), _texture->GetHeight()));
 	}
 }

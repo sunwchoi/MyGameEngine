@@ -1,17 +1,10 @@
 #pragma once
 #include "Component.h"
-#include <string>
-
-#include <mmsystem.h>
-#include <dinput.h>
-#pragma comment(lib, "Msimg32.lib");
-#pragma comment(lib, "winmm.lib");
-
-#include <gdiplus.h>
-#pragma comment(lib, "gdiplus.lib");
 
 namespace my
 {
+	class Texture;
+
 	class SpriteRenderer : public Component
 	{
 	public:
@@ -21,12 +14,11 @@ namespace my
 		void LateUpdate() override;
 		void Render( HDC hdc ) override;
 
-		void ImageLoad( const std::wstring& path );
+		const Texture* GetTexture() const { return _texture; }
+		void SetTexture(Texture* texture) { _texture = texture; }
 
 	private:
-		Gdiplus::Image* _image;
-		UINT			_height;
-		UINT			_width;
+		Texture* _texture;
 	};
 }
 

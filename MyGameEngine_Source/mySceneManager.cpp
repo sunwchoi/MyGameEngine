@@ -16,6 +16,8 @@ namespace my
 
 	void SceneManager::Initialize()
 	{
+		for (std::pair<std::wstring, Scene*> scenePair : _scenes)
+			scenePair.second->Initialize();
 	}
 
 	void SceneManager::Update()

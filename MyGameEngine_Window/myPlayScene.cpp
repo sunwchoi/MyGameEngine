@@ -4,6 +4,8 @@
 #include "SpriteRenderer.h"
 #include "Input.h"
 #include "mySceneManager.h"
+#include "myResources.h"
+#include "myTexture.h"
 
 namespace my
 {
@@ -27,8 +29,9 @@ namespace my
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
 		SpriteRenderer* spriteRenderer = _player->AddComponent<SpriteRenderer>();
-
-		spriteRenderer->ImageLoad( L"..\\Resource\\CloudOcean.png" );
+		
+		Texture* texture = Resources::Find<Texture>(L"Background");
+		spriteRenderer->SetTexture(texture);
 		AddGameObject(_player, eLayerType::BackGround);
 	}
 

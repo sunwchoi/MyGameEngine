@@ -15,6 +15,8 @@ namespace my
 		void LateUpdate();
 		void Render();
 
+		const HDC getHDC() const { return _hdc; }
+
 	private:
 		HWND	_hwnd;				// 윈도우 핸들
 		HDC		_hdc;				// DC 핸들
