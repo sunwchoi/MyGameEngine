@@ -4,6 +4,7 @@
 #include <string>
 #include <windows.h>
 #include "myEnum.h"
+#include "myEntity.h"
 
 namespace my
 {
@@ -11,6 +12,7 @@ namespace my
 	class Layer;
 
 	class Scene
+		: public Entity
 	{
 	public:
 		Scene();
@@ -29,7 +31,6 @@ namespace my
 
 	private:
 		std::vector<Layer*> _layers;
-		std::wstring _name;
 	};
 }
 

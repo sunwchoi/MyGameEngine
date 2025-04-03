@@ -8,7 +8,7 @@ namespace my
 	}
 
 	Scene::Scene(const std::wstring& name)
-		: _name ( name )
+		: Entity(name)
 	{
 	}
 
