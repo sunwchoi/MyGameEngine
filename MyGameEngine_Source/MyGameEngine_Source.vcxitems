@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />

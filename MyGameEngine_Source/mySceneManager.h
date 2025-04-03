@@ -51,6 +51,7 @@ namespace my
 		static void LateUpdate();
 		static void Render( HDC hdc );
 
+		static Scene* getActiveScene() { return _activeScene; };
 	private:
 		static std::map<std::wstring, Scene*> _scenes;
 		static Scene* _activeScene;
