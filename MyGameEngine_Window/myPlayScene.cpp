@@ -27,18 +27,29 @@ namespace my
 
 	void PlayScene::Initialize()
 	{
+		//player 추가
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
 
 		renderer::mainCamera = _player->AddComponent<Camera>();
 
-		SpriteRenderer* spriteRenderer = _player->AddComponent<SpriteRenderer>();
-		spriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
+		SpriteRenderer* playerSpriteRenderer = _player->AddComponent<SpriteRenderer>();
+		playerSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Player"));
+		playerSpriteRenderer->SetSize(Vector2(0.5f, 0.5f));
 
 		_player->AddComponent<PlayerScript>();
 
-		AddGameObject(_player, eLayerType::BackGround);
+		AddGameObject(_player, eLayerType::Player);
 	
+		// background 추가
+		GameObject* background = new GameObject();
+		background->AddComponent<Transform>();
+
+		SpriteRenderer* backgroundSpriteRenderer = background->AddComponent<SpriteRenderer>();
+		backgroundSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
+		backgroundSpriteRenderer->SetSize(Vector2(5.f, 5.f));
+		AddGameObject(background, eLayerType::BackGround);
+
 		Scene::Initialize();
 	}
 

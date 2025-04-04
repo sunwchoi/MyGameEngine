@@ -37,6 +37,6 @@ namespace my
 		const Vector2& position = renderer::mainCamera->CalculatePosition(transform->GetPosition());
 		
 		Gdiplus::Graphics graphics( hdc );
-		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(position._x - _texture->GetWidth() / 2, position._y - _texture->GetHeight() / 2, _texture->GetWidth(), _texture->GetHeight()));
+		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(position._x - _texture->GetWidth() * _size._x / 2, position._y - _texture->GetHeight() * _size._y / 2, _texture->GetWidth() * _size._x, _texture->GetHeight() * _size._y));
 	}
 }

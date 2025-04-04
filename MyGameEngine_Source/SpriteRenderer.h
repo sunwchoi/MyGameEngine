@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "myMath.h"
 
 namespace my
 {
@@ -13,11 +14,15 @@ namespace my
 		void LateUpdate() override;
 		void Render( HDC hdc ) override;
 
-		const Texture* GetTexture() const { return _texture; }
-		void SetTexture(Texture* texture) { _texture = texture; }
+		const Texture*	GetTexture() const { return _texture; }
+		void			SetTexture(Texture* texture) { _texture = texture; }
+		
+		const Vector2&	GetSize() const { return _size; }
+		void			SetSize(const Vector2& size) { _size = size; }
 
 	private:
-		Texture* _texture;
+		Texture*	_texture;
+		Vector2		_size = Vector2(1.f, 1.f);
 	};
 }
 

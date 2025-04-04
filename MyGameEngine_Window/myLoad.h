@@ -10,7 +10,8 @@ namespace my
 {
 	void LoadResource()
 	{
-		Resources::Load<Texture>(L"Background", L"..\\Resource\\CloudOcean.png");
+		Resources::Load<Texture>(L"Background", L"..\\Resource\\Map.png");
+		Resources::Load<Texture>(L"Player", L"..\\Resource\\Original_PacMan.png");
 	}
 
 	void LoadScene()
