@@ -10,7 +10,6 @@ namespace my
 	{
 	public:
 		virtual void Initialize();
-		virtual void Run();
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render( HDC hdc );

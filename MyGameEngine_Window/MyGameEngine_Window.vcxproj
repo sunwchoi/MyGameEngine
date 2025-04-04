@@ -22,12 +22,14 @@
     <ClInclude Include="myLoad.h" />
     <ClInclude Include="myPlayScene.h" />
     <ClInclude Include="myTitleScene.h" />
+    <ClInclude Include="myPlayerScript.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myPlayScene.cpp" />
     <ClCompile Include="myTitleScene.cpp" />
+    <ClCompile Include="myPlayerScript.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

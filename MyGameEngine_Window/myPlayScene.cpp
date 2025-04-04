@@ -6,6 +6,7 @@
 #include "mySceneManager.h"
 #include "myResources.h"
 #include "myTexture.h"
+#include "myPlayerScript.h"
 
 namespace my
 {
@@ -24,15 +25,17 @@ namespace my
 
 	void PlayScene::Initialize()
 	{
-		Scene::Initialize();
-
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
+
 		SpriteRenderer* spriteRenderer = _player->AddComponent<SpriteRenderer>();
-		
-		Texture* texture = Resources::Find<Texture>(L"Background");
-		spriteRenderer->SetTexture(texture);
+		spriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
+
+		_player->AddComponent<PlayerScript>();
+
 		AddGameObject(_player, eLayerType::BackGround);
+	
+		Scene::Initialize();
 	}
 
 	void PlayScene::Update()

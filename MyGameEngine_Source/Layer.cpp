@@ -4,6 +4,11 @@
 
 namespace my
 {
+	void Layer::Initialize()
+	{
+		for (GameObject* gameObject : _gameObjects)
+			gameObject->Initialize();
+	}
 	void Layer::Update()
 	{
 		for (GameObject* gameObject : _gameObjects)

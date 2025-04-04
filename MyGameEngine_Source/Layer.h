@@ -10,6 +10,7 @@ namespace my
 	class Layer
 	{
 	public:
+		void Initialize();
 		void Update();
 		void LateUpdate();
 		void Render(HDC hdc);

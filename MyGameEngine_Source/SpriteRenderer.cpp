@@ -17,10 +17,6 @@ namespace my
 	{
 	}
 
-	void SpriteRenderer::Run()
-	{
-	}
-
 	void SpriteRenderer::Update()
 	{
 	}

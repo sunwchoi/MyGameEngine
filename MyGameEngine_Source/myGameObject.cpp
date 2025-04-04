@@ -13,6 +13,12 @@ namespace my
 	}
 
 
+	void GameObject::Initialize()
+	{
+		for (Component* comp : _comps)
+			comp->Initialize();
+	}
+
 	void GameObject::Update()
 	{
 		for ( Component* comp : _comps )

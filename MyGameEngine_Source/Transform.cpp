@@ -14,24 +14,8 @@ namespace my
 	{
 	}
 
-	void Transform::Run()
-	{
-	}
-
 	void Transform::Update()
 	{
-		float speed = 100.f;
-		if (Input::GetKey(eKeyCode::A))
-			_x -= speed * Time::DeltaTime();
-
-		if (Input::GetKey(eKeyCode::D))
-			_x += speed * Time::DeltaTime();
-
-		if (Input::GetKey(eKeyCode::W))
-			_y -= speed * Time::DeltaTime();
-
-		if (Input::GetKey(eKeyCode::S))
-			_y += speed * Time::DeltaTime();
 	}
 
 	void Transform::LateUpdate()
@@ -40,5 +24,10 @@ namespace my
 
 	void Transform::Render( HDC hdc )
 	{
+	}
+	void Transform::Move(float dx, float dy)
+	{
+		_x += dx;
+		_y += dy;
 	}
 }

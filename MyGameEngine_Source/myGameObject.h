@@ -37,9 +37,10 @@ namespace my
 			return ret;
 		}
 
-		void Update();
-		void LateUpdate();
-		void Render( HDC hdc );
+		virtual void Initialize();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void Render( HDC hdc );
 
 	private:
 		std::vector<Component*> _comps;

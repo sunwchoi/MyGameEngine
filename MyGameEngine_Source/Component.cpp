@@ -5,10 +5,6 @@ namespace my
 	void Component::Initialize()
 	{
 	}
-	
-	void Component::Run()
-	{
-	}
 
 	void Component::Update()
 	{
