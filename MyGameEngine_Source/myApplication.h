@@ -16,6 +16,8 @@ namespace my
 		void Render();
 
 		const HDC getHDC() const { return _hdc; }
+		const float getWidth() const { return _width; }
+		const float getHeight() const { return _height; }
 
 	private:
 		HWND	_hwnd;				// 윈도우 핸들

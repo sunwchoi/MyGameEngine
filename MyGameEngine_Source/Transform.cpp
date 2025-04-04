@@ -5,8 +5,6 @@
 namespace my
 {
 	Transform::Transform()
-		: _x( 0 )
-		, _y( 0 )
 	{
 	}
 
@@ -27,7 +25,7 @@ namespace my
 	}
 	void Transform::Move(float dx, float dy)
 	{
-		_x += dx;
-		_y += dy;
+		_position._x += dx;
+		_position._y += dy;
 	}
 }

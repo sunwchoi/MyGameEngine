@@ -19,10 +19,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Input.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
@@ -38,8 +41,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp" />

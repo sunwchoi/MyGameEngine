@@ -2,7 +2,8 @@
 #include "myGameObject.h"
 #include "Transform.h"
 #include "myTexture.h"
-
+#include "myCamera.h"
+#include "myRenderer.h"
 #include <mmsystem.h>
 #include <dinput.h>
 #pragma comment(lib, "Msimg32.lib");
@@ -33,11 +34,9 @@ namespace my
 		if ( transform == nullptr )
 			return;
 
-		float x = transform->getPosX();
-		float y = transform->getPosY();
-		Rectangle( hdc, x, y, x + size, y + size );
-
+		const Vector2& position = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+		
 		Gdiplus::Graphics graphics( hdc );
-		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(x, y, _texture->GetWidth(), _texture->GetHeight()));
+		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(position._x - _texture->GetWidth() / 2, position._y - _texture->GetHeight() / 2, _texture->GetWidth(), _texture->GetHeight()));
 	}
 }

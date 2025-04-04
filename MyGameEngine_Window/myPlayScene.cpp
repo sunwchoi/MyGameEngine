@@ -7,6 +7,8 @@
 #include "myResources.h"
 #include "myTexture.h"
 #include "myPlayerScript.h"
+#include "myCamera.h"
+#include "myRenderer.h"
 
 namespace my
 {
@@ -27,6 +29,8 @@ namespace my
 	{
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
+
+		renderer::mainCamera = _player->AddComponent<Camera>();
 
 		SpriteRenderer* spriteRenderer = _player->AddComponent<SpriteRenderer>();
 		spriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
@@ -60,6 +64,6 @@ namespace my
 	{
 		Transform* transform = _player->GetComponent<Transform>();
 	
-		transform->setPos(0, 0);
+		transform->SetPosition(0, 0);
 	}
 }

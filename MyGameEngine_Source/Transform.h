@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.h"
+#include "myMath.h"
 
 namespace my
 {
@@ -13,15 +14,14 @@ namespace my
 		void LateUpdate() override;
 		void Render( HDC hdc ) override;
 
-		void setPos( float x, float y ) { _x = x; _y = y; }
-		float getPosX() { return _x; }
-		float getPosY() { return _y; }
+		void SetPosition(float x, float y) { _position._x = x; _position._y = y; }
+		void SetPosition(const Vector2 position) { _position = position; }
+		const Vector2& GetPosition() const { return _position; }
 
 		void Move(float dx, float dy);
 
 	private:
-		float _x;
-		float _y;
+		Vector2 _position;
 	};
 
 }
