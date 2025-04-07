@@ -12,6 +12,7 @@ namespace my
 	{
 		Resources::Load<Texture>(L"Background", L"..\\Resource\\Map.png");
 		Resources::Load<Texture>(L"Player", L"..\\Resource\\Original_PacMan.png");
+		Resources::Load<Texture>(L"Cat", L"..\\Resource\\ChickenAlpha.bmp");
 	}
 
 	void LoadScene()

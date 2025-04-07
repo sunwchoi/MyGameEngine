@@ -12,6 +12,7 @@ namespace my
 		Texture,
 		AudioClip,
 		Prefab,
+		Animation,
 
 		Count
 	};

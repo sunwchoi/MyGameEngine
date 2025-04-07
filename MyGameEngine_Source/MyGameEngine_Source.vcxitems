@@ -18,6 +18,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Component.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Input.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
@@ -40,6 +42,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />

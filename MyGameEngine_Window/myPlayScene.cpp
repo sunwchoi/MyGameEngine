@@ -9,6 +9,7 @@
 #include "myPlayerScript.h"
 #include "myCamera.h"
 #include "myRenderer.h"
+#include "myAnimator.h"
 
 namespace my
 {
@@ -33,9 +34,13 @@ namespace my
 
 		renderer::mainCamera = _player->AddComponent<Camera>();
 
-		SpriteRenderer* playerSpriteRenderer = _player->AddComponent<SpriteRenderer>();
-		playerSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Player"));
-		playerSpriteRenderer->SetSize(Vector2(0.5f, 0.5f));
+		//SpriteRenderer* playerSpriteRenderer = _player->AddComponent<SpriteRenderer>();
+		//playerSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Player"));
+		//playerSpriteRenderer->SetSize(Vector2(0.5f, 0.5f));
+
+		Animator* animator = _player->AddComponent<Animator>();
+		animator->CreateAnimation(L"moveAnim", Resources::Find<Texture>(L"Cat"), Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2(0.f, 0.f), 4, 0.5f);
+		animator->PlayAnimation(L"moveAnim");
 
 		_player->AddComponent<PlayerScript>();
 
