@@ -16,6 +16,7 @@ namespace my
         void Render(HDC hdc) override;
 
         Vector2 CalculatePosition(const Vector2& pos) const;
+        Vector2 DecalculatePosition(const Vector2& pos) const;
 
     private:
         GameObject* _target;

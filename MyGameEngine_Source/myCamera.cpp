@@ -8,8 +8,8 @@ namespace my
 {
 	void Camera::Initialize()
 	{
-		_resolution._x = application.getWidth();
-		_resolution._y = application.getHeight();
+		_resolution._x = application.GetWidth();
+		_resolution._y = application.GetHeight();
 	}
 
 	void Camera::Update()
@@ -30,5 +30,9 @@ namespace my
 	Vector2 Camera::CalculatePosition(const Vector2& pos) const
 	{
 		return pos - _distance;
+	}
+	Vector2 Camera::DecalculatePosition(const Vector2& pos) const
+	{
+		return pos + _distance;
 	}
 }

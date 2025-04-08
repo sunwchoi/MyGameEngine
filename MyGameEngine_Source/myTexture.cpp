@@ -37,7 +37,7 @@ namespace my
 			_height = info.bmHeight;
 
 			//Create DC
-			HDC mainDC = application.getHDC();
+			HDC mainDC = application.GetHDC();
 
 			_hdc = CreateCompatibleDC(mainDC);
 

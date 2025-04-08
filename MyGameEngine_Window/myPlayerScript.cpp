@@ -1,4 +1,5 @@
 #include "myPlayerScript.h"
+#include "myRenderer.h"
 #include "../MyGameEngine_Source/myGameObject.h"
 #include "../MyGameEngine_Source/Transform.h"
 #include "../MyGameEngine_Source/Input.h"
@@ -22,6 +23,9 @@ namespace my
 			_playerTransform->Move(0, -1 * _speed * Time::DeltaTime());
 		if (Input::GetKey(eKeyCode::S))
 			_playerTransform->Move(0, _speed * Time::DeltaTime());
+
+		if (Input::GetKeyDown(eKeyCode::LBUTTON))
+			_playerTransform->SetPosition(renderer::mainCamera->DecalculatePosition(Input::GetMousePosition()));
 	}
 
 	void PlayerScript::LateUpdate()

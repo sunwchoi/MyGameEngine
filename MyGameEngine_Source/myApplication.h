@@ -15,9 +15,10 @@ namespace my
 		void LateUpdate();
 		void Render();
 
-		const HDC getHDC() const { return _hdc; }
-		const float getWidth() const { return _width; }
-		const float getHeight() const { return _height; }
+		const float GetWidth() const { return _width; }
+		const float GetHeight() const { return _height; }
+		const HDC&	GetHDC() const { return _hdc; }
+		const HWND& GetHWND() const { return _hwnd; }
 
 	private:
 		HWND	_hwnd;				// 윈도우 핸들

@@ -1,14 +1,21 @@
 #include "Input.h"
+#include "myApplication.h"
 #include <Windows.h>
+
+extern my::Application application;
 
 namespace my
 {
+	Vector2					Input::_mousePosition;
 	std::vector<Input::Key> Input::_keys = {};
 
 	int ASCII[(size_t)eKeyCode::Count] = {
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
-		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+		'Z', 'X', 'C', 'V', 'B', 'N', 'M', 
+
+		VK_LEFT, VK_RIGHT, VK_UP, VK_DOWN,
+		VK_LBUTTON, VK_MBUTTON, VK_RBUTTON
 	};
 
 	Input::Key::Key(uint8 code)
@@ -51,5 +58,17 @@ namespace my
 				_keys[i]._bPressed = false;
 			}
 		}
+
+		UpdateMousePosition();
+	}
+	void Input::UpdateMousePosition()
+	{
+		POINT mousePoint = {};
+
+		GetCursorPos(&mousePoint);
+		ScreenToClient(application.GetHWND(), &mousePoint);
+
+		_mousePosition._x = mousePoint.x;
+		_mousePosition._y = mousePoint.y;
 	}
 }
