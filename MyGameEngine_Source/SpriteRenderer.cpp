@@ -6,11 +6,7 @@
 #include "myRenderer.h"
 #include <mmsystem.h>
 #include <dinput.h>
-#pragma comment(lib, "Msimg32.lib");
-#pragma comment(lib, "winmm.lib");
-
 #include <gdiplus.h>
-#pragma comment(lib, "gdiplus.lib");
 
 namespace my
 {
@@ -34,9 +30,16 @@ namespace my
 		if ( transform == nullptr )
 			return;
 
-		const Vector2& position = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+		const Vector2& pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+
+		BLENDFUNCTION blendFunction;
+
+		blendFunction.BlendOp = AC_SRC_OVER;
+		blendFunction.BlendFlags = 0;
+		blendFunction.AlphaFormat = AC_SRC_ALPHA;
+		blendFunction.SourceConstantAlpha = 255;
+
+		AlphaBlend(hdc, pos._x, pos._y, _texture->GetWidth(), _texture->GetHeight(), _texture->GetHDC(), 0, 0, _texture->GetWidth(), _texture->GetHeight(), blendFunction);
 		
-		Gdiplus::Graphics graphics( hdc );
-		graphics.DrawImage( _texture->GetImage(), Gdiplus::Rect(position._x - _texture->GetWidth() * _size._x / 2, position._y - _texture->GetHeight() * _size._y / 2, _texture->GetWidth() * _size._x, _texture->GetHeight() * _size._y));
 	}
 }

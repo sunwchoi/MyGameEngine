@@ -15,7 +15,7 @@ namespace my
 	{
 	}
 
-	HRESULT Texture::Load(const std::wstring& path)
+	void Texture::Load(const std::wstring& path)
 	{
 		const std::wstring ext = path.substr(path.find_last_of(L".") + 1);
 		
@@ -24,43 +24,35 @@ namespace my
 		{
 			_type = eTextureType::Bmp;
 
-			//Load Image
+			//Load Bitmap
 			_bitmap = (HBITMAP)LoadImageW(nullptr, path.c_str(), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
-			if (_bitmap == nullptr)
-				return S_FALSE;
-
-			//Save Info
-			BITMAP info;
-
-			GetObject(_bitmap, sizeof(BITMAP), &info);
-			_width = info.bmWidth;
-			_height = info.bmHeight;
-
-			//Create DC
-			HDC mainDC = application.GetHDC();
-
-			_hdc = CreateCompatibleDC(mainDC);
-
-			//Delete Old Bitmap
-			HBITMAP oldBitmap = (HBITMAP)SelectObject(_hdc, _bitmap);
-
-			DeleteObject(oldBitmap);
 		}
 		else if (ext == L"png")
 		{
 			_type = eTextureType::Png;
 
-			_image = Gdiplus::Image::FromFile(path.c_str());
-			if (_image == nullptr)
-				return S_FALSE;
-
-			_width = _image->GetWidth();
-			_height = _image->GetHeight();
+			//Load Bitmap
+			Gdiplus::Image* image = Gdiplus::Image::FromFile(path.c_str());
+			Gdiplus::Bitmap* bitmap = reinterpret_cast<Gdiplus::Bitmap*>(image->Clone());
+			bitmap->GetHBITMAP(Gdiplus::Color(0), &_bitmap);
 		}
-		else
-			return S_FALSE;
 
-		return S_OK;
+		//Save Info
+		BITMAP info;
+
+		GetObject(_bitmap, sizeof(BITMAP), &info);
+		_width = info.bmWidth;
+		_height = info.bmHeight;
+
+		//Create DC
+		HDC mainDC = application.GetHDC();
+		
+		_hdc = CreateCompatibleDC(mainDC);
+
+		//Delete Old Bitmap
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(_hdc, _bitmap);
+		
+		DeleteObject(oldBitmap);
 	}
 }
 

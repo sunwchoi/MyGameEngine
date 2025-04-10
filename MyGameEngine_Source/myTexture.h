@@ -28,10 +28,9 @@ namespace my
         Texture(const std::wstring& name);
         ~Texture();
 
-        HRESULT Load(const std::wstring& path) override;
+        void Load(const std::wstring& path) override;
 
         const HDC       GetHDC() const { return _hdc; }
-        Gdiplus::Image* GetImage() const { return _image; }
         const UINT      GetHeight() const { return _height; }
         const UINT      GetWidth() const { return _width; }
 
@@ -40,7 +39,6 @@ namespace my
 
         HBITMAP         _bitmap;
         HDC             _hdc;
-        Gdiplus::Image* _image;
 
         UINT			_height;
         UINT			_width;

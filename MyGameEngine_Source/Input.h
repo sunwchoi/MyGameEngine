@@ -23,6 +23,7 @@ namespace my
 		Z, X, C, V, B, N, M,
 		LEFT, RIGHT, UP, DOWN,
 		LBUTTON, MBUTTON, RBUTTON,
+		SPACE, SHIFT,
 		
 		Count
 	};

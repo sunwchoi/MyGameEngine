@@ -24,12 +24,12 @@ namespace my
         Animation(const std::wstring& name);
         ~Animation();
 
-        HRESULT Load(const std::wstring& path) override;
+        void Load(const std::wstring& path) override;
 
         void Update();
         void Render(HDC hdc);
 
-        void CreateAnimation(Animator* animator, Texture* SpriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
+        void CreateAnimation(Animator* animator, Texture* SpriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration, bool bReverse);
         void Reset();
 
         bool isComplete() const { return _bComplete; }
@@ -41,6 +41,7 @@ namespace my
         int     _index;
         float   _time;
         bool    _bComplete;
+        bool    _bReverse;
     };
 }
 

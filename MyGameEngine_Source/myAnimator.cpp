@@ -35,14 +35,14 @@ namespace my
 		}
 	}
 
-	void Animator::CreateAnimation(const std::wstring& name, Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
+	void Animator::CreateAnimation(const std::wstring& name, Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration, bool bReverse /*= false*/)
 	{
 		Animation* animation = FindAnimation(name);
 		if (animation)
 			return;
 
 		animation = new Animation(name);
-		animation->CreateAnimation(this, spriteSheet, leftTop, size, offset, spriteLength, duration);
+		animation->CreateAnimation(this, spriteSheet, leftTop, size, offset, spriteLength, duration, bReverse);
 
 		_animations.insert(make_pair(name, animation));
 	}
@@ -62,9 +62,12 @@ namespace my
 		if (animation == nullptr)
 			return;
 
-		_activeAnimation = animation;
-		_activeAnimation->Reset();
-		_bLoop = bLoop;
+		if (_activeAnimation != animation)
+		{
+			_activeAnimation = animation;
+			_activeAnimation->Reset();
+			_bLoop = bLoop;
+		}
 	}
 
 }

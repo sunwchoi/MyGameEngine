@@ -38,11 +38,17 @@ namespace my
 		//playerSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Player"));
 		//playerSpriteRenderer->SetSize(Vector2(0.5f, 0.5f));
 
-		Animator* animator = _player->AddComponent<Animator>();
-		animator->CreateAnimation(L"moveAnim", Resources::Find<Texture>(L"Cat"), Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2(0.f, 0.f), 4, 0.5f);
-		animator->PlayAnimation(L"moveAnim");
-
 		_player->AddComponent<PlayerScript>();
+
+		Animator* animator = _player->AddComponent<Animator>();
+		animator->CreateAnimation(L"LeftIdle", Resources::Find<Texture>(L"RightIdle"), Vector2(0, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 9, 0.2f, true);
+		animator->CreateAnimation(L"RightIdle", Resources::Find<Texture>(L"RightIdle"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 9, 0.2f);
+		animator->CreateAnimation(L"LeftWalk", Resources::Find<Texture>(L"RightWalk"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 8, 0.2f, true);
+		animator->CreateAnimation(L"RightWalk", Resources::Find<Texture>(L"RightWalk"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 8, 0.2f);
+		animator->CreateAnimation(L"LeftRun", Resources::Find<Texture>(L"RightRun"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 8, 0.2f, true);
+		animator->CreateAnimation(L"RightRun", Resources::Find<Texture>(L"RightRun"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 8, 0.2f);
+		
+		animator->PlayAnimation(L"RightIdle");
 
 		AddGameObject(_player, eLayerType::Player);
 	

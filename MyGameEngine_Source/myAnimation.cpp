@@ -4,6 +4,9 @@
 #include "Transform.h"
 #include "myGameObject.h"
 #include "myRenderer.h"
+#include "myApplication.h"
+
+extern my::Application application;
 
 namespace my
 {
@@ -21,9 +24,8 @@ namespace my
 	{
 	}
 
-	HRESULT Animation::Load(const std::wstring& path)
+	void Animation::Load(const std::wstring& path)
 	{
-		return E_NOTIMPL;
 	}
 
 	void Animation::Update()
@@ -58,20 +60,35 @@ namespace my
 		blendFunction.BlendOp = AC_SRC_OVER;
 		blendFunction.BlendFlags = 0;
 		blendFunction.AlphaFormat = AC_SRC_ALPHA;
-		blendFunction.SourceConstantAlpha = 125;
+		blendFunction.SourceConstantAlpha = 255;
 
 		const Sprite& sprite = _animationSheet[_index];
-		HDC imgHdc = _spriteSheet->GetHDC();
+		if (_bReverse)
+		{
+			HDC imgHdc = CreateCompatibleDC(hdc);
+			HBITMAP imgBitmap = CreateCompatibleBitmap(hdc, sprite._size._x, sprite._size._y);
+			HBITMAP oldBitmap = (HBITMAP)SelectObject(imgHdc, imgBitmap);
+			DeleteObject(oldBitmap);
 
-		// *5인 이유는?
-		AlphaBlend(hdc, pos._x, pos._y, sprite._size._x * 10, sprite._size._y * 10, imgHdc, sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
+			StretchBlt(imgHdc, 0, 0, sprite._size._x, sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x + sprite._size._x, sprite._leftTop._y, sprite._size._x * -1, sprite._size._y, SRCCOPY);
+			AlphaBlend(hdc, pos._x, pos._y, sprite._size._x, sprite._size._y, imgHdc, 0, 0, sprite._size._x, sprite._size._y, blendFunction);
+		
+			DeleteObject(imgBitmap);
+			DeleteDC(imgHdc);
+		}
+		else
+		{
+			AlphaBlend(hdc,  pos._x, pos._y, sprite._size._x , sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
+		}
+	
+
 	}
 
-	void Animation::CreateAnimation(Animator* animator, Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)
+	void Animation::CreateAnimation(Animator* animator, Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration, bool bReverse)
 	{
 		_animator = animator;
 		_spriteSheet = spriteSheet;
-		
+		_bReverse = bReverse;
 		for (int i = 0; i < spriteLength; i++)
 		{
 			Sprite sprite;

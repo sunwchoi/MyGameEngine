@@ -27,8 +27,7 @@ namespace my
 				return resource;
 				
 			resource = new T(name);
-			if (FAILED(resource->Load(path)))
-				return nullptr;
+			resource->Load(path);
 			
 			_resources.insert(std::make_pair(name, resource));
 			return resource;

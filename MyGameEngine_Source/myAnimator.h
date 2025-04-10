@@ -22,7 +22,7 @@ namespace my
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
-        void CreateAnimation(const std::wstring& name, Texture* SpriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration);
+        void CreateAnimation(const std::wstring& name, Texture* SpriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration, bool bReverse = false);
         Animation* FindAnimation(const std::wstring& name);
 
         void PlayAnimation(const std::wstring& name, bool bLoop = true);

@@ -24,7 +24,7 @@ namespace my
 		Resource(const std::wstring& name, const eResourceType type);
 		virtual ~Resource();
 
-		virtual HRESULT Load(const std::wstring& path) = 0;
+		virtual void Load(const std::wstring& path) = 0;
 
 		const eResourceType GetResourceType() const { return _type; }
 		
