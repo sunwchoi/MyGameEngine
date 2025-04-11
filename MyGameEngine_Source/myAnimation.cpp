@@ -41,6 +41,7 @@ namespace my
 			if (_index == _animationSheet.size() - 1)
 			{
 				_bComplete = true;
+				_completeEvent.Excute();
 				return;
 			}
 			_index++;
@@ -110,4 +111,8 @@ namespace my
 		_bComplete = false;
 	}
 
+	void Animation::BindCompleteEvent(const std::function<void()>& func)
+	{
+		_completeEvent.Bind(func);
+	}
 }

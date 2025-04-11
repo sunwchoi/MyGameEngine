@@ -1,5 +1,6 @@
 #include "myAnimator.h"
 #include "myAnimation.h"
+#include "myAssert.h"
 
 namespace my
 {
@@ -68,6 +69,14 @@ namespace my
 			_activeAnimation->Reset();
 			_bLoop = bLoop;
 		}
+	}
+
+	void Animator::BindCompleteEvent(const std::wstring& name, const std::function<void()>& func)
+	{
+		Animation* animation = FindAnimation(name);
+		MY_ASSERT_MSG(animation != nullptr, "없는 애니메이션 이름이 들어와선 안됩니다.");
+
+		animation->BindCompleteEvent(func);
 	}
 
 }

@@ -7,6 +7,7 @@
 #include "myAnimator.h"
 #include "myResources.h"
 #include "myAssert.h"
+#include <functional>
 
 namespace my
 {
@@ -14,11 +15,28 @@ namespace my
 	{
 		_transform = GetOwner()->GetComponent<Transform>();
 		_animator = GetOwner()->GetComponent<Animator>();
+		//_animator->BindCompleteEvent(L"LeftJump", std::bind(&PlayerScript::JumpEnd, this));
+		//_animator->BindCompleteEvent(L"RightJump", std::bind(&PlayerScript::JumpEnd, this));
+		_animator->BindCompleteEvent(L"LeftAttack1", std::bind(&PlayerScript::AttackEnd, this));
+		_animator->BindCompleteEvent(L"RightAttack1", std::bind(&PlayerScript::AttackEnd, this));
+		_animator->BindCompleteEvent(L"LeftAttack2", std::bind(&PlayerScript::AttackEnd, this));
+		_animator->BindCompleteEvent(L"RightAttack2", std::bind(&PlayerScript::AttackEnd, this));
+		_animator->BindCompleteEvent(L"LeftAttack3", std::bind(&PlayerScript::AttackEnd, this));
+		_animator->BindCompleteEvent(L"RightAttack3", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"LeftHurt", std::bind(&PlayerScript::HurtEnd, this));
+		//_animator->BindCompleteEvent(L"RightHurt", std::bind(&PlayerScript::HurtEnd, this));
 		_speed = 100.f;
 	}
 
 	void PlayerScript::Update()
 	{
+		if (_comboIndex) //콤보 공격 중 일때
+		{
+			_comboTime -= Time::DeltaTime();
+			if (_comboTime <= 0)
+				_comboIndex = 0;
+		}
+
 		switch (_state)
 		{
 		case ePlayerState::Idle:
@@ -104,13 +122,42 @@ namespace my
 
 	void PlayerScript::Jump()
 	{
+
 	}
 
 	void PlayerScript::Attack()
 	{
+		constexpr const wchar_t* animPreset[2][3] = { {L"LeftAttack1", L"LeftAttack2", L"LeftAttack3"}, {L"RightAttack1", L"RightAttack2", L"RightAttack3"} };
+
+		if (_bAttack == false)
+		{
+			_animator->PlayAnimation(animPreset[(uint8)_direction][_comboIndex]);
+			_bAttack = true;
+			_comboTime = 3.f;
+		}
 	}
 
 	void PlayerScript::Hurt()
 	{
+	}
+
+	void PlayerScript::JumpEnd()
+	{
+		_state = ePlayerState::Idle;
+	}
+
+	void PlayerScript::AttackEnd()
+	{
+		_comboTime = 1.f;
+		if (++_comboIndex == 3)
+			_comboIndex -= 3;
+
+		_bAttack = false;
+		_state = ePlayerState::Idle;
+	}
+
+	void PlayerScript::HurtEnd()
+	{
+		_state = ePlayerState::Idle;
 	}
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "myResource.h"
 #include "myMath.h"
+#include "myDelegate.h"
+#include <functional>
 #include <vector>
 
 namespace my
@@ -32,6 +34,7 @@ namespace my
         void CreateAnimation(Animator* animator, Texture* SpriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration, bool bReverse);
         void Reset();
 
+        void BindCompleteEvent(const std::function<void()>& func);
         bool isComplete() const { return _bComplete; }
     private:
         Animator*   _animator;
@@ -42,6 +45,8 @@ namespace my
         float   _time;
         bool    _bComplete;
         bool    _bReverse;
+        
+        Delegate _completeEvent;
     };
 }
 

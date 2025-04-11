@@ -41,13 +41,21 @@ namespace my
         void Jump();
         void Attack();
         void Hurt();
-    
+
+        void JumpEnd();
+        void AttackEnd();
+        void HurtEnd();
     private:
         Transform*          _transform;
         Animator*           _animator;
         float               _speed;
         ePlayerDirection    _direction;
         ePlayerState        _state;
+        
+        // Attack°ü·Ã
+        bool                _bAttack;
+        uint8               _comboIndex;
+        float               _comboTime;
     };
 }
 

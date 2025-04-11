@@ -7,8 +7,8 @@
 
 #else
 
-#define MY_ASSERT(expr) my::Assert(#expr, "Assertion Failed", __FUNCTION__, __FILE__, __LINE__)
-#define MY_ASSERT_MSG(expr, msg) my::Assert(#expr, msg, __FUNCTION__, __FILE__, __LINE__)
+#define MY_ASSERT(expr) expr ? (void)0 : my::Assert(#expr, "Assertion Failed", __FUNCTION__, __FILE__, __LINE__)
+#define MY_ASSERT_MSG(expr, msg) expr ? (void)0 :my::Assert(#expr, msg, __FUNCTION__, __FILE__, __LINE__)
 
 #endif
 
