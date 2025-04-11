@@ -12,20 +12,20 @@ namespace my
     {
         enum class ePlayerState : uint8
         {
-            Idle,
+            Idle = 0,
             Walk,
             Run,
+            Jump,
             Attack,
+            Hurt,
 
             Count
         };
 
         enum class ePlayerDirection : uint8
         {
-            Left,
+            Left = 0,
             Right,
-            Up,
-            Down,
 
             Count
         };
@@ -35,6 +35,12 @@ namespace my
         void Update() override;
         void LateUpdate() override;
         void Render(HDC hdc) override;
+
+        void Idle();
+        void Move();
+        void Jump();
+        void Attack();
+        void Hurt();
     
     private:
         Transform*          _transform;
