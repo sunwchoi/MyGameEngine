@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myAssert.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myAssert.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
