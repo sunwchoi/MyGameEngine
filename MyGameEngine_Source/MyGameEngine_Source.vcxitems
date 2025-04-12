@@ -22,7 +22,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myAssert.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myDelegate.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
@@ -48,7 +51,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myAssert.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myDelegate.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />

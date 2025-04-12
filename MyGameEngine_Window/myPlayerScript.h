@@ -6,6 +6,8 @@ namespace my
 {
     class Transform;
     class Animator;
+    class BoxCollider2D;
+    class CircleCollider2D;
 
     class PlayerScript :
         public Script
@@ -46,9 +48,13 @@ namespace my
         void AttackEnd();
         void HurtEnd();
     private:
+        //Component
         Transform*          _transform;
         Animator*           _animator;
-        float               _speed;
+        BoxCollider2D*      _bodyCollider;
+        CircleCollider2D*   _attackCollider;
+
+        // State ฐüทร
         ePlayerDirection    _direction;
         ePlayerState        _state;
         

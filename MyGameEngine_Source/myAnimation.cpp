@@ -72,14 +72,14 @@ namespace my
 			DeleteObject(oldBitmap);
 
 			StretchBlt(imgHdc, 0, 0, sprite._size._x, sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x + sprite._size._x, sprite._leftTop._y, sprite._size._x * -1, sprite._size._y, SRCCOPY);
-			AlphaBlend(hdc, pos._x, pos._y, sprite._size._x, sprite._size._y, imgHdc, 0, 0, sprite._size._x, sprite._size._y, blendFunction);
+			AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x, sprite._size._y, imgHdc, 0, 0, sprite._size._x, sprite._size._y, blendFunction);
 		
 			DeleteObject(imgBitmap);
 			DeleteDC(imgHdc);
 		}
 		else
 		{
-			AlphaBlend(hdc,  pos._x, pos._y, sprite._size._x , sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
+			AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x , sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
 		}
 	
 

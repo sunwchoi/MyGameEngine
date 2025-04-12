@@ -8,33 +8,33 @@ namespace my
 
 	GameObject::~GameObject()
 	{
-		for ( Component* comp : _comps )
-			delete comp;
+		for (int i = 0; i < _comps.size(); i++)
+			delete _comps[i];
 	}
 
 
 	void GameObject::Initialize()
 	{
-		for (Component* comp : _comps)
-			comp->Initialize();
+		for (int i = 0; i < _comps.size(); i++)
+			_comps[i]->Initialize();
 	}
 
 	void GameObject::Update()
 	{
-		for ( Component* comp : _comps )
-			comp->Update();
+		for (int i = 0; i < _comps.size(); i++)
+			_comps[i]->Update();
 	}
 
 	void GameObject::LateUpdate()
 	{
-		for ( Component* comp : _comps )
-			comp->LateUpdate();
+		for (int i = 0; i < _comps.size(); i++)
+			_comps[i]->LateUpdate();
 	}
 
 	void GameObject::Render( HDC hdc )
 	{
-		for ( Component* comp : _comps )
-			comp->Render( hdc );
+		for (int i = 0; i < _comps.size(); i++)
+			_comps[i]->Render(hdc);
 	}
 
 }
