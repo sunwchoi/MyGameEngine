@@ -2,7 +2,7 @@
 
 #include <windows.h>
 #include "Component.h"
-#include <vector>
+#include "vector.hpp"
 
 namespace my
 {
@@ -43,7 +43,7 @@ namespace my
 		virtual void Render( HDC hdc );
 
 	private:
-		std::vector<Component*> _comps;
+		vector<Component*> _comps;
 	};
 }
 
