@@ -2,6 +2,7 @@
 
 #include "myMath.h"
 #include "myMesh.h"
+#include "myShader.h"
 
 #include <wrl.h>
 #include <d3d11.h>
@@ -20,8 +21,12 @@ namespace my
 	
 		void Initialize();
 		void PreRender();
-		void Render(const Mesh& mesh);
+		void RenderMesh(const Mesh& mesh);
 		void PostRender();
+
+#if _DEBUG
+		void RenderPractice();
+#endif // _DEBUG
 
 		const Microsoft::WRL::ComPtr<ID3D11Device>& GetDevice() const { return _device;  };
 
@@ -52,6 +57,8 @@ namespace my
 		
 		std::unique_ptr<Shader> _vertexShader;
 		std::unique_ptr<Shader> _pixelShader;
+		vector<Vertex> vertexes;
+
 
 	};
 }

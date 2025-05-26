@@ -1,9 +1,7 @@
 #include "myShader.h"
 #include "myAssert.h"
 #include "myApplication.h"
-
-#include <d3d11.h>
-#include <d3dcompiler.h>
+#include "myGraphicDevice_DX11.h"
 
 extern my::Application application;
 
@@ -42,6 +40,11 @@ namespace my
 			&errorBlob
 		);
 
+		if (errorBlob)
+		{
+			OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+			errorBlob->Release();
+		}
 		MY_ASSERT_MSG(SUCCEEDED(rv), "Shader 컴파일 실패");
 
 		const Microsoft::WRL::ComPtr<ID3D11Device>& device = application.GetGraphicDevice()->GetDevice();

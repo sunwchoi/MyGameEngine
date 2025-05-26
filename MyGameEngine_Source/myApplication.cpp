@@ -3,6 +3,7 @@
 #include "mySceneManager.h"
 #include "Input.h"
 #include "../MyGameEngine_Window/myLoad.h"
+#include "myGraphicDevice_DX11.h"
 
 namespace my
 {
@@ -18,6 +19,9 @@ namespace my
 		_height = height;
 		_backBitmap = CreateCompatibleBitmap( _hdc, _width, _height );
 		_backHdc = CreateCompatibleDC( _hdc );
+
+		_graphicDevice = new GraphicDevice_DX11();
+		_graphicDevice->Initialize();
 		
 		HBITMAP oldBitmap = (HBITMAP)SelectObject( _backHdc, _backBitmap );
 		DeleteObject( oldBitmap );
@@ -58,9 +62,15 @@ namespace my
 
 	void Application::Render()
 	{
-		Rectangle( _backHdc, 0, 0, _width, _height );
-		SceneManager::Render( _backHdc );
+		//Rectangle( _backHdc, 0, 0, _width, _height );
+		//SceneManager::Render( _backHdc );
 
-		BitBlt( _hdc, 0, 0, _width, _height, _backHdc, 0, 0, SRCCOPY );
+		//BitBlt( _hdc, 0, 0, _width, _height, _backHdc, 0, 0, SRCCOPY );
+
+#if _DEBUG
+		_graphicDevice->PreRender();
+		_graphicDevice->RenderPractice();
+#endif // _DEBUG
+
 	}
 }

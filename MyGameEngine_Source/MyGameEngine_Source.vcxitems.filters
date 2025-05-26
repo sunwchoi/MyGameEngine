@@ -26,6 +26,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
@@ -56,43 +61,48 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\compare.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)myShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)compare.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\iterator_trait.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)iterator_trait.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\map.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)map.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\pair.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)pair.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\reverse_iterator.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)reverse_iterator.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\set.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)set.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\SFINAE.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)SFINAE.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\stack.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)stack.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\tree.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)tree.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\tree_iterator.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)tree_iterator.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\vector.hpp">
+    <ClInclude Include="$(MSBuildThisFileDirectory)vector.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">
-      <UniqueIdentifier>{20d123df-cd25-4073-8e7e-ea346a8d93dd}</UniqueIdentifier>
+      <UniqueIdentifier>{e2033604-fe03-4470-bf79-dde1e789e5e8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

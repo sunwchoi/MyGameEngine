@@ -14,21 +14,13 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\compare.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\iterator_trait.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\map.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\pair.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\reverse_iterator.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\set.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\SFINAE.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\stack.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\tree.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\tree_iterator.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\containers\vector.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)compare.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Component.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Input.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)iterator_trait.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)map.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
@@ -41,7 +33,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myResource.h" />
@@ -49,10 +44,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pair.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)reverse_iterator.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)set.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SFINAE.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)stack.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)tree.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)tree_iterator.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp" />
@@ -69,15 +74,20 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myDelegate.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
   </ItemGroup>

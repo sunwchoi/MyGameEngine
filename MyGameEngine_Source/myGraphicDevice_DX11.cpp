@@ -26,12 +26,32 @@ namespace my
 		CreateDepthStencil();
 		LoadShader();
 		CreateInputLayout();
+
+		vertexes = vector<Vertex>(3);
+
+		vertexes[0] = Vertex(Vector3(0.f, 0.5f, 0.0f), Vector3());
+		vertexes[1] = Vertex(Vector3(0.5f, -0.5f, 0.0f), Vector3());
+		vertexes[2] = Vertex(Vector3(-0.5f, -0.5f, 0.0f), Vector3());
+		_deviceContext->IASetInputLayout(_inputLayouts);
+		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		
+		D3D11_BUFFER_DESC bufferDesc = {};
+
+		bufferDesc.ByteWidth = sizeof(Vertex) * 3;
+		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
+		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
+		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+
+
+		D3D11_SUBRESOURCE_DATA sub = { vertexes.data() };
+
+		_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
 	}
 
 	void GraphicDevice_DX11::PreRender()
 	{
 		// clear and ready
-		FLOAT backgroundColor[4] = { 0.f, 0.f, 0.f, 0.0f };
+		FLOAT backgroundColor[4] = { 0.f, 0.f, 0.f, 1.0f };
 		_deviceContext->ClearRenderTargetView(_renderTargetView.Get(), backgroundColor);
 		_deviceContext->ClearDepthStencilView(_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 
@@ -41,55 +61,74 @@ namespace my
 
 	}
 
-	void GraphicDevice_DX11::Render(const Mesh& mesh)
+#if _DEBUG
+	void GraphicDevice_DX11::RenderPractice()
 	{
 		_deviceContext->IASetInputLayout(_inputLayouts);
 		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		
-		D3D11_BUFFER_DESC bufferDesc = {};
-
-		bufferDesc.ByteWidth = mesh.getBufferSize();
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
-
-		_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
-
-
-		constexpr UINT vertexSize = sizeof(Vertex);
-		constexpr UINT offset = 0;
-
+		UINT vertexSize = sizeof(Vertex);
+		UINT offset = 0;
 		_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
 		
-		Vector3 camLoc(0.f, 0.f, -10.f);
-		Vector3 origin;
-		Vector3 forward = (origin - camLoc).Normalize();
-		Vector3 up(0.f, 1.f, 0.f);
-		Vector3 right = forward.Cross(up).Normalize();
-
-		float view[16] = {
-			right._x, right._y, right._z, 0.0f,
-			up._x, up._y, up._z, 0.0f,
-			forward._x, forward._y, forward._z, 0.0f,
-			camLoc._x, camLoc._y, camLoc._z, 1.f,
-		};
-
-		float projection[16] = {
-			1.81066f, 0.0f, 0.0f, 0.0f,
-			0.0f, 3.21938f, 0.0f, 0.0f,
-			0.0f, 0.0f, -1.0202f, -2.0202f,
-			0.0f, 0.0f, -1.0f, 0.0f
-		};
-
-		_deviceContext->PSSetConstantBuffers(0, 1, (void *)mesh.getMaterial());
 
 		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
 		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
 
 		_deviceContext->Draw(3, 0);
 		_swapChain->Present(1, 0);
+	}
+#endif // _DEBUG
+
+
+	void GraphicDevice_DX11::RenderMesh(const Mesh& mesh)
+	{
+		//_deviceContext->IASetInputLayout(_inputLayouts);
+		//_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		//
+		//D3D11_BUFFER_DESC bufferDesc = {};
+
+		//bufferDesc.ByteWidth = mesh.getBufferSize();
+		//bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
+		//bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
+		//bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+
+		//D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
+
+		//_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
+
+
+		//constexpr UINT vertexSize = sizeof(Vertex);
+		//constexpr UINT offset = 0;
+
+		//_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
+		//
+		//Vector3 camLoc(0.f, 0.f, -10.f);
+		//Vector3 origin;
+		//Vector3 forward = (origin - camLoc).Normalize();
+		//Vector3 up(0.f, 1.f, 0.f);
+		//Vector3 right = forward.Cross(up).Normalize();
+
+		//float view[16] = {
+		//	right._x, right._y, right._z, 0.0f,
+		//	up._x, up._y, up._z, 0.0f,
+		//	forward._x, forward._y, forward._z, 0.0f,
+		//	camLoc._x, camLoc._y, camLoc._z, 1.f,
+		//};
+
+		//float projection[16] = {
+		//	1.81066f, 0.0f, 0.0f, 0.0f,
+		//	0.0f, 3.21938f, 0.0f, 0.0f,
+		//	0.0f, 0.0f, -1.0202f, -2.0202f,
+		//	0.0f, 0.0f, -1.0f, 0.0f
+		//};
+
+		//_deviceContext->PSSetConstantBuffers(0, 1, (void *)mesh.getMaterial());
+
+		//_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
+		//_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
+
+		//_deviceContext->Draw(3, 0);
+		//_swapChain->Present(1, 0);
 	}
 
 	void GraphicDevice_DX11::PostRender()
@@ -197,7 +236,7 @@ namespace my
 		inputLayoutDesces[0].SemanticIndex = 0;
 
 		inputLayoutDesces[1].AlignedByteOffset = 12;
-		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 		inputLayoutDesces[1].InputSlot = 0;
 		inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
 		inputLayoutDesces[1].SemanticName = "NORMAL";

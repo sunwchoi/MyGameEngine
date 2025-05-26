@@ -418,6 +418,16 @@ namespace my
 			return _data[n];
 		}
 
+		pointer data()
+		{
+			return _data;
+		}
+
+		const_pointer data() const
+		{
+			return _data;
+		}
+
 
 		//friend function
 		friend bool operator==(const vector<T,Alloc>& lhs, const vector<T,Alloc>& rhs)

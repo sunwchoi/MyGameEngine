@@ -40,6 +40,5 @@ namespace my
 		blendFunction.SourceConstantAlpha = 255;
 
 		AlphaBlend(hdc, pos._x, pos._y, _texture->GetWidth(), _texture->GetHeight(), _texture->GetHDC(), 0, 0, _texture->GetWidth(), _texture->GetHeight(), blendFunction);
-		
 	}
 }

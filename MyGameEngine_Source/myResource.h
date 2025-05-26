@@ -13,6 +13,9 @@ namespace my
 		AudioClip,
 		Prefab,
 		Animation,
+		Shader,
+		Material,
+		Mesh,
 
 		Count
 	};

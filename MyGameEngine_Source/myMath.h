@@ -29,7 +29,7 @@ namespace my
 	{
 	public:
 		Vector3() : _x(0.f), _y(0.f), _z(0.f) {}
-		Vector3(float x, float y, float z) : _x(0.f), _y(0.f), _z(0.f) {}
+		Vector3(float x, float y, float z) : _x(x), _y(y), _z(z) {}
 		~Vector3() {}
 
 		Vector3 operator+(const Vector3& other) const;
