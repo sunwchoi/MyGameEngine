@@ -8,6 +8,9 @@ namespace my
 		: public Component
 	{
 	public:
+		Script();
+		~Script();
+		
 		virtual void Initialize();
 		virtual void Update();
 		virtual void LateUpdate();

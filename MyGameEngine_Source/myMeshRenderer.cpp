@@ -1,4 +1,9 @@
 #include "myMeshRenderer.h"
+#include "myGameObject.h"
+#include "myApplication.h"
+#include "myGraphicDevice_DX11.h"
+
+extern my::Application application;
 
 namespace my
 {
@@ -8,18 +13,18 @@ namespace my
 
 	void MeshRenderer::Update()
 	{
-		MY_ASSERT_MSG(_mesh, "Mesh Render의 mesh가 비어있으면 안됨");
 	}
 
 	void MeshRenderer::LateUpdate()
 	{
-		MY_ASSERT_MSG(_mesh, "Mesh Render의 mesh가 비어있으면 안됨");
 	}
 
 	void MeshRenderer::Render(HDC hdc)
 	{
-		MY_ASSERT_MSG(_mesh, "Mesh Render의 mesh가 비어있으면 안됨");
-	
+		const Transform& transform = GetOwner()->GetComponentMust<Transform>();
+		const Mesh* mesh = GetOwner()->GetMesh();
+		MY_ASSERT_MSG(mesh, "Game Object의 Mesh가 비어있는 상태에서 mesh가 호출됨");
 
+		application.GetGraphicDevice()->RenderMesh(*mesh, transform);
 	}
 }

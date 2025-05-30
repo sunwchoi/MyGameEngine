@@ -18,13 +18,13 @@ namespace my
 		Resources::Load<Texture>(L"Attack1", L"..\\Resource\\Samurai_Commander\\Attack_1.png");
 		Resources::Load<Texture>(L"Attack2", L"..\\Resource\\Samurai_Commander\\Attack_2.png");
 		Resources::Load<Texture>(L"Attack3", L"..\\Resource\\Samurai_Commander\\Attack_3.png");
+		Resources::Load<Mesh>(L"BasicMesh", L"..\\Resource\\basic.obj");
 	}
 
 	void LoadScene()
 	{
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 
-		SceneManager::LoadScene(L"TitleScene");
+		SceneManager::LoadScene(L"PlayScene");
 	}
 }

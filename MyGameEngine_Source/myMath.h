@@ -19,6 +19,8 @@ namespace my
 		Vector2& operator*=(float value);
 		Vector2& operator/=(float value);
 
+		
+
 		float	_x;
 		float	_y;
 

@@ -63,14 +63,9 @@ namespace my
 	void Application::Render()
 	{
 		//Rectangle( _backHdc, 0, 0, _width, _height );
-		//SceneManager::Render( _backHdc );
+		SceneManager::Render( nullptr );
 
 		//BitBlt( _hdc, 0, 0, _width, _height, _backHdc, 0, 0, SRCCOPY );
-
-#if _DEBUG
-		_graphicDevice->PreRender();
-		_graphicDevice->RenderPractice();
-#endif // _DEBUG
 
 	}
 }

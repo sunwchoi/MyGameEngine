@@ -24,21 +24,21 @@ namespace my
 
 	void SpriteRenderer::Render( HDC hdc )
 	{
-		float size = 100.f;
+		//float size = 100.f;
 
-		Transform* transform = GetOwner()->GetComponent<Transform>();
-		if ( transform == nullptr )
-			return;
+		//Transform* transform = GetOwner()->GetComponent<Transform>();
+		//if ( transform == nullptr )
+		//	return;
 
-		const Vector2& pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+		//const Vector2& pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
 
-		BLENDFUNCTION blendFunction;
+		//BLENDFUNCTION blendFunction;
 
-		blendFunction.BlendOp = AC_SRC_OVER;
-		blendFunction.BlendFlags = 0;
-		blendFunction.AlphaFormat = AC_SRC_ALPHA;
-		blendFunction.SourceConstantAlpha = 255;
+		//blendFunction.BlendOp = AC_SRC_OVER;
+		//blendFunction.BlendFlags = 0;
+		//blendFunction.AlphaFormat = AC_SRC_ALPHA;
+		//blendFunction.SourceConstantAlpha = 255;
 
-		AlphaBlend(hdc, pos._x, pos._y, _texture->GetWidth(), _texture->GetHeight(), _texture->GetHDC(), 0, 0, _texture->GetWidth(), _texture->GetHeight(), blendFunction);
+		//AlphaBlend(hdc, pos._x, pos._y, _texture->GetWidth(), _texture->GetHeight(), _texture->GetHDC(), 0, 0, _texture->GetWidth(), _texture->GetHeight(), blendFunction);
 	}
 }

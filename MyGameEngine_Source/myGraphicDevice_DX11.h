@@ -3,7 +3,7 @@
 #include "myMath.h"
 #include "myMesh.h"
 #include "myShader.h"
-
+#include "Transform.h"
 #include <wrl.h>
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -20,13 +20,13 @@ namespace my
 		~GraphicDevice_DX11();
 	
 		void Initialize();
-		void PreRender();
-		void RenderMesh(const Mesh& mesh);
+		void PreRender() const;
+		void RenderMesh(const Mesh& mesh, const Transform& transform) const;
 		void PostRender();
 
-#if _DEBUG
-		void RenderPractice();
-#endif // _DEBUG
+//#if _DEBUG
+//		void RenderPractice();
+//#endif // _DEBUG
 
 		const Microsoft::WRL::ComPtr<ID3D11Device>& GetDevice() const { return _device;  };
 
@@ -52,7 +52,6 @@ namespace my
 
 		Microsoft::WRL::ComPtr<ID3D11SamplerState>		_sampler;
 
-		ID3D11Buffer* vertexBuffer = nullptr;
 		ID3D11InputLayout* _inputLayouts = nullptr;
 		
 		std::unique_ptr<Shader> _vertexShader;

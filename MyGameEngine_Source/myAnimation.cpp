@@ -53,34 +53,34 @@ namespace my
 		if (_spriteSheet == nullptr)
 			return;
 
-		Transform* transform = _animator->GetOwner()->GetComponent<Transform>();
-		Vector2 pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+		//Transform* transform = _animator->GetOwner()->GetComponent<Transform>();
+		//Vector2 pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
 	
-		BLENDFUNCTION blendFunction;
+		//BLENDFUNCTION blendFunction;
 
-		blendFunction.BlendOp = AC_SRC_OVER;
-		blendFunction.BlendFlags = 0;
-		blendFunction.AlphaFormat = AC_SRC_ALPHA;
-		blendFunction.SourceConstantAlpha = 255;
+		//blendFunction.BlendOp = AC_SRC_OVER;
+		//blendFunction.BlendFlags = 0;
+		//blendFunction.AlphaFormat = AC_SRC_ALPHA;
+		//blendFunction.SourceConstantAlpha = 255;
 
-		const Sprite& sprite = _animationSheet[_index];
-		if (_bReverse)
-		{
-			HDC imgHdc = CreateCompatibleDC(hdc);
-			HBITMAP imgBitmap = CreateCompatibleBitmap(hdc, sprite._size._x, sprite._size._y);
-			HBITMAP oldBitmap = (HBITMAP)SelectObject(imgHdc, imgBitmap);
-			DeleteObject(oldBitmap);
+		//const Sprite& sprite = _animationSheet[_index];
+		//if (_bReverse)
+		//{
+		//	HDC imgHdc = CreateCompatibleDC(hdc);
+		//	HBITMAP imgBitmap = CreateCompatibleBitmap(hdc, sprite._size._x, sprite._size._y);
+		//	HBITMAP oldBitmap = (HBITMAP)SelectObject(imgHdc, imgBitmap);
+		//	DeleteObject(oldBitmap);
 
-			StretchBlt(imgHdc, 0, 0, sprite._size._x, sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x + sprite._size._x, sprite._leftTop._y, sprite._size._x * -1, sprite._size._y, SRCCOPY);
-			AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x, sprite._size._y, imgHdc, 0, 0, sprite._size._x, sprite._size._y, blendFunction);
-		
-			DeleteObject(imgBitmap);
-			DeleteDC(imgHdc);
-		}
-		else
-		{
-			AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x , sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
-		}
+		//	StretchBlt(imgHdc, 0, 0, sprite._size._x, sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x + sprite._size._x, sprite._leftTop._y, sprite._size._x * -1, sprite._size._y, SRCCOPY);
+		//	AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x, sprite._size._y, imgHdc, 0, 0, sprite._size._x, sprite._size._y, blendFunction);
+		//
+		//	DeleteObject(imgBitmap);
+		//	DeleteDC(imgHdc);
+		//}
+		//else
+		//{
+		//	AlphaBlend(hdc, pos._x - sprite._size._x / 2, pos._y - sprite._size._y / 2, sprite._size._x , sprite._size._y, _spriteSheet->GetHDC(), sprite._leftTop._x, sprite._leftTop._y, sprite._size._x, sprite._size._y, blendFunction);
+		//}
 	
 
 	}

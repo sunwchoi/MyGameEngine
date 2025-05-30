@@ -31,6 +31,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMeshRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myRotator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
@@ -99,6 +101,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)vector.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMeshRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myRotator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">

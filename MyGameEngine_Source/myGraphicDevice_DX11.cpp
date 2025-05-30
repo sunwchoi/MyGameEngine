@@ -27,28 +27,32 @@ namespace my
 		LoadShader();
 		CreateInputLayout();
 
-		vertexes = vector<Vertex>(3);
+		D3D11_RASTERIZER_DESC rasterDesc = {};
+		rasterDesc.FillMode = D3D11_FILL_WIREFRAME;
+		rasterDesc.CullMode = D3D11_CULL_NONE; // 컬링 끔
+		//rasterDesc.FrontCounterClockwise = FALSE; // 정면을 시계방향(CW)으로 간주
+		//rasterDesc.DepthClipEnable = true;
 
-		vertexes[0] = Vertex(Vector3(0.f, 0.5f, 0.0f), Vector3());
-		vertexes[1] = Vertex(Vector3(0.5f, -0.5f, 0.0f), Vector3());
-		vertexes[2] = Vertex(Vector3(-0.5f, -0.5f, 0.0f), Vector3());
-		_deviceContext->IASetInputLayout(_inputLayouts);
-		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		
-		D3D11_BUFFER_DESC bufferDesc = {};
+		ID3D11RasterizerState* rasterState = nullptr;
+		HRESULT hr = _device->CreateRasterizerState(&rasterDesc, &rasterState);
+		if (SUCCEEDED(hr))
+		{
+			_deviceContext->RSSetState(rasterState);
+		}
 
-		bufferDesc.ByteWidth = sizeof(Vertex) * 3;
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+		//vertexes = vector<Vertex>(6);
 
+		//vertexes[0] = Vertex(Vector3(-0.5, -0.5, 0.5), Vector3());
+		//vertexes[1] = Vertex(Vector3(-0.5, 0.5, 0.5), Vector3());
+		//vertexes[2] = Vertex(Vector3(0.5, 0.5, 0.5), Vector3());
+		//
+		//vertexes[3] = Vertex(Vector3(-0.5, -0.5, 0.5), Vector3());
+		//vertexes[4] = Vertex(Vector3(0.5, 0.5, 0.5), Vector3());
+		//vertexes[5] = Vertex(Vector3(0.5, -0.5, 0.5), Vector3());
 
-		D3D11_SUBRESOURCE_DATA sub = { vertexes.data() };
-
-		_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
 	}
 
-	void GraphicDevice_DX11::PreRender()
+	void GraphicDevice_DX11::PreRender() const
 	{
 		// clear and ready
 		FLOAT backgroundColor[4] = { 0.f, 0.f, 0.f, 1.0f };
@@ -61,49 +65,55 @@ namespace my
 
 	}
 
-#if _DEBUG
-	void GraphicDevice_DX11::RenderPractice()
+//#if _DEBUG
+//	void GraphicDevice_DX11::RenderPractice()
+//	{
+//		_deviceContext->IASetInputLayout(_inputLayouts);
+//		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+//		UINT vertexSize = sizeof(Vector2);
+//		UINT offset = 0;
+//		_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
+//		
+//
+//		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
+//		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
+//
+//		_deviceContext->Draw(3, 0);
+//		_swapChain->Present(1, 0);
+//	}
+//#endif // _DEBUG
+
+
+	void GraphicDevice_DX11::RenderMesh(const Mesh& mesh, const Transform& transform) const
 	{
+		PreRender();
+
 		_deviceContext->IASetInputLayout(_inputLayouts);
 		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		UINT vertexSize = sizeof(Vertex);
-		UINT offset = 0;
+
+		D3D11_BUFFER_DESC bufferDesc = {};
+
+		bufferDesc.ByteWidth = mesh.getByteWidth();
+		//bufferDesc.ByteWidth = sizeof(Vertex) * 6;
+
+		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
+		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
+		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+
+		//D3D11_SUBRESOURCE_DATA sub = { vertexes.data()};
+		D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
+		
+		ID3D11Buffer* vertexBuffer = nullptr;
+		_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
+
+
+		constexpr UINT vertexSize = sizeof(Vertex);
+		constexpr UINT offset = 0;
+
 		_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
 		
-
-		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
-		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
-
-		_deviceContext->Draw(3, 0);
-		_swapChain->Present(1, 0);
-	}
-#endif // _DEBUG
-
-
-	void GraphicDevice_DX11::RenderMesh(const Mesh& mesh)
-	{
-		//_deviceContext->IASetInputLayout(_inputLayouts);
-		//_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		//
-		//D3D11_BUFFER_DESC bufferDesc = {};
-
-		//bufferDesc.ByteWidth = mesh.getBufferSize();
-		//bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		//bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		//bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		//D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
-
-		//_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
-
-
-		//constexpr UINT vertexSize = sizeof(Vertex);
-		//constexpr UINT offset = 0;
-
-		//_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
-		//
-		//Vector3 camLoc(0.f, 0.f, -10.f);
-		//Vector3 origin;
+		Vector3 camLoc(0.f, 0.f, -10.f);
+		Vector3 origin;
 		//Vector3 forward = (origin - camLoc).Normalize();
 		//Vector3 up(0.f, 1.f, 0.f);
 		//Vector3 right = forward.Cross(up).Normalize();
@@ -115,20 +125,65 @@ namespace my
 		//	camLoc._x, camLoc._y, camLoc._z, 1.f,
 		//};
 
-		//float projection[16] = {
-		//	1.81066f, 0.0f, 0.0f, 0.0f,
-		//	0.0f, 3.21938f, 0.0f, 0.0f,
-		//	0.0f, 0.0f, -1.0202f, -2.0202f,
-		//	0.0f, 0.0f, -1.0f, 0.0f
-		//};
+		const Vector3& pos = transform.GetPosition();
+		const Vector3& scale = transform.GetScale();
 
-		//_deviceContext->PSSetConstantBuffers(0, 1, (void *)mesh.getMaterial());
+		Vector3 right, up, forward;
+		transform.GetLocalAxes(right, up, forward);
 
-		//_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
-		//_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
+		float model[16] = {
+			right._x * scale._x,   right._y * scale._x,   right._z * scale._x,   0.0f,
+			up._x * scale._y,   up._y * scale._y,   up._z * scale._y,   0.0f,
+			forward._x * scale._z, forward._y * scale._z, forward._z * scale._z, 0.0f,
+			pos._x,                pos._y,                pos._z,                1.0f
+		};
 
-		//_deviceContext->Draw(3, 0);
-		//_swapChain->Present(1, 0);
+		float view[16] = {
+			right._x,    up._x,    forward._x,    0.0f,
+			right._y,    up._y,    forward._y,    0.0f,
+			right._z,    up._z,    forward._z,    0.0f,
+			camLoc._x, camLoc._y, camLoc._z, 1.0f
+		};
+
+		float projection[16] = {
+			1.81066f, 0.0f, 0.0f, 0.0f,
+			0.0f, 3.21938f, 0.0f, 0.0f,
+			0.0f, 0.0f, -1.0202f, -2.0202f,
+			0.0f, 0.0f, -1.0f, 0.0f
+		};
+
+		struct CB_DATA
+		{
+			float model[16];
+			float view[16];
+			float projection[16];
+		} cb;
+
+		memcpy(cb.model, model, sizeof(model));
+		memcpy(cb.view, view, sizeof(view));
+		memcpy(cb.projection, projection, sizeof(projection));
+
+		D3D11_BUFFER_DESC constantBufferDesc = {};
+		constantBufferDesc.ByteWidth = sizeof(CB_DATA);
+		constantBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
+		constantBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+		constantBufferDesc.CPUAccessFlags = 0;
+		constantBufferDesc.MiscFlags = 0;
+		constantBufferDesc.StructureByteStride = 0;
+
+		D3D11_SUBRESOURCE_DATA constantSub = { &cb };
+
+		ID3D11Buffer* constantBuffer = nullptr;
+		_device->CreateBuffer(&constantBufferDesc, &constantSub, &constantBuffer);
+
+		_deviceContext->UpdateSubresource(constantBuffer, 0, nullptr, &cb, 0, 0);
+		_deviceContext->VSSetConstantBuffers(0, 1, &constantBuffer);
+
+		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
+		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
+
+		_deviceContext->Draw(mesh.getBufferSize(), 0);
+		_swapChain->Present(1, 0);
 	}
 
 	void GraphicDevice_DX11::PostRender()

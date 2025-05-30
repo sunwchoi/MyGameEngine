@@ -13,4 +13,7 @@
     <ClCompile Include="myTitleScene.cpp" />
     <ClCompile Include="myPlayerScript.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
 </Project>

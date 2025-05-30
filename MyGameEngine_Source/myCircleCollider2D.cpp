@@ -31,24 +31,24 @@ namespace my
 #ifdef _DEBUG
 		if (_bDebugDraw)
 		{
-			Transform* transform = GetOwner()->GetComponent<Transform>();
-			const Vector2& pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
-			const Vector2& offset = GetOffset();
+			//Transform* transform = GetOwner()->GetComponent<Transform>();
+			//const Vector2& pos = renderer::mainCamera->CalculatePosition(transform->GetPosition());
+			//const Vector2& offset = GetOffset();
 
-			HBRUSH nullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, nullBrush);
+			//HBRUSH nullBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+			//HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, nullBrush);
 
-			HPEN debugPen = CreatePen(PS_SOLID, 2, IsEnable() ? RGB(255, 0, 0) : RGB(0, 0, 255));
-			HPEN oldPen = (HPEN)SelectObject(hdc, debugPen);
+			//HPEN debugPen = CreatePen(PS_SOLID, 2, IsEnable() ? RGB(255, 0, 0) : RGB(0, 0, 255));
+			//HPEN oldPen = (HPEN)SelectObject(hdc, debugPen);
 
-			float left = pos._x + offset._x - _radius;
-			float top = pos._y + offset._y - _radius;
-			Ellipse(hdc, left, top, left + 2 * _radius, top + 2 * _radius);
+			//float left = pos._x + offset._x - _radius;
+			//float top = pos._y + offset._y - _radius;
+			//Ellipse(hdc, left, top, left + 2 * _radius, top + 2 * _radius);
 
-			SelectObject(hdc, oldBrush);
-			SelectObject(hdc, oldPen);
+			//SelectObject(hdc, oldBrush);
+			//SelectObject(hdc, oldPen);
 
-			DeleteObject(debugPen);
+			//DeleteObject(debugPen);
 		}
 #endif // _DEBUG
 

@@ -48,14 +48,13 @@
 
 struct VSInput
 {
-    float3 pos : POSITION;
-    float3 norm : NORMAL;
+    float3 position : POSITION;
+    float3 normal : NORMAL;
 };
 
 struct VSOutput
 {
     float4 pos : SV_Position;
-    float3 norm : NORMAL;
 };
 
 float4 main(VSOutput input) : SV_Target

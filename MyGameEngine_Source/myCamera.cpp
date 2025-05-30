@@ -16,8 +16,8 @@ namespace my
 	{
 		Transform* transform = _target ? _target->GetComponent<Transform>() : GetOwner()->GetComponent<Transform>();
 
-		_lookPosition = transform->GetPosition();
-		_distance = _lookPosition - (_resolution / 2.0f);
+		//_lookPosition = transform->GetPosition();
+		//_distance = _lookPosition - (_resolution / 2.0f);
 	}
 
 	void Camera::LateUpdate()

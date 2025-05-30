@@ -37,4 +37,13 @@ namespace my
 			_comps[i]->Render(hdc);
 	}
 
+	void GameObject::SetMesh(const Mesh* const mesh)
+	{
+		_mesh = mesh;
+	}
+
+	const Mesh* GameObject::GetMesh() const
+	{
+		return _mesh;
+	}
 }

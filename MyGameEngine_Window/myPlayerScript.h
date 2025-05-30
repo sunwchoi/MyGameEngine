@@ -49,7 +49,6 @@ namespace my
         void HurtEnd();
     private:
         //Component
-        Transform*          _transform;
         Animator*           _animator;
         BoxCollider2D*      _bodyCollider;
         CircleCollider2D*   _attackCollider;

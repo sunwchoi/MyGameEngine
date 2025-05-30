@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "myMath.h"
+#include "myRotator.h"
 
 namespace my
 {
@@ -14,14 +15,20 @@ namespace my
 		void LateUpdate() override;
 		void Render( HDC hdc ) override;
 
-		void SetPosition(float x, float y) { _position._x = x; _position._y = y; }
-		void SetPosition(const Vector2 position) { _position = position; }
-		const Vector2& GetPosition() const { return _position; }
+		void SetPosition(const Vector3& position);
+		const Vector3& GetPosition() const;
 
-		void Move(float dx, float dy);
+		void SetRotation(const Rotator& rotation);
+		const Rotator& GetRotation() const;
 
+		void SetScale(const Vector3& scale);
+		const Vector3& GetScale() const;
+
+		void GetLocalAxes(__out Vector3& right, __out Vector3& up, __out Vector3& forward) const;
 	private:
-		Vector2 _position;
+		Vector3 _position;
+		Vector3 _scale;
+		Rotator _rotation;
 	};
 
 }

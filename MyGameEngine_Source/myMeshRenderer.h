@@ -14,9 +14,7 @@ namespace my
         virtual void LateUpdate() override;
         virtual void Render(HDC hdc) override;
 
-    
-    private:
-        Mesh* _mesh = nullptr;
+        
     };
 }
 

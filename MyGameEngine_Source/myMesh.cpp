@@ -108,11 +108,16 @@ namespace my
         return _vertices.data();
     }
 
-    unsigned int Mesh::getBufferStride() const {
+    uint32 Mesh::getBufferStride() const {
         return sizeof(Vertex);
     }
 
-    unsigned int Mesh::getBufferSize() const {
+    uint32 Mesh::getBufferSize() const {
+        return _vertices.size();
+    }
+
+    uint32 Mesh::getByteWidth() const
+    {
         return _vertices.size() * sizeof(Vertex);
     }
 

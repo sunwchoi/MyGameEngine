@@ -5,6 +5,7 @@
 #include "myMath.h"
 #include "myResource.h"
 #include "myMaterial.h"
+#include "Common.h"
 
 namespace my
 {
@@ -24,8 +25,9 @@ namespace my
         void parseIndex(FILE* file, vector<uint32>& indices);
 
         const void*     getBufferData() const;
-        unsigned int    getBufferStride() const;
-        unsigned int    getBufferSize() const;
+        uint32          getBufferStride() const;
+        uint32          getBufferSize() const;
+        uint32          getByteWidth() const;
         void*           getVertexOffset() const;
         void*           getNormalOffset() const;
 

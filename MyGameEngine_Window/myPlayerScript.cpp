@@ -16,60 +16,83 @@ namespace my
 {
 	void PlayerScript::Initialize()
 	{
-		_transform = GetOwner()->GetComponent<Transform>();
-
+			
 		// Animator
-		_animator = GetOwner()->GetComponent<Animator>();
+		//_animator = GetOwner()->GetComponent<Animator>();
 		//_animator->BindCompleteEvent(L"LeftJump", std::bind(&PlayerScript::JumpEnd, this));
 		//_animator->BindCompleteEvent(L"RightJump", std::bind(&PlayerScript::JumpEnd, this));
-		_animator->BindCompleteEvent(L"LeftAttack1", std::bind(&PlayerScript::AttackEnd, this));
-		_animator->BindCompleteEvent(L"RightAttack1", std::bind(&PlayerScript::AttackEnd, this));
-		_animator->BindCompleteEvent(L"LeftAttack2", std::bind(&PlayerScript::AttackEnd, this));
-		_animator->BindCompleteEvent(L"RightAttack2", std::bind(&PlayerScript::AttackEnd, this));
-		_animator->BindCompleteEvent(L"LeftAttack3", std::bind(&PlayerScript::AttackEnd, this));
-		_animator->BindCompleteEvent(L"RightAttack3", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"LeftAttack1", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"RightAttack1", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"LeftAttack2", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"RightAttack2", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"LeftAttack3", std::bind(&PlayerScript::AttackEnd, this));
+		//_animator->BindCompleteEvent(L"RightAttack3", std::bind(&PlayerScript::AttackEnd, this));
 		//_animator->BindCompleteEvent(L"LeftHurt", std::bind(&PlayerScript::HurtEnd, this));
 		//_animator->BindCompleteEvent(L"RightHurt", std::bind(&PlayerScript::HurtEnd, this));
 
 		// Collider
-		_bodyCollider = GetOwner()->AddComponent<BoxCollider2D>();
-		_bodyCollider->SetSize(Vector2(50.f, 128.f));
-		_bodyCollider->SetDebugDraw(true);
+		//_bodyCollider = GetOwner()->AddComponent<BoxCollider2D>();
+		//_bodyCollider->SetSize(Vector2(50.f, 128.f));
+		//_bodyCollider->SetDebugDraw(true);
 
-		_attackCollider = GetOwner()->AddComponent<CircleCollider2D>();
-		_attackCollider->SetRadius(30.f);
-		_attackCollider->SetDebugDraw(true);
-		_attackCollider->Disable();
+		//_attackCollider = GetOwner()->AddComponent<CircleCollider2D>();
+		//_attackCollider->SetRadius(30.f);
+		//_attackCollider->SetDebugDraw(true);
+		//_attackCollider->Disable();
 
 	}
 
 	void PlayerScript::Update()
 	{
-		if (_comboIndex) //콤보 공격 중 일때
+		//if (_comboIndex) //콤보 공격 중 일때
+		//{
+		//	_comboTime -= Time::DeltaTime();
+		//	if (_comboTime <= 0)
+		//		_comboIndex = 0;
+		//}
+
+		//switch (_state)
+		//{
+		//case ePlayerState::Idle:
+		//	Idle();
+		//	break;
+		//case ePlayerState::Walk:
+		//case ePlayerState::Run:
+		//	Move();
+		//	break;
+		//case ePlayerState::Jump:
+		//	Jump();
+		//	break;
+		//case ePlayerState::Attack:
+		//	Attack();
+		//	break;
+		//case ePlayerState::Hurt:
+		//	Hurt();
+		//	break;
+		//}
+
+		Transform& transform = GetOwner()->GetComponentMust<Transform>();
+
+		if (Input::GetKey(eKeyCode::A))
 		{
-			_comboTime -= Time::DeltaTime();
-			if (_comboTime <= 0)
-				_comboIndex = 0;
+			const Rotator& originalRotation = transform.GetRotation();
+			transform.SetRotation(transform.GetRotation() + Rotator(0, 0.1, 0));
+		}
+		else if (Input::GetKey(eKeyCode::D))
+		{
+			const Rotator& originalRotation = transform.GetRotation();
+			transform.SetRotation(transform.GetRotation() - Rotator(0, 0.1, 0));
 		}
 
-		switch (_state)
+		if (Input::GetKey(eKeyCode::W))
 		{
-		case ePlayerState::Idle:
-			Idle();
-			break;
-		case ePlayerState::Walk:
-		case ePlayerState::Run:
-			Move();
-			break;
-		case ePlayerState::Jump:
-			Jump();
-			break;
-		case ePlayerState::Attack:
-			Attack();
-			break;
-		case ePlayerState::Hurt:
-			Hurt();
-			break;
+			const Rotator& originalRotation = transform.GetRotation();
+			transform.SetRotation(transform.GetRotation() + Rotator(0.1, 0, 0));
+		}
+		else if (Input::GetKey(eKeyCode::S))
+		{
+			const Rotator& originalRotation = transform.GetRotation();
+			transform.SetRotation(transform.GetRotation() - Rotator(0.1, 0, 0));
 		}
 	}
 
@@ -131,7 +154,6 @@ namespace my
 		const float dx = _direction == ePlayerDirection::Left ? -1.f : 1.f;
 
 		_animator->PlayAnimation(animPreset[(uint8)_direction][(uint8)_state - (uint8)ePlayerState::Walk]);
-		_transform->Move(dx * speed * Time::DeltaTime(), 0);
 	}
 
 

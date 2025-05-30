@@ -37,10 +37,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMeshRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myRotator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScript.h" />
@@ -78,9 +80,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMeshRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myRotator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScript.cpp" />
