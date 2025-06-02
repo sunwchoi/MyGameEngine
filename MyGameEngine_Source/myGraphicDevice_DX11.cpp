@@ -138,11 +138,17 @@ namespace my
 			pos._x,                pos._y,                pos._z,                1.0f
 		};
 
+		const Transform& camTransform = renderer::mainCamera->GetTransform();
+		const Vector3& camPos = camTransform.GetPosition();
+		
+		Vector3 camRight, camUp, camForward;
+		camTransform.GetLocalAxes(camRight, camUp, camForward);
+
 		float view[16] = {
-			right._x,    up._x,    forward._x,    0.0f,
-			right._y,    up._y,    forward._y,    0.0f,
-			right._z,    up._z,    forward._z,    0.0f,
-			camLoc._x, camLoc._y, camLoc._z, 1.0f
+			camRight._x,    camUp._x,    camForward._x,    0.0f,
+			camRight._y,    camUp._y,    camForward._y,    0.0f,
+			camRight._z,    camUp._z,    camForward._z,    0.0f,
+			-math::Dot(camRight, camPos), -math::Dot(camUp, camPos), -math::Dot(camForward, camPos), 1.0f
 		};
 
 		float projection[16] = {

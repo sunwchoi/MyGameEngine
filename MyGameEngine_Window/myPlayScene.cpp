@@ -64,6 +64,13 @@ namespace my
 		GameObject* background = new GameObject();
 		background->AddComponent<Transform>();
 
+		// camera
+		Transform tf = renderer::mainCamera->GetTransform();
+		//tf.SetPosition(Vector3(1, 0.4, 0.3));
+		//tf.SetRotation(Rotator(0, 0, 0));
+		
+		renderer::mainCamera->SetTransform(tf);
+
 		SpriteRenderer* backgroundSpriteRenderer = background->AddComponent<SpriteRenderer>();
 		backgroundSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
 		backgroundSpriteRenderer->SetSize(Vector2(5.f, 5.f));

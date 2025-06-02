@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "myMath.h"
+#include "Transform.h"
 
 namespace my
 {
@@ -9,20 +10,20 @@ namespace my
     class Camera :
         public Component
     {
-    public:
+    public: 
         void Initialize() override;
         void Update() override;
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
-        Vector2 CalculatePosition(const Vector2& pos) const;
-        Vector2 DecalculatePosition(const Vector2& pos) const;
+        void SetTarget(GameObject* target);
+        const GameObject* GetTarget() const;
 
+        void SetTransform(const Transform& transform);
+        const Transform& GetTransform() const;
+    
     private:
         GameObject* _target;
-
-        Vector2 _distance;
-        Vector2 _resolution;
-        Vector2 _lookPosition;
+        Transform _transform;
     };
 }

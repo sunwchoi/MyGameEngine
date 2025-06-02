@@ -1,6 +1,5 @@
 #include "myCamera.h"
 #include "myApplication.h"
-#include "Transform.h"
 
 extern my::Application application;
 
@@ -8,16 +7,10 @@ namespace my
 {
 	void Camera::Initialize()
 	{
-		_resolution._x = application.GetWidth();
-		_resolution._y = application.GetHeight();
 	}
 
 	void Camera::Update()
 	{
-		Transform* transform = _target ? _target->GetComponent<Transform>() : GetOwner()->GetComponent<Transform>();
-
-		//_lookPosition = transform->GetPosition();
-		//_distance = _lookPosition - (_resolution / 2.0f);
 	}
 
 	void Camera::LateUpdate()
@@ -27,12 +20,24 @@ namespace my
 	void Camera::Render(HDC hdc)
 	{
 	}
-	Vector2 Camera::CalculatePosition(const Vector2& pos) const
+
+	void Camera::SetTarget(GameObject* target)
 	{
-		return pos - _distance;
+		_target = target;
 	}
-	Vector2 Camera::DecalculatePosition(const Vector2& pos) const
+
+	const GameObject* Camera::GetTarget() const
 	{
-		return pos + _distance;
+		return _target;
+	}
+
+	void Camera::SetTransform(const Transform& transform)
+	{
+		_transform = transform;
+	}
+
+	const Transform& Camera::GetTransform() const
+	{
+		return _transform;
 	}
 }
