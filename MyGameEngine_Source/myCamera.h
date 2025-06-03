@@ -10,7 +10,10 @@ namespace my
     class Camera :
         public Component
     {
-    public: 
+    public:
+        Camera();
+        ~Camera();
+
         void Initialize() override;
         void Update() override;
         void LateUpdate() override;
@@ -22,8 +25,12 @@ namespace my
         void SetTransform(const Transform& transform);
         const Transform& GetTransform() const;
     
+        void SetFOV(float fov);
+        float GetFOV() const;
+
     private:
         GameObject* _target;
-        Transform _transform;
+        Transform   _transform;
+        float       _fov;
     };
 }

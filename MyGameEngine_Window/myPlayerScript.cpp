@@ -75,28 +75,23 @@ namespace my
 
 		if (Input::GetKey(eKeyCode::A))
 		{
-			const Rotator& originalRotation = transform.GetRotation();
 			transform.SetRotation(transform.GetRotation() + Rotator(0, 0.1, 0));
 		}
 		else if (Input::GetKey(eKeyCode::D))
 		{
-			const Rotator& originalRotation = transform.GetRotation();
 			transform.SetRotation(transform.GetRotation() - Rotator(0, 0.1, 0));
 		}
 
 		if (Input::GetKey(eKeyCode::W))
 		{
-			//const Rotator& originalRotation = transform.GetRotation();
 			transform.SetRotation(transform.GetRotation() + Rotator(0.1, 0, 0));
 			
-			Transform tf = renderer::mainCamera->GetTransform();
-			tf.SetRotation(tf.GetRotation() + Rotator(0.1, 0, 0));
-			renderer::mainCamera->SetTransform(tf);
+			//tf.SetRotation(tf.GetRotation() + Rotator(0.1, 0, 0));
+			//renderer::mainCamera->SetTransform(tf);
 		}
 		else if (Input::GetKey(eKeyCode::S))
 		{
-			//const Rotator& originalRotation = transform.GetRotation();
-			//transform.SetRotation(transform.GetRotation() - Rotator(0.1, 0, 0));
+			transform.SetRotation(transform.GetRotation() - Rotator(0.1, 0, 0));
 			//transform.SetPosition(transform.GetPosition() + Vector3(0, 0, -10));
 		}
 	}

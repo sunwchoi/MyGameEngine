@@ -151,11 +151,18 @@ namespace my
 			-math::Dot(camRight, camPos), -math::Dot(camUp, camPos), -math::Dot(camForward, camPos), 1.0f
 		};
 
+		const float fov = renderer::mainCamera->GetFOV();
+		const float zNear = 0.1f;
+		const float zFar = 100.f;
+		float c = -1 * zNear / zFar;
+		const float d = 1.f / tanf(90 / 2);
+		const float aRatio = application.GetWidth() / application.GetHeight();
+
 		float projection[16] = {
-			1.81066f, 0.0f, 0.0f, 0.0f,
-			0.0f, 3.21938f, 0.0f, 0.0f,
-			0.0f, 0.0f, -1.0202f, -2.0202f,
-			0.0f, 0.0f, -1.0f, 0.0f
+			d / aRatio, 0.0f, 0.0f, 0.0f,
+			0.0f, d, 0.0f, 0.0f,
+			0, 0, (zFar + zNear) / (zNear - zFar), -1,
+			0, 0, (2 * zFar * zNear) / (zNear - zFar), 0
 		};
 
 		struct CB_DATA

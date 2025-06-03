@@ -66,7 +66,7 @@ namespace my
 
 		// camera
 		Transform tf = renderer::mainCamera->GetTransform();
-		//tf.SetPosition(Vector3(1, 0.4, 0.3));
+		tf.SetPosition(Vector3(0, 0, 2));
 		//tf.SetRotation(Rotator(0, 0, 0));
 		
 		renderer::mainCamera->SetTransform(tf);

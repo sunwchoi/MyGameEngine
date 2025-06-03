@@ -5,6 +5,15 @@ extern my::Application application;
 
 namespace my
 {
+	Camera::Camera()
+		: _fov(45.f)
+	{
+	}
+
+	Camera::~Camera()
+	{
+	}
+
 	void Camera::Initialize()
 	{
 	}
@@ -39,5 +48,15 @@ namespace my
 	const Transform& Camera::GetTransform() const
 	{
 		return _transform;
+	}
+
+	void Camera::SetFOV(float fov)
+	{
+		_fov = fov;
+	}
+
+	float Camera::GetFOV() const
+	{
+		return _fov;
 	}
 }

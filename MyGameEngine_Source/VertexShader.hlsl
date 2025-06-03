@@ -25,7 +25,7 @@ VSOutput main(VSInput input)
     float4 worldPosition = mul(model, float4(input.position, 1.f));
     //float4 worldPosition = float4(input.position, 1.f);
     float4 viewPosition = mul(view, worldPosition);
-    output.position = viewPosition;//mul(projection, viewPosition);
+    output.position = mul(projection, viewPosition);
 
     // output.FragPos = mul(model, input.position).xyz;
 
