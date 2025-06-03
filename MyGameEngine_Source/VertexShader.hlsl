@@ -14,7 +14,6 @@ struct VSInput
 struct VSOutput
 {
     float4 position : SV_POSITION;
-    //float3 FragPos : TEXCOORD0;
     float3 normal : NORMAL;
 };
 
@@ -26,7 +25,7 @@ VSOutput main(VSInput input)
     //float4 worldPosition = float4(input.position, 1.f);
     float4 viewPosition = mul(view, worldPosition);
     output.position = mul(projection, viewPosition);
-
+    output.normal = input.normal;
     // output.FragPos = mul(model, input.position).xyz;
 
     // float3x3 normalMatrix = transpose(invert((float3x3) model));

@@ -5,7 +5,9 @@
 #include "myShader.h"
 #include <d3d11.h>
 #include <d3dcompiler.h>
+#include <DirectXMath.h>
 #include <iostream>
+
 
 extern my::Application application;
 
@@ -28,28 +30,21 @@ namespace my
 		CreateInputLayout();
 
 		D3D11_RASTERIZER_DESC rasterDesc = {};
-		rasterDesc.FillMode = D3D11_FILL_WIREFRAME;
-		rasterDesc.CullMode = D3D11_CULL_NONE; // 컬링 끔
-		//rasterDesc.FrontCounterClockwise = FALSE; // 정면을 시계방향(CW)으로 간주
-		//rasterDesc.DepthClipEnable = true;
+
+		rasterDesc.FillMode = D3D11_FILL_SOLID;
+		rasterDesc.CullMode = D3D11_CULL_NONE;
+		rasterDesc.FrontCounterClockwise = FALSE;
+		rasterDesc.DepthBias = 0;
+		rasterDesc.DepthBiasClamp = 0;
+		rasterDesc.SlopeScaledDepthBias = 0;
+		rasterDesc.DepthClipEnable = FALSE;				
+		rasterDesc.ScissorEnable = FALSE;	
+		rasterDesc.MultisampleEnable = FALSE;
+		rasterDesc.AntialiasedLineEnable = FALSE;
 
 		ID3D11RasterizerState* rasterState = nullptr;
-		HRESULT hr = _device->CreateRasterizerState(&rasterDesc, &rasterState);
-		if (SUCCEEDED(hr))
-		{
-			_deviceContext->RSSetState(rasterState);
-		}
-
-		//vertexes = vector<Vertex>(6);
-
-		//vertexes[0] = Vertex(Vector3(-0.5, -0.5, 0.5), Vector3());
-		//vertexes[1] = Vertex(Vector3(-0.5, 0.5, 0.5), Vector3());
-		//vertexes[2] = Vertex(Vector3(0.5, 0.5, 0.5), Vector3());
-		//
-		//vertexes[3] = Vertex(Vector3(-0.5, -0.5, 0.5), Vector3());
-		//vertexes[4] = Vertex(Vector3(0.5, 0.5, 0.5), Vector3());
-		//vertexes[5] = Vertex(Vector3(0.5, -0.5, 0.5), Vector3());
-
+		_device->CreateRasterizerState(&rasterDesc, &rasterState);
+		_deviceContext->RSSetState(rasterState);
 	}
 
 	void GraphicDevice_DX11::PreRender() const
@@ -191,6 +186,63 @@ namespace my
 
 		_deviceContext->UpdateSubresource(constantBuffer, 0, nullptr, &cb, 0, 0);
 		_deviceContext->VSSetConstantBuffers(0, 1, &constantBuffer);
+
+		
+		struct MaterialRaw
+		{
+			Vector3	_ambient;
+			float	_shininess = 0.f;
+			Vector3	_diffuse;
+			float	_refractionIndex = 0.f;
+			Vector3	_specular;
+			float	_transparency = 0.f;
+		} materialRaw;
+
+		materialRaw._ambient = mesh.getMaterial()->_ambient;
+		materialRaw._diffuse = mesh.getMaterial()->_diffuse;
+		materialRaw._specular = mesh.getMaterial()->_specular;
+		materialRaw._shininess = mesh.getMaterial()->_shininess;
+
+		D3D11_BUFFER_DESC materialBufferDesc = {};
+		materialBufferDesc.ByteWidth = sizeof(MaterialRaw);
+		materialBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
+		materialBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+		materialBufferDesc.CPUAccessFlags = 0;
+		materialBufferDesc.MiscFlags = 0;
+		materialBufferDesc.StructureByteStride = 0;
+
+		D3D11_SUBRESOURCE_DATA materialSub = { &materialRaw };
+
+		ID3D11Buffer* materialBuffer = nullptr;
+		_device->CreateBuffer(&materialBufferDesc, &materialSub, &materialBuffer);
+		
+		_deviceContext->UpdateSubresource(materialBuffer, 0, nullptr, &materialRaw, 0, 0);
+		_deviceContext->PSSetConstantBuffers(0, 1, &materialBuffer);
+
+		struct CameraRaw
+		{
+			Vector3 _viewPos;
+			float padding;
+		} cameraRaw;
+
+		cameraRaw._viewPos = renderer::mainCamera->GetTransform().GetPosition();
+
+		D3D11_BUFFER_DESC cameraBufferDesc = {};
+		cameraBufferDesc.ByteWidth = sizeof(MaterialRaw);
+		cameraBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
+		cameraBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+		cameraBufferDesc.CPUAccessFlags = 0;
+		cameraBufferDesc.MiscFlags = 0;
+		cameraBufferDesc.StructureByteStride = 0;
+
+		D3D11_SUBRESOURCE_DATA cameraSub = { &cameraRaw };
+
+		ID3D11Buffer* cameraBuffer = nullptr;
+		_device->CreateBuffer(&cameraBufferDesc, &cameraSub, &cameraBuffer);
+
+		_deviceContext->UpdateSubresource(cameraBuffer, 0, nullptr, &cameraRaw, 0, 0);
+		_deviceContext->PSSetConstantBuffers(1, 1, &cameraBuffer);
+
 
 		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
 		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);

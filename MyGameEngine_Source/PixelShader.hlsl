@@ -5,13 +5,7 @@
 //     float3 Normal : TEXCOORD1;
 // };
 
-// cbuffer MaterialBuffer : register(b0)
-// {
-//     float3 ambient;
-//     float3 diffuse;
-//     float3 specular;
-//     float shininess;
-// };
+
 
 // cbuffer ViewBuffer : register(b1)
 // {
@@ -45,19 +39,52 @@
 //     return float4(result, 1.0f);
 // }
 
-
-struct VSInput
+cbuffer MaterialBuffer : register(b0)
 {
-    float3 position : POSITION;
-    float3 normal : NORMAL;
+    float3  ambient;
+    float   shininess;
+
+    float3  diffuse;
+	float   refractionIndex;
+    
+    float3  specular;
+	float	transparency;
 };
+
+cbuffer CameraBuffer : register(b1)
+{
+    float3  viewPos;
+}
 
 struct VSOutput
 {
-    float4 pos : SV_Position;
+    float4 position : SV_POSITION;
+    float3 normal : NORMAL;
 };
 
 float4 main(VSOutput input) : SV_Target
 {
-    return float4(1.f, 1.f, 1.f, 1.f);
+    // Light definition (hardcoded)
+    float3 lightPos = float3(0.0f, 0.f, -3000.0f);
+    float3 lightColor = float3(1.0f, 1.0f, 1.0f);
+
+
+    // Diffuse
+    float3 lightDir = normalize(lightPos - input.position);
+    float cos = max(dot(input.normal, lightDir), 0.0f);
+    float3 diffuseResult = lightColor * (cos * diffuse);
+
+    // Ambient
+    float3 ambientResult = ambient;
+    
+    // Specular
+    float3 viewDir = normalize(viewPos - input.position);
+    float3 reflectDir = reflect(-lightDir, input.normal);
+    cos = max(dot(viewDir, reflectDir), 0.0f);
+    
+    float3 specularResult = lightColor * (pow(cos, shininess) * specular);
+
+    float3 result = ambientResult + diffuseResult + specularResult;
+
+    return float4(result, 1.0f);
 }

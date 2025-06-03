@@ -13,7 +13,7 @@ namespace my
 
         virtual void Load(const std::wstring& path) override;
     
-    private:
+    public:
         Vector3 _ambient;
         Vector3 _diffuse;
         Vector3 _specular;
