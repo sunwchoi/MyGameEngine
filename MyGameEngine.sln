@@ -42,6 +42,9 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC4D1328-F857-43B0-8655-E14B2DBB0E58}
+	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{3a35faf5-f5a7-4c32-b90a-5bd652509c71}*SharedItemsImports = 4
 		MyGameEngine_Source\MyGameEngine_Source.vcxitems*{f8639170-7d89-4f0d-a4d5-32af4a7d5fb8}*SharedItemsImports = 9

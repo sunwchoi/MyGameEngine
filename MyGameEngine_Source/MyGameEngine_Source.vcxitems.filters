@@ -1,73 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimation.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myAssert.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myBoxCollider2D.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myCircleCollider2D.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myDelegate.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myResources.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myScript.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myMeshRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)myRotator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp">
+      <Filter>GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myApplication.cpp">
+      <Filter>GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimation.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myAnimator.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myBoxCollider2D.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCamera.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCircleCollider2D.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myCollider2D.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMesh.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMeshRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myScene.cpp">
+      <Filter>GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp">
+      <Filter>GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myShader.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myTexture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myResources.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myRotator.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myMath.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myScript.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Component.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Input.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimation.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myAssert.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myBoxCollider2D.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myCircleCollider2D.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myDelegate.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myResources.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myScript.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)compare.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
@@ -101,12 +128,97 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)vector.hpp">
       <Filter>Containers</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)myMeshRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)myRotator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h">
+      <Filter>GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myApplication.h">
+      <Filter>GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimation.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myAnimator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myBoxCollider2D.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCamera.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCircleCollider2D.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myCollider2D.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMesh.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMeshRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myScene.h">
+      <Filter>GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h">
+      <Filter>GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myShader.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myTexture.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myRotator.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myMath.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myScript.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">
       <UniqueIdentifier>{e2033604-fe03-4470-bf79-dde1e789e5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{7b4f3d53-f31f-4db3-afd4-1967b576f27d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{74e8dbb3-4942-4d31-bfe3-2f04ca688707}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameLoop">
+      <UniqueIdentifier>{ee01659e-a800-473c-92a5-ab8e08bae6d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{98eae742-4c6d-4285-a44e-a6ab8d638152}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
