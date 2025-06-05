@@ -24,18 +24,20 @@ namespace my
 	{
 		const Transform& transform = GetOwner()->GetComponentMust<Transform>();
 
+		application.GetGraphicDevice()->PreRender();
+
 		if (_skeletalMesh)
 		{
 			for (const Mesh& mesh : _skeletalMesh->GetSubMesh())
-			{
-				application.GetGraphicDevice()->RenderMesh(_skeletalMesh->GetSubMesh()[0], transform);
-				break;
-			}
+				application.GetGraphicDevice()->RenderMesh(mesh, transform);
 		}
 		else if (_mesh)
 		{
 			application.GetGraphicDevice()->RenderMesh(*_mesh, transform);
 		}
+
+		application.GetGraphicDevice()->PostRender();
+
 	}
 
 	void MeshRenderer::SetMesh(Mesh* mesh)

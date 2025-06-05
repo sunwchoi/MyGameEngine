@@ -50,7 +50,7 @@ namespace my
 	void GraphicDevice_DX11::PreRender() const
 	{
 		// clear and ready
-		FLOAT backgroundColor[4] = { 0.f, 0.f, 0.f, 1.0f };
+		FLOAT backgroundColor[4] = { 0.f, 0.f, 1.f, 1.0f };
 		_deviceContext->ClearRenderTargetView(_renderTargetView.Get(), backgroundColor);
 		_deviceContext->ClearDepthStencilView(_depthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 
@@ -81,8 +81,6 @@ namespace my
 
 	void GraphicDevice_DX11::RenderMesh(const Mesh& mesh, const Transform& transform) const
 	{
-		PreRender();
-
 		_deviceContext->IASetInputLayout(_inputLayouts);
 		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
@@ -248,11 +246,11 @@ namespace my
 		_deviceContext->PSSetShader(static_cast<ID3D11PixelShader*>(_pixelShader->GetRawShader()), 0, 0);
 
 		_deviceContext->Draw(mesh.getBufferSize(), 0);
-		_swapChain->Present(1, 0);
 	}
 
-	void GraphicDevice_DX11::PostRender()
+	void GraphicDevice_DX11::PostRender() const
 	{
+		_swapChain->Present(1, 0);
 
 	}
 

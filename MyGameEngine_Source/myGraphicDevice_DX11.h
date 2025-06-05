@@ -22,7 +22,7 @@ namespace my
 		void Initialize();
 		void PreRender() const;
 		void RenderMesh(const Mesh& mesh, const Transform& transform) const;
-		void PostRender();
+		void PostRender() const;
 
 //#if _DEBUG
 //		void RenderPractice();
