@@ -6,16 +6,16 @@
 #include "tree_iterator.hpp"
 #include <memory>
 
-namespace ft 
+namespace my 
 {
 
-template <class Key, class T, class Compare = less<Key>, class Alloc = std::allocator<ft::pair<const Key, T> > >
+template <class Key, class T, class Compare = ft::less<Key>, class Alloc = std::allocator<ft::pair<const Key, T> > >
 class map
 {
 public:
     typedef Key									key_type;
     typedef T									mapped_type;
-    typedef pair<const key_type, mapped_type>	value_type;
+    typedef ft::pair<const key_type, mapped_type>	value_type;
     typedef Compare								key_compare;
     typedef Alloc								allocator_type;
     typedef typename T&							reference;
@@ -43,7 +43,7 @@ public:
 };
 
 protected:
-	typedef	tree<value_type, value_compare, allocator_type>	tree_type;
+	typedef	ft::tree<value_type, value_compare, allocator_type>	tree_type;
 	typedef	typename tree_type::iterator		tree_iterator;
 	typedef	typename tree_type::const_iterator	const_tree_iterator;
 
@@ -86,8 +86,8 @@ public:
 	iterator end() { return _tree.end();}
 	const_iterator end() const { return _tree.end(); }
 
-	pair<const_iterator,const_iterator> equal_range (const key_type& k) const { return _tree.equal_range(ft::make_pair(k, mapped_type())); }
-	pair<iterator,iterator> equal_range (const key_type& k) { return _tree.equal_range(ft::make_pair(k, mapped_type())); }
+	ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const { return _tree.equal_range(ft::make_pair(k, mapped_type())); }
+	ft::pair<iterator,iterator> equal_range (const key_type& k) { return _tree.equal_range(ft::make_pair(k, mapped_type())); }
 
 	void erase (iterator position) { _tree.erase(position); }
 	size_type erase (const key_type& k) { return _tree.erase(ft::make_pair(k, mapped_type())); }
@@ -103,7 +103,7 @@ public:
 
 	allocator_type get_allocator() const { return _tree.get_allocator(); }
 
-	pair<iterator,bool> insert (const value_type& val) { return _tree.insert(val); }
+	ft::pair<iterator,bool> insert (const value_type& val) { return _tree.insert(val); }
 	iterator insert (iterator position, const value_type& val) { return _tree.insert(position, val); }
 	template <class InputIterator>  void insert (InputIterator first, InputIterator last) { return _tree.insert(first, last); }
 

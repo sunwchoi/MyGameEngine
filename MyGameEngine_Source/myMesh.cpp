@@ -44,20 +44,10 @@ namespace my
                     fscanf_s(file, "%s", mtlPath, sizeof(mtlPath));
             }
             fclose(file);
-            //
-
+            
             //메시 데이터로 재입력
-            for (int i = 0; i < indices.size(); i += 3) {
-                Vector3 v1 = vertices[indices[i]],
-                    v2 = vertices[indices[i + 1]],
-                    v3 = vertices[indices[i + 2]];
+            reinputVertices(vertices, indices);
 
-                Vector3 norm = math::GetNormal(v1, v2, v3);
-
-                _vertices.push_back(Vertex(v1, norm));
-                _vertices.push_back(Vertex(v2, norm));
-                _vertices.push_back(Vertex(v3, norm));
-            }
 
             //mtl 파일 로드
             std::string mtlPathStr(mtlPath);
@@ -100,6 +90,22 @@ namespace my
             indices.push_back(index[0]);
             indices.push_back(index[2]);
             indices.push_back(index[3]);
+        }
+    }
+
+    void Mesh::reinputVertices(vector<Vector3>& vertices, vector<uint32>& indices)
+    {
+        //메시 데이터로 재입력
+        for (int i = 0; i < indices.size(); i += 3) {
+            Vector3 v1 = vertices[indices[i]],
+                v2 = vertices[indices[i + 1]],
+                v3 = vertices[indices[i + 2]];
+
+            Vector3 norm = math::GetNormal(v1, v2, v3);
+
+            _vertices.push_back(Vertex(v1, norm));
+            _vertices.push_back(Vertex(v2, norm));
+            _vertices.push_back(Vertex(v3, norm));
         }
     }
 

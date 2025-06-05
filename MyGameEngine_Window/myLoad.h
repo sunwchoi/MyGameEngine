@@ -5,6 +5,7 @@
 #include "../MyGameEngine_Source/myResources.h"
 #include "myTitleScene.h"
 #include "myPlayScene.h"
+#include "mySkeletalMesh.h"
 
 namespace my
 {
@@ -19,6 +20,7 @@ namespace my
 		Resources::Load<Texture>(L"Attack2", L"..\\Resource\\Samurai_Commander\\Attack_2.png");
 		Resources::Load<Texture>(L"Attack3", L"..\\Resource\\Samurai_Commander\\Attack_3.png");
 		Resources::Load<Mesh>(L"BasicMesh", L"..\\Resource\\42.obj");
+		Resources::Load<SkeletalMesh>(L"SkeletalMesh", L"..\\Resource\\walking.fbx");
 	}
 
 	void LoadScene()

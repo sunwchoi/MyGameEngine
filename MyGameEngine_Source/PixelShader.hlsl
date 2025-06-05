@@ -86,5 +86,5 @@ float4 main(VSOutput input) : SV_Target
 
     float3 result = ambientResult + diffuseResult + specularResult;
 
-    return float4(result, 1.0f);
+    return float4(1.f, 1.f, 1.f, 1.0f);
 }

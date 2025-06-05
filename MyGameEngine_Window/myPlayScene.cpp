@@ -11,6 +11,7 @@
 #include "myRenderer.h"
 #include "myAnimator.h"
 #include "myMeshRenderer.h"
+#include "mySkeletalMesh.h"
 
 namespace my
 {
@@ -32,8 +33,9 @@ namespace my
 		//player Ãß°¡
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
-		_player->AddComponent<MeshRenderer>();
-		_player->SetMesh(Resources::Find<Mesh>(L"BasicMesh"));
+		MeshRenderer* meshRenderer = _player->AddComponent<MeshRenderer>();
+		meshRenderer->SetSkeletalMesh(Resources::Find<SkeletalMesh>(L"SkeletalMesh"));
+		//meshRenderer->SetMesh(Resources::Find<Mesh>(L"BasicMesh"));
 
 		renderer::mainCamera = _player->AddComponent<Camera>();
 
@@ -66,7 +68,7 @@ namespace my
 
 		// camera
 		Transform tf = renderer::mainCamera->GetTransform();
-		tf.SetPosition(Vector3(0, 0, 2));
+		tf.SetPosition(Vector3(0, 50, 100));
 		//tf.SetRotation(Rotator(0, 0, 0));
 		
 		renderer::mainCamera->SetTransform(tf);

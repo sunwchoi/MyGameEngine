@@ -56,7 +56,7 @@ public:
 	typedef ft::reverse_iterator<const_iterator>    const_reverse_iterator;
 
 protected:
-	Alloc				_alloc;
+	std::allocator<tree_node<value_type>>				_alloc;
 	value_compare		_comp;
 	node_pointer		_root;
 	node_pointer		_end;
@@ -65,7 +65,7 @@ protected:
 	node_pointer	makeNode(const value_type& val, const char& color = 'R')
 	{
 		node_pointer	new_node = _alloc.allocate(1);
-		_alloc.construct(new_node, val, color);
+		std::allocator_traits<decltype(_alloc)>::construct(_alloc, new_node, val, color);
 		return new_node;
 	}
 

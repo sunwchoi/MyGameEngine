@@ -24,6 +24,8 @@ namespace my
         void parseVertex(FILE* file, vector<Vector3>& vertices);
         void parseIndex(FILE* file, vector<uint32>& indices);
 
+        void reinputVertices(vector<Vector3>& vertices, vector<uint32>& indices);
+
         const void*     getBufferData() const;
         uint32          getBufferStride() const;
         uint32          getBufferSize() const;

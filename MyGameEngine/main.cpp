@@ -5,6 +5,7 @@
 #include "MyGameEngine.h"
 
 #include "../MyGameEngine_Source/myApplication.h"
+#include "../MyGameEngine_Source/myFbxLoadManager.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -17,6 +18,8 @@
 #define MAX_LOADSTRING 100
 
 my::Application application;
+my::FbxLoadManager g_fbxLoadManager;
+
 
 ULONG_PTR gpToken;
 Gdiplus::GdiplusStartupInput gpsi;

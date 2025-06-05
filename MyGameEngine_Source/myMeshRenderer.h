@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Component.h"
-#include "myMesh.h"
 
 namespace my
 {
+    class SkeletalMesh;
+    class Mesh;
+
     class MeshRenderer :
         public Component
     {
@@ -14,7 +16,15 @@ namespace my
         virtual void LateUpdate() override;
         virtual void Render(HDC hdc) override;
 
-        
+        void SetMesh(Mesh* mesh);
+        const Mesh* GetMesh() const;
+
+        void SetSkeletalMesh(SkeletalMesh* mesh);
+        const SkeletalMesh* GetSkeletalMesh() const;
+
+    private:
+        SkeletalMesh* _skeletalMesh;
+        Mesh* _mesh;
     };
 }
 

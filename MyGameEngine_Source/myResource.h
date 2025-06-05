@@ -16,6 +16,7 @@ namespace my
 		Shader,
 		Material,
 		Mesh,
+		SkeletalMesh,
 
 		Count
 	};

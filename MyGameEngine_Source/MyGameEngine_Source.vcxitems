@@ -32,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myDelegate.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myFbxLoadManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myMaterial.h" />
@@ -47,6 +48,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)mySceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)mySkeletalMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h" />
@@ -75,6 +77,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myDelegate.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myFbxLoadManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myMaterial.cpp" />
@@ -89,6 +92,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)mySceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)mySkeletalMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
