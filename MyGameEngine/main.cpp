@@ -6,6 +6,7 @@
 
 #include "../MyGameEngine_Source/myApplication.h"
 #include "../MyGameEngine_Source/myFbxLoadManager.h"
+#include "../MyGameEngine_Source/myEditorApplication.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -18,6 +19,7 @@
 #define MAX_LOADSTRING 100
 
 my::Application application;
+my::EditorApplication editor;
 my::FbxLoadManager g_fbxLoadManager;
 
 
@@ -132,6 +134,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   Gdiplus::GdiplusStartup ( &gpToken , &gpsi , NULL );
+   
+   //application
    const UINT width = 900;
    const UINT height = 900;
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
@@ -141,13 +146,25 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    {
       return FALSE;
    }
+   application.Initialize ( hWnd , width , height );
 
-   Gdiplus::GdiplusStartup( &gpToken , &gpsi , NULL );
+   ShowWindow ( hWnd , nCmdShow );
+   UpdateWindow ( hWnd );
 
-   application.Initialize( hWnd, width, height );
+   //editor
+   const UINT editorWidth = 300;
+   const UINT editorHeight = 300;
+   HWND editorHwnd = CreateWindowW ( szWindowClass , szTitle , WS_OVERLAPPEDWINDOW ,
+      CW_USEDEFAULT , 0 , editorWidth , editorHeight , nullptr , nullptr , hInstance , nullptr );
 
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
+   if ( !editorHwnd )
+   {
+       return FALSE;
+   }
+   editor.Initialize ( editorHwnd , editorWidth , editorHeight );
+
+   ShowWindow( editorHwnd , nCmdShow);
+   UpdateWindow( editorHwnd );
 
    return TRUE;
 }

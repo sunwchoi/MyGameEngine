@@ -30,6 +30,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myCircleCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myDelegate.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myEditorApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myEditorWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEnum.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myFbxLoadManager.h" />
@@ -51,7 +53,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)mySkeletalMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIEdit.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIElement.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIText.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myVertex.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pair.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)reverse_iterator.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)set.hpp" />
@@ -76,6 +84,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myCircleCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myDelegate.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myEditorApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myEditorWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myFbxLoadManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myGameObject.cpp" />
@@ -95,7 +105,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)mySkeletalMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIEdit.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIElement.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIText.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myVertex.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
   </ItemGroup>

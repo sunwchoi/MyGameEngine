@@ -6,10 +6,10 @@
 #include "tree.hpp"
 #include <memory>
 
-namespace ft
+namespace my
 {
 
-template <class Key, class Compare = less<Key>, class Alloc = std::allocator<Key> >
+template <class Key, class Compare = ft::less<Key>, class Alloc = std::allocator<Key> >
 class set
 {
 public:
@@ -19,16 +19,16 @@ public:
     typedef Compare									key_compare;
     typedef key_compare								value_compare;
     typedef Alloc									allocator_type;
-    typedef typename allocator_type::reference			reference;
-    typedef typename allocator_type::const_reference	const_reference;
-    typedef typename allocator_type::size_type			size_type;
-    typedef typename allocator_type::difference_type	difference_type;
-    typedef typename allocator_type::pointer			pointer;
-    typedef typename allocator_type::const_pointer		const_pointer;
+    typedef key_type&			reference;
+    typedef const key_type&		const_reference;
+    typedef size_t				size_type;
+    typedef size_t				difference_type;
+    typedef key_type*			pointer;
+    typedef const key_type*		const_pointer;
 
 protected:
 	protected:
-	typedef	tree<const key_type, Compare, Alloc>		tree_type;
+	typedef	ft::tree<const key_type, Compare, Alloc>		tree_type;
 	typedef	typename tree_type::iterator		tree_iterator;
 	typedef	typename tree_type::const_iterator	const_tree_iterator;
 
@@ -72,8 +72,8 @@ public:
 	iterator end() { return _tree.end();}
 	const_iterator end() const { return _tree.end(); }
 
-	pair<const_iterator,const_iterator> equal_range (const key_type& k) const { return _tree.equal_range(k); }
-	pair<iterator,iterator> equal_range (const key_type& k) { return _tree.equal_range(k); }
+	ft::pair<const_iterator,const_iterator> equal_range (const key_type& k) const { return _tree.equal_range(k); }
+	ft::pair<iterator,iterator> equal_range (const key_type& k) { return _tree.equal_range(k); }
 
 	void erase (iterator position) { _tree.erase(*position); }
 	size_type erase (const key_type& k) { return _tree.erase(k); }
@@ -89,7 +89,7 @@ public:
 
 	allocator_type get_allocator() const { return _tree.get_allocator(); }
 
-	pair<iterator,bool> insert (const value_type& val) { return _tree.insert(val); }
+	ft::pair<iterator,bool> insert (const value_type& val) { return _tree.insert(val); }
 	iterator insert (iterator position, const value_type& val) { position = NULL; return insert(val).first; }
 	template <class InputIterator>  void insert (InputIterator first, InputIterator last)
 	{ for (; first != last; first++) insert(*first); }
