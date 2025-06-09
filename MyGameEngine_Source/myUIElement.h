@@ -17,6 +17,8 @@ namespace my
 
 		virtual const wchar_t* GetWindowClassName() = 0;
 	
+		virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) = 0;
+
 	private:
 		HWND			_hwnd;
 		

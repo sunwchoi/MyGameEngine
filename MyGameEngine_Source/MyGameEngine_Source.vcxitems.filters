@@ -110,7 +110,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myEditorWidget.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)myUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIButton.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
@@ -258,7 +260,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myEditorWidget.h">
       <Filter>Editor</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)myUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIButton.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">

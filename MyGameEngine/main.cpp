@@ -5,8 +5,9 @@
 #include "MyGameEngine.h"
 
 #include "../MyGameEngine_Source/myApplication.h"
-#include "../MyGameEngine_Source/myFbxLoadManager.h"
 #include "../MyGameEngine_Source/myEditorApplication.h"
+#include "../MyGameEngine_Source/myFbxLoadManager.h"
+#include "../MyGameEngine_Source/myUIManager.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -185,19 +186,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_COMMAND:
         {
-            int wmId = LOWORD(wParam);
-            // 메뉴 선택을 구문 분석합니다:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
+            my::UIManager::OnUIEvent ( message , wParam , lParam );
         }
         break;
     case WM_PAINT:

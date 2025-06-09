@@ -15,7 +15,10 @@ namespace my
         virtual HWND Construct();
         virtual void Destroy();
 
-        virtual const wchar_t* GetWindowClassName() { return L"STATIC"; };
+        virtual const wchar_t* GetWindowClassName() override { return L"STATIC"; };
+
+        virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) override;
+
     };
 }
 

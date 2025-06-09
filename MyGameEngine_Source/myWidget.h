@@ -3,6 +3,7 @@
 #include "myMath.h"
 #include "vector.hpp"
 #include "map.hpp"
+#include "set.hpp"
 #include "Common.h"
 
 #include <Windows.h>
@@ -18,6 +19,7 @@ public: \
 
 namespace my
 {
+	class UIManager;
 	class UIElement;
 
 	class Widget
@@ -27,13 +29,13 @@ namespace my
 		virtual ~Widget();
 
 		template<typename T>
-		void PlaceElement(const Vector2& pos, const Vector2& size, const std::wstring& text)
+		T* PlaceElement(const Vector2& pos, const Vector2& size, const std::wstring& text)
 		{
-			_elements.push_back(new T(pos, size, text));
-		}
+			T* element = new T(pos, size, text);
+			_elements.push_back(element);
 
-		virtual void Construct();
-		virtual void Destroy();
+			return element;
+		}
 
 		virtual uint32 ClassID() const = 0;
 
@@ -44,9 +46,18 @@ namespace my
 			return id++;
 		}
 
+		virtual void Construct();
+		virtual void Destroy();
+
+	private:
+		bool OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam);
+
 	private:
 		vector<UIElement*>		_elements;
 		map<HWND, UIElement*>	_hwndMap;
+		vector<Widget*>			_children;
+	
+		friend class UIManager;
 	};
 }
 

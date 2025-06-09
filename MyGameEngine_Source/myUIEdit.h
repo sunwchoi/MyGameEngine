@@ -13,7 +13,9 @@ namespace my
         virtual HWND Construct();
         virtual void Destroy();
 
-        virtual const wchar_t* GetWindowClassName() { return L"EDIT"; };
+        virtual const wchar_t* GetWindowClassName() override { return L"EDIT"; };
+
+        virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) override;
 
     };
 }

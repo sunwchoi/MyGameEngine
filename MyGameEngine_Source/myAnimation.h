@@ -46,7 +46,7 @@ namespace my
         bool    _bComplete;
         bool    _bReverse;
         
-        Delegate _completeEvent;
+        //Delegate _completeEvent;
     };
 }
 

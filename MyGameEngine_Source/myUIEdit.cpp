@@ -20,4 +20,8 @@ namespace my
 	{
 		__super::Destroy();
 	}
+
+	void UIEdit::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
+	{
+	}
 }

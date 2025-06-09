@@ -21,4 +21,11 @@ namespace my
 		__super::Destroy();
 	}
 
+	void UIButton::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
+	{
+		int code = HIWORD(wParam);
+
+		if (code == BN_CLICKED)
+			OnClicked.Execute();
+	}
 }
