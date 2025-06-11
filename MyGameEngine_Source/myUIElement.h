@@ -19,6 +19,9 @@ namespace my
 	
 		virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) = 0;
 
+		void SetElementText(const std::wstring& text);
+		void GetElementText(__out std::wstring& text) const;
+
 	private:
 		HWND			_hwnd;
 		

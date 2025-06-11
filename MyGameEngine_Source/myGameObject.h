@@ -39,7 +39,36 @@ namespace my
 		}
 
 		template<typename T>
+		const T* GetComponent() const
+		{
+			T* ret = nullptr;
+			for (Component* comp : _comps)
+			{
+				ret = dynamic_cast<T*>(comp);
+				if (ret)
+					break;
+			}
+
+			return ret;
+		}
+
+		template<typename T>
 		T& GetComponentMust()
+		{
+			T* ret = nullptr;
+			for (Component* comp : _comps)
+			{
+				ret = dynamic_cast<T*>(comp);
+				if (ret)
+					return *ret;
+			}
+
+			MY_ASSERT_MSG(false, "반드시 있어야하는 Component가 없습니다.");
+			return *ret;
+		}
+
+		template<typename T>
+		const T& GetComponentMust() const
 		{
 			T* ret = nullptr;
 			for (Component* comp : _comps)

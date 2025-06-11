@@ -22,7 +22,6 @@ namespace my
 			
 			T* scene = new T( name );
 
-			scene->Initialize();
 			_scenes[name] = scene;
 			
 			// 만들어진 Scene 리턴

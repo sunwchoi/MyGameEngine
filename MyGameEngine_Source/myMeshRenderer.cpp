@@ -22,18 +22,18 @@ namespace my
 
 	void MeshRenderer::Render(HDC hdc)
 	{
-		const Transform& transform = GetOwner()->GetComponentMust<Transform>();
+		const Transform* transform = GetOwner()->GetComponent<Transform>();
 
 		application.GetGraphicDevice()->PreRender();
 
 		if (_skeletalMesh)
 		{
 			for (const Mesh& mesh : _skeletalMesh->GetSubMesh())
-				application.GetGraphicDevice()->RenderMesh(mesh, transform);
+				application.GetGraphicDevice()->RenderMesh(mesh, *transform);
 		}
 		else if (_mesh)
 		{
-			application.GetGraphicDevice()->RenderMesh(*_mesh, transform);
+			application.GetGraphicDevice()->RenderMesh(*_mesh, *transform);
 		}
 
 		application.GetGraphicDevice()->PostRender();

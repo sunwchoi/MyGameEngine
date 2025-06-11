@@ -71,7 +71,7 @@ namespace my
 		//	break;
 		//}
 
-		Transform& transform = GetOwner()->GetComponentMust<Transform>();
+		Transform& transform = *(GetOwner()->GetComponent<Transform>());
 
 		if (Input::GetKey(eKeyCode::A))
 		{

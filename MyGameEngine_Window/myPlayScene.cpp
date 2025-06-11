@@ -12,6 +12,9 @@
 #include "myAnimator.h"
 #include "myMeshRenderer.h"
 #include "mySkeletalMesh.h"
+#include "myApplication.h"
+
+extern my::Application application;
 
 namespace my
 {
@@ -61,10 +64,13 @@ namespace my
 		//animator->PlayAnimation(L"RightIdle");
 
 		AddGameObject(_player, eLayerType::Player);
+
+		// 임시 선택
+		application.SetSelectedObject(_player);
 	
 		// background 추가
-		GameObject* background = new GameObject();
-		background->AddComponent<Transform>();
+		//GameObject* background = new GameObject();
+		//background->AddComponent<Transform>();
 
 		// camera
 		Transform tf = renderer::mainCamera->GetTransform();
@@ -73,10 +79,10 @@ namespace my
 		
 		renderer::mainCamera->SetTransform(tf);
 
-		SpriteRenderer* backgroundSpriteRenderer = background->AddComponent<SpriteRenderer>();
-		backgroundSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
-		backgroundSpriteRenderer->SetSize(Vector2(5.f, 5.f));
-		AddGameObject(background, eLayerType::BackGround);
+		//SpriteRenderer* backgroundSpriteRenderer = background->AddComponent<SpriteRenderer>();
+		//backgroundSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Background"));
+		//backgroundSpriteRenderer->SetSize(Vector2(5.f, 5.f));
+		//AddGameObject(background, eLayerType::BackGround);
 
 		Scene::Initialize();
 	}

@@ -7,6 +7,11 @@ namespace my
 	{
 	}
 
+	Widget::Widget(const Vector2& position)
+		: _position(position)
+	{
+	}
+
 	Widget::~Widget()
 	{
 		for (int i = 0; i < _elements.size(); i++)
@@ -33,6 +38,16 @@ namespace my
 		_hwndMap.clear();
 	}
 
+	void Widget::SetChild(Widget* widget)
+	{
+		_children.push_back(widget);
+	}
+
+	void Widget::SetPosition(const Vector2& position)
+	{
+		_position = position;
+	}
+
 	bool Widget::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		auto it = _hwndMap.find(HWND(lParam));
@@ -40,6 +55,5 @@ namespace my
 			return false;
 
 		it->second->OnUIEvent(message, wParam, lParam);
-
 	}
 }

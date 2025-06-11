@@ -26,12 +26,13 @@ namespace my
 	{
 	public:
 		Widget();
+		Widget(const Vector2& position);
 		virtual ~Widget();
 
 		template<typename T>
 		T* PlaceElement(const Vector2& pos, const Vector2& size, const std::wstring& text)
 		{
-			T* element = new T(pos, size, text);
+			T* element = new T(_position + pos, size, text);
 			_elements.push_back(element);
 
 			return element;
@@ -39,6 +40,8 @@ namespace my
 
 		virtual uint32 ClassID() const = 0;
 
+		virtual void Construct();
+		virtual void Destroy();
 	protected:
 		static uint32 GenerateID()
 		{
@@ -46,8 +49,8 @@ namespace my
 			return id++;
 		}
 
-		virtual void Construct();
-		virtual void Destroy();
+		void SetChild(Widget* widget);
+		void SetPosition(const Vector2& position);
 
 	private:
 		bool OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam);
@@ -56,6 +59,7 @@ namespace my
 		vector<UIElement*>		_elements;
 		map<HWND, UIElement*>	_hwndMap;
 		vector<Widget*>			_children;
+		Vector2					_position;
 	
 		friend class UIManager;
 	};

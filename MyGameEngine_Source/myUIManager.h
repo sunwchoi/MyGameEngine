@@ -3,6 +3,7 @@
 #include "map.hpp"
 #include "vector.hpp"
 #include "Common.h"
+#include "myMath.h"
 
 #include <string>
 #include <functional>
@@ -31,6 +32,14 @@ namespace my
 			Widget*& widget = _widgets[T::StaticClassID()];
 			
 			return static_cast<T*>(widget ? widget : widget = new T());
+		}
+
+		template<typename T>
+		static T* CreateWidget(const Vector2& position)
+		{
+			Widget*& widget = _widgets[T::StaticClassID()];
+
+			return static_cast<T*>(widget ? widget : widget = new T(position));
 		}
 		
 		static void AddToViewport(Widget* widget);

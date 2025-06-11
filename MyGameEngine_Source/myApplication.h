@@ -22,6 +22,9 @@ namespace my
 		const HWND& GetHWND() const { return _hwnd; }
 
 		const GraphicDevice_DX11* GetGraphicDevice() const { return _graphicDevice; }
+		
+		void SetSelectedObject(const GameObject* object);
+		const GameObject* GetSelectedObject() const;
 
 	private:
 		HWND	_hwnd;				// 윈도우 핸들
@@ -32,6 +35,8 @@ namespace my
 		UINT	_height;			// 창 높이
 
 		GraphicDevice_DX11* _graphicDevice;
+
+		const GameObject* _selectedObject;
 	};
 
 }

@@ -68,4 +68,14 @@ namespace my
 		//BitBlt( _hdc, 0, 0, _width, _height, _backHdc, 0, 0, SRCCOPY );
 
 	}
+
+	void Application::SetSelectedObject(const GameObject* object)
+	{
+		_selectedObject = object;
+	}
+
+	const GameObject* Application::GetSelectedObject() const
+	{
+		return _selectedObject;
+	}
 }

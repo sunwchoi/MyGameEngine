@@ -17,6 +17,7 @@ namespace my
 
         virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) override;
 
+
     };
 }
 
