@@ -68,7 +68,7 @@ float4 main(VSOutput input) : SV_Target
     float3 lightPos = float3(0.0f, 0.f, -3000.0f);
     float3 lightColor = float3(1.0f, 1.0f, 1.0f);
 
-
+    
     // Diffuse
     float3 lightDir = normalize(lightPos - input.position);
     float cos = max(dot(input.normal, lightDir), 0.0f);
@@ -86,6 +86,5 @@ float4 main(VSOutput input) : SV_Target
 
     float3 result = ambientResult + diffuseResult + specularResult;
 
-    //return float4(result, 1.0f);
-    return float4(1.f, 1.f, 1.f, 1.0f);
+    return float4(result, 1.0f);
 }

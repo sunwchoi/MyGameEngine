@@ -95,8 +95,34 @@ namespace my
 				}
 			}
 
+			
+
 			subMesh.push_back(Mesh(L"subMesh"));
 			subMesh.back().reinputVertices(vertices, Indices);
+			subMesh.back().setMaterial(new Material(L"subMeshMtl"));
+
+			int materialCount = node->GetMaterialCount();
+			MY_ASSERT_MSG(materialCount >= 1, "1개의 material만 처리");
+
+			FbxSurfaceMaterial* material = node->GetMaterial(0);
+			Vector3& diffuse = subMesh.back().getMaterial()->_diffuse;
+			Vector3& ambient = subMesh.back().getMaterial()->_ambient;
+			Vector3& specular = subMesh.back().getMaterial()->_specular;
+			float& shininess = subMesh.back().getMaterial()->_shininess;
+			if (material->GetClassId().Is(FbxSurfacePhong::ClassId)) {
+				FbxSurfacePhong* phong = (FbxSurfacePhong*)material;
+
+				FbxDouble3 fbxDiffuse = phong->Diffuse.Get();
+				diffuse._x = fbxDiffuse[0]; diffuse._y = fbxDiffuse[1]; diffuse._z = fbxDiffuse[2];
+
+				FbxDouble3 fbxAmbient = phong->Ambient.Get();
+				ambient._x = fbxAmbient[0]; ambient._y = fbxAmbient[1]; ambient._z = fbxAmbient[2];
+
+				FbxDouble3 fbxSpecular = phong->Specular.Get();
+				specular._x = fbxSpecular[0]; specular._y = fbxSpecular[1]; specular._z = fbxSpecular[2];
+
+				shininess = phong->Shininess.Get();
+			}
 		}
 
 		for (int i = 0; i < node->GetChildCount(); ++i) {

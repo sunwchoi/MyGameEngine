@@ -34,6 +34,7 @@ namespace my
         void*           getNormalOffset() const;
 
         Material*       getMaterial() const;
+        void            setMaterial(Material* material);
 
     private:
         vector<Vertex>  _vertices;

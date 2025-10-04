@@ -84,39 +84,14 @@ namespace my
 		_deviceContext->IASetInputLayout(_inputLayouts);
 		_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		D3D11_BUFFER_DESC bufferDesc = {};
-
-		bufferDesc.ByteWidth = mesh.getByteWidth();
-		//bufferDesc.ByteWidth = sizeof(Vertex) * 6;
-
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		//D3D11_SUBRESOURCE_DATA sub = { vertexes.data()};
-		D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
-		
-		ID3D11Buffer* vertexBuffer = nullptr;
-		_device->CreateBuffer(&bufferDesc, &sub, &vertexBuffer);
-
+		BufferWrapper VertexBufferWrapper(_device.Get(), mesh);
 
 		constexpr UINT vertexSize = sizeof(Vertex);
 		constexpr UINT offset = 0;
 
-		_deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &vertexSize, &offset);
+		_deviceContext->IASetVertexBuffers(0, 1, &VertexBufferWrapper._raw, &vertexSize, &offset);
 		
 		Vector3 camLoc(0.f, 0.f, -10.f);
-		Vector3 origin;
-		//Vector3 forward = (origin - camLoc).Normalize();
-		//Vector3 up(0.f, 1.f, 0.f);
-		//Vector3 right = forward.Cross(up).Normalize();
-
-		//float view[16] = {
-		//	right._x, right._y, right._z, 0.0f,
-		//	up._x, up._y, up._z, 0.0f,
-		//	forward._x, forward._y, forward._z, 0.0f,
-		//	camLoc._x, camLoc._y, camLoc._z, 1.f,
-		//};
 
 		const Vector3& pos = transform.GetPosition();
 		const Vector3& scale = transform.GetScale();
@@ -145,18 +120,18 @@ namespace my
 		};
 
 		const float fov = renderer::mainCamera->GetFOV();
-		const float zNear = 0.1f;
-		const float zFar = 100.f;
+		const float zNear = 10.f;
+		const float zFar = 1000.f;
 		float c = -1 * zNear / zFar;
 		const float d = 1.f / tanf(90 / 2);
 		const float aRatio = application.GetWidth() / application.GetHeight();
 
-		float projection[16] = {
-			d / aRatio, 0.0f, 0.0f, 0.0f,
-			0.0f, d, 0.0f, 0.0f,
-			0, 0, (zFar + zNear) / (zNear - zFar), -1,
-			0, 0, (2 * zFar * zNear) / (zNear - zFar), 0
-		};
+		   float projection[16] = {
+		   	d / aRatio, 0.0f, 0.0f, 0.0f,
+		   	0.0f, d, 0.0f, 0.0f,
+		   	0, 0, (zFar + zNear) / (zNear - zFar), -1,
+		   	0, 0, (2 * zFar * zNear) / (zNear - zFar), 0
+		   };
 
 		struct CB_DATA
 		{
@@ -169,21 +144,9 @@ namespace my
 		memcpy(cb.view, view, sizeof(view));
 		memcpy(cb.projection, projection, sizeof(projection));
 
-		D3D11_BUFFER_DESC constantBufferDesc = {};
-		constantBufferDesc.ByteWidth = sizeof(CB_DATA);
-		constantBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
-		constantBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
-		constantBufferDesc.CPUAccessFlags = 0;
-		constantBufferDesc.MiscFlags = 0;
-		constantBufferDesc.StructureByteStride = 0;
-
-		D3D11_SUBRESOURCE_DATA constantSub = { &cb };
-
-		ID3D11Buffer* constantBuffer = nullptr;
-		_device->CreateBuffer(&constantBufferDesc, &constantSub, &constantBuffer);
-
-		_deviceContext->UpdateSubresource(constantBuffer, 0, nullptr, &cb, 0, 0);
-		_deviceContext->VSSetConstantBuffers(0, 1, &constantBuffer);
+		BufferWrapper mvpBufferWrapper(_device.Get(), &cb, sizeof(cb));
+		_deviceContext->UpdateSubresource(mvpBufferWrapper._raw, 0, nullptr, &cb, 0, 0);
+		_deviceContext->VSSetConstantBuffers(0, 1, &mvpBufferWrapper._raw);
 
 		
 		struct MaterialRaw
@@ -201,21 +164,10 @@ namespace my
 		materialRaw._specular = mesh.getMaterial()->_specular;
 		materialRaw._shininess = mesh.getMaterial()->_shininess;
 
-		D3D11_BUFFER_DESC materialBufferDesc = {};
-		materialBufferDesc.ByteWidth = sizeof(MaterialRaw);
-		materialBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
-		materialBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
-		materialBufferDesc.CPUAccessFlags = 0;
-		materialBufferDesc.MiscFlags = 0;
-		materialBufferDesc.StructureByteStride = 0;
-
-		D3D11_SUBRESOURCE_DATA materialSub = { &materialRaw };
-
-		ID3D11Buffer* materialBuffer = nullptr;
-		_device->CreateBuffer(&materialBufferDesc, &materialSub, &materialBuffer);
+		BufferWrapper materialBufferWrapper(_device.Get(), &materialRaw, sizeof(MaterialRaw));
 		
-		_deviceContext->UpdateSubresource(materialBuffer, 0, nullptr, &materialRaw, 0, 0);
-		_deviceContext->PSSetConstantBuffers(0, 1, &materialBuffer);
+		_deviceContext->UpdateSubresource(materialBufferWrapper._raw, 0, nullptr, &materialRaw, 0, 0);
+		_deviceContext->PSSetConstantBuffers(0, 1, &materialBufferWrapper._raw);
 
 		struct CameraRaw
 		{
@@ -225,21 +177,10 @@ namespace my
 
 		cameraRaw._viewPos = renderer::mainCamera->GetTransform().GetPosition();
 
-		D3D11_BUFFER_DESC cameraBufferDesc = {};
-		cameraBufferDesc.ByteWidth = sizeof(MaterialRaw);
-		cameraBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
-		cameraBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
-		cameraBufferDesc.CPUAccessFlags = 0;
-		cameraBufferDesc.MiscFlags = 0;
-		cameraBufferDesc.StructureByteStride = 0;
+		BufferWrapper cameraBufferWrapper(_device.Get(), &cameraRaw, sizeof(CameraRaw));
 
-		D3D11_SUBRESOURCE_DATA cameraSub = { &cameraRaw };
-
-		ID3D11Buffer* cameraBuffer = nullptr;
-		_device->CreateBuffer(&cameraBufferDesc, &cameraSub, &cameraBuffer);
-
-		_deviceContext->UpdateSubresource(cameraBuffer, 0, nullptr, &cameraRaw, 0, 0);
-		_deviceContext->PSSetConstantBuffers(1, 1, &cameraBuffer);
+		_deviceContext->UpdateSubresource(cameraBufferWrapper._raw, 0, nullptr, &cameraRaw, 0, 0);
+		_deviceContext->PSSetConstantBuffers(1, 1, &cameraBufferWrapper._raw);
 
 
 		_deviceContext->VSSetShader(static_cast<ID3D11VertexShader*>(_vertexShader->GetRawShader()), 0, 0);
@@ -368,5 +309,46 @@ namespace my
 			_vertexShader->GetBlob()->GetBufferSize(),
 			&_inputLayouts
 		);
+	}
+
+	GraphicDevice_DX11::BufferWrapper::BufferWrapper(ID3D11Device* device, const Mesh& mesh)
+	{
+		MY_ASSERT_MSG(device, "BufferWrapper 생성자 호출 시점에 device가 없으면 안됨.");
+
+		D3D11_BUFFER_DESC bufferDesc = {};
+
+		bufferDesc.ByteWidth = mesh.getByteWidth();
+
+		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
+		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
+		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+
+		//D3D11_SUBRESOURCE_DATA sub = { vertexes.data()};
+		D3D11_SUBRESOURCE_DATA sub = { mesh.getBufferData() };
+
+		device->CreateBuffer(&bufferDesc, &sub, &_raw);
+	}
+
+	GraphicDevice_DX11::BufferWrapper::BufferWrapper(ID3D11Device* device, void* src, size_t size)
+	{
+		MY_ASSERT_MSG(device, "BufferWrapper 생성자 호출 시점에 device가 없으면 안됨.");
+
+		D3D11_BUFFER_DESC constantBufferDesc = {};
+
+		constantBufferDesc.ByteWidth = size;
+		constantBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_CONSTANT_BUFFER;
+		constantBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+		constantBufferDesc.CPUAccessFlags = 0;
+		constantBufferDesc.MiscFlags = 0;
+		constantBufferDesc.StructureByteStride = 0;
+
+		D3D11_SUBRESOURCE_DATA constantSub = { &src };
+
+		device->CreateBuffer(&constantBufferDesc, &constantSub, &_raw);
+	}
+
+	GraphicDevice_DX11::BufferWrapper::~BufferWrapper()
+	{
+		_raw->Release();
 	}
 }

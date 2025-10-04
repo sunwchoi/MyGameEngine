@@ -22,14 +22,9 @@ VSOutput main(VSInput input)
     VSOutput output;
 
     float4 worldPosition = mul(model, float4(input.position, 1.f));
-    //float4 worldPosition = float4(input.position, 1.f);
     float4 viewPosition = mul(view, worldPosition);
     output.position = mul(projection, viewPosition);
     output.normal = input.normal;
-    // output.FragPos = mul(model, input.position).xyz;
-
-    // float3x3 normalMatrix = transpose(invert((float3x3) model));
-    // output.Normal = normalize(mul(normalMatrix, input.normal));
 
     return output;
 }

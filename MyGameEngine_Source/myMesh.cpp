@@ -139,4 +139,9 @@ namespace my
     {
         return _material;
     }
+
+    void Mesh::setMaterial(Material* material)
+    {
+        _material = material;
+    }
 }

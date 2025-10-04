@@ -58,7 +58,22 @@ namespace my
 		std::unique_ptr<Shader> _pixelShader;
 		vector<Vertex> vertexes;
 
+	private:
+		struct BufferWrapper
+		{
+		public:
+			BufferWrapper(ID3D11Device* device, const Mesh& mesh);
+			BufferWrapper(ID3D11Device* device, void* src, size_t size);
+			~BufferWrapper();
 
+		public:
+			ID3D11Buffer* _raw;
+
+		private:
+			BufferWrapper(const BufferWrapper& other) = default; // 복사 금지
+		};
+
+		friend BufferWrapper;
 	};
 }
 
