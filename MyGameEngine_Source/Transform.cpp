@@ -77,4 +77,19 @@ namespace my
 		forward._y = -sinPitch;
 		forward._z = cosYaw * cosPitch;
 	}
+
+	Vector3 Transform::GetForward() const
+	{
+		return _rotation.GetForward();
+	}
+
+	Vector3 Transform::GetRight() const
+	{
+		return _rotation.GetRight();
+	}
+
+	Vector3 Transform::GetUp() const
+	{
+		return _rotation.GetUp();
+	}
 }

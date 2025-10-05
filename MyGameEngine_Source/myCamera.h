@@ -30,7 +30,6 @@ namespace my
 
     private:
         GameObject* _target;
-        Transform   _transform;
         float       _fov;
     };
 }

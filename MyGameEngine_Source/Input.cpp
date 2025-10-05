@@ -7,6 +7,7 @@ extern my::Application application;
 namespace my
 {
 	Vector2					Input::_mousePosition;
+	Vector2					Input::_preMousePosition;
 	std::vector<Input::Key> Input::_keys = {};
 
 	int ASCII[(size_t)eKeyCode::Count] = {
@@ -62,6 +63,9 @@ namespace my
 
 		UpdateMousePosition();
 	}
+
+
+
 	void Input::UpdateMousePosition()
 	{
 		POINT mousePoint = {};
@@ -69,6 +73,7 @@ namespace my
 		GetCursorPos(&mousePoint);
 		ScreenToClient(application.GetHWND(), &mousePoint);
 
+		_preMousePosition = _mousePosition;
 		_mousePosition._x = mousePoint.x;
 		_mousePosition._y = mousePoint.y;
 	}

@@ -25,6 +25,11 @@ namespace my
 		const Vector3& GetScale() const;
 
 		void GetLocalAxes(__out Vector3& right, __out Vector3& up, __out Vector3& forward) const;
+
+		Vector3 GetForward() const;
+		Vector3 GetRight() const;
+		Vector3 GetUp() const;
+
 	private:
 		Vector3 _position;
 		Vector3 _scale;

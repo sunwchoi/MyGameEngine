@@ -7,11 +7,13 @@
     <ClInclude Include="resource1.h" />
     <ClInclude Include="myTitleScene.h" />
     <ClInclude Include="myPlayerScript.h" />
+    <ClInclude Include="myCameraScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="myPlayScene.cpp" />
     <ClCompile Include="myTitleScene.cpp" />
     <ClCompile Include="myPlayerScript.cpp" />
+    <ClCompile Include="myCameraScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

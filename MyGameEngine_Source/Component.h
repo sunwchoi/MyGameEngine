@@ -15,7 +15,7 @@ namespace my
 		virtual void Render( HDC hdc );
 
 		void		SetOwner( GameObject* owner ) { _owner = owner; }
-		GameObject* GetOwner() { return _owner; }
+		GameObject* GetOwner() const { return _owner; }
 
 	private:
 		GameObject* _owner;

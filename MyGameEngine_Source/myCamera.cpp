@@ -42,12 +42,12 @@ namespace my
 
 	void Camera::SetTransform(const Transform& transform)
 	{
-		_transform = transform;
+		GetOwner()->GetComponentMust<Transform>() = transform;
 	}
 
 	const Transform& Camera::GetTransform() const
 	{
-		return _transform;
+		return GetOwner()->GetComponentMust<Transform>();
 	}
 
 	void Camera::SetFOV(float fov)

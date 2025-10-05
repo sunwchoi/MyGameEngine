@@ -22,6 +22,7 @@ namespace my
 
 	private:
 		GameObject* _player;
+		GameObject* _camera;
 	};
 }
 

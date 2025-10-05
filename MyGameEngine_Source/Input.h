@@ -48,11 +48,13 @@ namespace my
 		static bool GetKeyUp(eKeyCode code) { return _keys[(uint8)code]._state == eKeyState::Up; };
 
 		static const Vector2& GetMousePosition() { return _mousePosition; }
+		static const Vector2& GetMouseDelta() { return _preMousePosition - _mousePosition; }
 
 	private:
 		static void UpdateMousePosition();
 
 	private:
+		static Vector2					_preMousePosition;
 		static Vector2					_mousePosition;
 		static std::vector<Input::Key>	_keys;
 	};

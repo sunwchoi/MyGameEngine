@@ -53,4 +53,27 @@ namespace my
 	{
 		return (_pitch == other._pitch && _yaw == other._yaw && _roll == other._roll) == false;
 	}
+
+	Vector3 Rotator::GetForward() const
+	{
+		return Vector3(sinf(_yaw) * cosf(_pitch), -sinf(_pitch), cosf(_yaw) * cosf(_pitch));
+	}
+
+	Vector3 Rotator::GetRight() const
+	{
+		return Vector3(
+			cosf(_yaw) * cosf(_roll) + sinf(_yaw) * sinf(_pitch) * sinf(_roll),
+			cosf(_pitch) * sinf(_roll),
+			-sinf(_yaw) * cosf(_roll) + cosf(_yaw) * sinf(_pitch) * sinf(_roll)
+		);
+	}
+
+	Vector3 Rotator::GetUp() const
+	{
+		return Vector3(
+			-cosf(_yaw) * sinf(_roll) + sinf(_yaw) * sinf(_pitch) * cosf(_roll),
+			cosf(_pitch) * cosf(_roll),
+			sinf(_yaw) * sinf(_roll) + cosf(_yaw) * sinf(_pitch) * cosf(_roll)
+		);
+	}
 }

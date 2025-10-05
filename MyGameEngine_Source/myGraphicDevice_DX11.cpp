@@ -113,10 +113,10 @@ namespace my
 		camTransform.GetLocalAxes(camRight, camUp, camForward);
 
 		float view[16] = {
-			camRight._x,    camUp._x,    camForward._x,    0.0f,
-			camRight._y,    camUp._y,    camForward._y,    0.0f,
-			camRight._z,    camUp._z,    camForward._z,    0.0f,
-			-math::Dot(camRight, camPos), -math::Dot(camUp, camPos), -math::Dot(camForward, camPos), 1.0f
+			camRight._x,    camUp._x,    -camForward._x,    0.0f,
+			camRight._y,    camUp._y,    -camForward._y,    0.0f,
+			camRight._z,    camUp._z,    -camForward._z,    0.0f,
+			-math::Dot(camRight, camPos), -math::Dot(camUp, camPos), math::Dot(camForward, camPos), 1.0f
 		};
 
 		const float fov = renderer::mainCamera->GetFOV();

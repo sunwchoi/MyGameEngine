@@ -60,6 +60,16 @@ namespace my
 		return *this;
 	}
 
+	bool Vector2::operator==(const Vector2& other) const
+	{
+		return fabs(_x - other._x) < 1e-6f && fabs(_y - other._y) < 1e-6f;
+	}
+
+	bool Vector2::operator!=(const Vector2& other) const
+	{
+		return !(*this == other);
+	}
+
 	Vector2 operator*(float value, Vector2 rhs)
 	{
 		return rhs * value;

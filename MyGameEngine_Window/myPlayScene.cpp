@@ -13,6 +13,7 @@
 #include "myMeshRenderer.h"
 #include "mySkeletalMesh.h"
 #include "myApplication.h"
+#include "myCameraScript.h"
 
 extern my::Application application;
 
@@ -39,14 +40,22 @@ namespace my
 		MeshRenderer* meshRenderer = _player->AddComponent<MeshRenderer>();
 		meshRenderer->SetSkeletalMesh(Resources::Find<SkeletalMesh>(L"SkeletalMesh"));
 		//meshRenderer->SetMesh(Resources::Find<Mesh>(L"BasicMesh"));
+		_player->AddComponent<PlayerScript>();
 
-		renderer::mainCamera = _player->AddComponent<Camera>();
+		AddGameObject(_player, eLayerType::Player);
+
 
 		//SpriteRenderer* playerSpriteRenderer = _player->AddComponent<SpriteRenderer>();
 		//playerSpriteRenderer->SetTexture(Resources::Find<Texture>(L"Player"));
 		//playerSpriteRenderer->SetSize(Vector2(0.5f, 0.5f));
 
-		_player->AddComponent<PlayerScript>();
+
+		_camera = new GameObject();
+		_camera->AddComponent<Transform>();
+		_camera->AddComponent<CameraScript>();
+		renderer::mainCamera = _camera->AddComponent<Camera>();
+
+		AddGameObject(_camera, eLayerType::Player);
 
 		//Animator* animator = _player->AddComponent<Animator>();
 		//animator->CreateAnimation(L"LeftIdle", Resources::Find<Texture>(L"Idle"), Vector2(0, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 5, 0.2f, true);
@@ -63,7 +72,6 @@ namespace my
 		//animator->CreateAnimation(L"RightAttack3", Resources::Find<Texture>(L"Attack3"), Vector2(0.f, 0.f), Vector2(128.f, 128.f), Vector2(0.f, 0.f), 4, 0.1f);
 		//animator->PlayAnimation(L"RightIdle");
 
-		AddGameObject(_player, eLayerType::Player);
 
 		// 임시 선택
 		application.SetSelectedObject(_player);
@@ -74,7 +82,7 @@ namespace my
 
 		// camera
 		Transform tf = renderer::mainCamera->GetTransform();
-		tf.SetPosition(Vector3(0, 100, 150));
+		tf.SetPosition(Vector3(0, 100, -150));
 		//tf.SetRotation(Rotator(0, 0, 0));
 		
 		renderer::mainCamera->SetTransform(tf);

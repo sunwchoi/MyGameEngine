@@ -47,6 +47,12 @@ namespace my
 				buffer.resize(256);
 				posXEdit->GetElementText(buffer);
 				pos._x = std::stoi(buffer);
+
+				posYEdit->GetElementText(buffer);
+				pos._y = std::stoi(buffer);
+
+				posZEdit->GetElementText(buffer);
+				pos._z = std::stoi(buffer);
 			}
 		);
 	}

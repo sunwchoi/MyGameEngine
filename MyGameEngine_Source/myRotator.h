@@ -18,6 +18,10 @@ namespace my
 		bool		operator==(const Rotator& other) const;
 		bool		operator!=(const Rotator& other) const;
 
+		Vector3	GetForward() const;
+		Vector3	GetRight() const;
+		Vector3 GetUp() const;
+
 	public:
 		float _pitch;
 		float _yaw;

@@ -19,12 +19,17 @@ namespace my
 		Vector2& operator*=(float value);
 		Vector2& operator/=(float value);
 
+		bool operator==(const Vector2& other) const;
+		bool operator!=(const Vector2& other) const;
+
 		
 
 		float	_x;
 		float	_y;
 
 		friend Vector2 operator*(float value, Vector2 rhs);
+
+		static Vector2 Zero;
 	};
 
 	class Vector3

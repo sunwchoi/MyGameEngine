@@ -73,7 +73,7 @@ namespace my
 
 		Transform& transform = *(GetOwner()->GetComponent<Transform>());
 
-		if (Input::GetKey(eKeyCode::A))
+		/*if (Input::GetKey(eKeyCode::A))
 		{
 			transform.SetRotation(transform.GetRotation() + Rotator(0, 0.1, 0));
 		}
@@ -93,7 +93,7 @@ namespace my
 		{
 			transform.SetRotation(transform.GetRotation() - Rotator(0.1, 0, 0));
 			//transform.SetPosition(transform.GetPosition() + Vector3(0, 0, -10));
-		}
+		}*/
 	}
 
 	void PlayerScript::LateUpdate()
