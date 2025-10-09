@@ -24,7 +24,6 @@ namespace my
 	{
 		const Transform* transform = GetOwner()->GetComponent<Transform>();
 
-		application.GetGraphicDevice()->PreRender();
 
 		if (_skeletalMesh)
 		{
@@ -36,7 +35,6 @@ namespace my
 			application.GetGraphicDevice()->RenderMesh(*_mesh, *transform);
 		}
 
-		application.GetGraphicDevice()->PostRender();
 
 	}
 

@@ -18,9 +18,9 @@ namespace my
         Vector3 _diffuse;
         Vector3 _specular;
 
-        float _shininess = 0.f;
-        float _refractionIndex = 0.f;
-        float _transparency = 0.f;
+        float _shininess = 0.1f;
+        float _refractionIndex;
+        float _transparency;
 
         uint32 _illumModel;
     };

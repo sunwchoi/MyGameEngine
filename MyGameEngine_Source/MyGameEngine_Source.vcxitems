@@ -17,6 +17,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)compare.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Component.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myDebugDrawer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)myEditorObjectViewWidget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Input.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)iterator_trait.hpp" />
@@ -74,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myDebugDrawer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myEditorObjectViewWidget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Input.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp" />

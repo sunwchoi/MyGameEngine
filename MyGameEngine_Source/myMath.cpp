@@ -78,7 +78,9 @@ namespace my
 
 
 /***Vector3**************************************************************************/
-	
+
+	const Vector3 Vector3::Zero(0, 0, 0);
+
 	Vector3 Vector3::operator+(const Vector3& other) const
 	{
 		return Vector3(_x + other._x, _y + other._y, _z + other._z);

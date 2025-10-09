@@ -2,6 +2,7 @@
 #include "myTime.h"
 #include "mySceneManager.h"
 #include "Input.h"
+#include "myDebugDrawer.h"
 #include "../MyGameEngine_Window/myLoad.h"
 #include "myGraphicDevice_DX11.h"
 
@@ -38,6 +39,7 @@ namespace my
 		Time::Initialize();
 
 		SceneManager::Initialize();
+		DebugDrawer::Initialize();
 	}
 
 	void Application::Run()
@@ -63,7 +65,13 @@ namespace my
 	void Application::Render()
 	{
 		//Rectangle( _backHdc, 0, 0, _width, _height );
+
+		GetGraphicDevice()->PreRender();
+
 		SceneManager::Render( nullptr );
+		DebugDrawer::Render();
+
+		GetGraphicDevice()->PostRender();
 
 		//BitBlt( _hdc, 0, 0, _width, _height, _backHdc, 0, 0, SRCCOPY );
 

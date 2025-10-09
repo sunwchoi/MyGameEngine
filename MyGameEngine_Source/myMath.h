@@ -64,6 +64,8 @@ namespace my
 		float	_x;
 		float	_y;
 		float	_z;
+
+		static const Vector3 Zero;
 	};
 
 	namespace math
@@ -72,6 +74,9 @@ namespace my
 		Vector3 Cross(const Vector3& a, const Vector3& b);
 		Vector3 Normalize(const Vector3& v);
 		Vector3 GetNormal(const Vector3& a, const Vector3& b, const Vector3& c);
+
+
+		const float PI = 3.14159f;
 
 	}
 
