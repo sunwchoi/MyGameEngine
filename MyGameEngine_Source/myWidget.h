@@ -26,17 +26,17 @@ namespace my
 	{
 	public:
 		Widget();
-		Widget(const Vector2& position);
+		Widget(const std::string& xmlFile, const Vector2& position);
 		virtual ~Widget();
 
-		template<typename T>
-		T* PlaceElement(const Vector2& pos, const Vector2& size, const std::wstring& text)
-		{
-			T* element = new T(_position + pos, size, text);
-			_elements.push_back(element);
+		//template<typename T>
+		//T* PlaceElement(const Vector2& pos, const Vector2& size, const std::wstring& text)
+		//{
+		//	 T* element = new T(_position + pos, size, text);
+		//	 _elements.push_back(element);
 
-			return element;
-		}
+		//	return element;
+		//}
 
 		virtual uint32 ClassID() const = 0;
 
@@ -56,8 +56,7 @@ namespace my
 		bool OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam);
 
 	private:
-		vector<UIElement*>		_elements;
-		map<HWND, UIElement*>	_hwndMap;
+		UIElement* _rootElement;
 		vector<Widget*>			_children;
 		Vector2					_position;
 	

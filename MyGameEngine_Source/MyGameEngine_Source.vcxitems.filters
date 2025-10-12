@@ -116,6 +116,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)myEditorObjectViewWidget.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)myDebugDrawer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myXmlUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
@@ -268,6 +270,11 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)myEditorObjectViewWidget.h">
       <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)myDebugDrawer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myXmlUtil.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myITree.h">
+      <Filter>Containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

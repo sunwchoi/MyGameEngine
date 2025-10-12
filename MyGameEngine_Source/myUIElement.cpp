@@ -42,4 +42,8 @@ namespace my
 		GetWindowText(_hwnd, text.data(), 256);
 	}
 
+	HWND UIElement::GetHWND() const
+	{
+		return _hwnd;
+	}
 }

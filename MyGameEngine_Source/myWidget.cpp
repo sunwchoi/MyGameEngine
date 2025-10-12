@@ -1,5 +1,10 @@
 #include "myWidget.h"
+
+#include "myUIButton.h"
+#include "myUIEdit.h"
 #include "myUIElement.h"
+#include "myUIText.h"
+#include "myXmlUtil.h"
 
 namespace my
 {
@@ -7,35 +12,82 @@ namespace my
 	{
 	}
 
-	Widget::Widget(const Vector2& position)
+	Widget::Widget(const std::string& xmlFile, const Vector2& position)
 		: _position(position)
 	{
+		XmlNode* root = LoadXmlFile(xmlFile);
+		UIElement* parent = nullptr;
+		root->Traverse([ & ](const XmlNode* node)
+			{
+				// 포지션, 사이즈 계산
+				Vector2 pos = parent? parent->GetPos() : position;
+				Vector2 scale = parent ? parent->GetScale() : Vector2::Zero;
+
+				auto it = node->_attributes.find("x");
+				if (it != node->_attributes.end())
+					pos._x = std::stoi(it->second);
+
+				it = node->_attributes.find("y");
+				if (it != node->_attributes.end())
+					pos._y = std::stoi(it->second);
+
+				it = node->_attributes.find("width");
+				if (it != node->_attributes.end())
+					scale._x = std::stoi(it->second);
+
+				it = node->_attributes.find("height");
+				if (it != node->_attributes.end())
+					scale._y = std::stoi(it->second);
+
+				UIElement* element = nullptr;
+				if (node->_tag == "button")
+					element = new UIButton(pos, scale, L"button");
+				else if (node->_tag == "text")
+				{
+					std::wstring tmp;
+					tmp.assign(node->_text.begin(), node->_text.end());
+					element = new UIText(pos, scale, tmp);
+				}
+				else if (node->_tag == "edit")
+					element = new UIEdit(pos, scale, L"edit");
+
+				MY_ASSERT(element);
+
+				if (parent)
+					parent->AddChild(element);
+				else
+					_rootElement = element;
+
+				parent = element;
+			}
+		);
+
+
 	}
 
 	Widget::~Widget()
 	{
-		for (int i = 0; i < _elements.size(); i++)
-			_elements[i]->Destroy();
+		if (_rootElement == nullptr)
+			return;
 
-		_hwndMap.clear();
+		_rootElement->Destroy();
+		_rootElement = nullptr;
 	}
 	
 	void Widget::Construct()
 	{
-		for (int i = 0; i < _elements.size(); i++)
-		{
-			HWND hwnd = _elements[i]->Construct();
-			
-			_hwndMap[hwnd] = _elements[i];
-		}
+		if (_rootElement == nullptr)
+			return;
+
+		_rootElement->Construct();
 	}
 
 	void Widget::Destroy()
 	{
-		for (int i = 0; i < _elements.size(); i++)
-			_elements[i]->Destroy();
+		if (_rootElement == nullptr)
+			return;
 
-		_hwndMap.clear();
+		_rootElement->Destroy();
 	}
 
 	void Widget::SetChild(Widget* widget)
@@ -50,10 +102,9 @@ namespace my
 
 	bool Widget::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
 	{
-		auto it = _hwndMap.find(HWND(lParam));
-		if (it == _hwndMap.end())
+		if (_rootElement == nullptr)
 			return false;
 
-		it->second->OnUIEvent(message, wParam, lParam);
+		return _rootElement->OnUIEvent(message, wParam, lParam);
 	}
 }

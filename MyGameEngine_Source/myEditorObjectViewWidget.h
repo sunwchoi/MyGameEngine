@@ -11,6 +11,7 @@ namespace my
         GENERATED_WIDGET_BODY()
     public:
         EditorObjectViewWidget();
+        EditorObjectViewWidget(const std::string& xmlFile, const Vector2& position);
         ~EditorObjectViewWidget();
 
         virtual void Construct() override;

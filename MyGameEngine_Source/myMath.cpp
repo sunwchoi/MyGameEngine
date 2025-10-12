@@ -4,6 +4,8 @@
 
 namespace my
 {
+	const Vector2 Vector2::Zero(0, 0);
+
 	Vector2 Vector2::operator+(const Vector2& other) const
 	{
 		return Vector2(_x + other._x, _y + other._y);

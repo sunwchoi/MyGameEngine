@@ -29,7 +29,7 @@ namespace my
 
 		friend Vector2 operator*(float value, Vector2 rhs);
 
-		static Vector2 Zero;
+		static const Vector2 Zero;
 	};
 
 	class Vector3

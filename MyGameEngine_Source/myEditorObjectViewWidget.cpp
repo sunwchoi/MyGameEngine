@@ -23,38 +23,43 @@ namespace my
 
 	EditorObjectViewWidget::EditorObjectViewWidget()
 	{
-		PlaceElement<UIText>(Vector2(10.f, 10.f), Vector2(100.f, 20.f), L"ObjectView");
-		PlaceElement<UIText>(Vector2(10.f, 30.f), Vector2(50.f, 20.f), L"POS");
+		//PlaceElement<UIText>(Vector2(10.f, 10.f), Vector2(100.f, 20.f), L"ObjectView");
+		//PlaceElement<UIText>(Vector2(10.f, 30.f), Vector2(50.f, 20.f), L"POS");
 
-		posXEdit = PlaceElement<UIEdit>(Vector2(60.f, 30.f), Vector2(50.f, 20.f), L"");
-		posYEdit = PlaceElement<UIEdit>(Vector2(110.f, 30.f), Vector2(50.f, 20.f), L"");
-		posZEdit = PlaceElement<UIEdit>(Vector2(160.f, 30.f), Vector2(50.f, 20.f), L"");
+		//posXEdit = PlaceElement<UIEdit>(Vector2(60.f, 30.f), Vector2(50.f, 20.f), L"");
+		//posYEdit = PlaceElement<UIEdit>(Vector2(110.f, 30.f), Vector2(50.f, 20.f), L"");
+		//posZEdit = PlaceElement<UIEdit>(Vector2(160.f, 30.f), Vector2(50.f, 20.f), L"");
 
-		UIButton* button = PlaceElement<UIButton>(Vector2(110.f, 10.f), Vector2(50.f, 20.f), L"Update");
+		//UIButton* button = PlaceElement<UIButton>(Vector2(110.f, 10.f), Vector2(50.f, 20.f), L"Update");
 
-		button->OnClicked.Bind([this]()
-			{
-				const GameObject* object = application.GetSelectedObject();
+		//button->OnClicked.Bind([this]()
+		//	{
+		//		const GameObject* object = application.GetSelectedObject();
 
-				const Transform* tf = object->GetComponent<Transform>();
-				if (tf == nullptr)
-					return;
+		//		const Transform* tf = object->GetComponent<Transform>();
+		//		if (tf == nullptr)
+		//			return;
 
-				Vector3& pos = const_cast<Vector3&>(tf->GetPosition());
+		//		Vector3& pos = const_cast<Vector3&>(tf->GetPosition());
 
-				std::wstring buffer;
+		//		std::wstring buffer;
 
-				buffer.resize(256);
-				posXEdit->GetElementText(buffer);
-				pos._x = std::stoi(buffer);
+		//		buffer.resize(256);
+		//		posXEdit->GetElementText(buffer);
+		//		pos._x = std::stoi(buffer);
 
-				posYEdit->GetElementText(buffer);
-				pos._y = std::stoi(buffer);
+		//		posYEdit->GetElementText(buffer);
+		//		pos._y = std::stoi(buffer);
 
-				posZEdit->GetElementText(buffer);
-				pos._z = std::stoi(buffer);
-			}
-		);
+		//		posZEdit->GetElementText(buffer);
+		//		pos._z = std::stoi(buffer);
+		//	}
+		//);
+	}
+
+	EditorObjectViewWidget::EditorObjectViewWidget(const std::string& xmlFile, const Vector2& position)
+		: Widget(xmlFile, position)
+	{
 	}
 
 	EditorObjectViewWidget::~EditorObjectViewWidget()
@@ -65,16 +70,16 @@ namespace my
 	{
 		__super::Construct();
 
-		const GameObject* object = application.GetSelectedObject();
+		//const GameObject* object = application.GetSelectedObject();
 
-		const Transform* tf = object->GetComponent<Transform>();
-		if (tf == nullptr)
-			return;
+		//const Transform* tf = object->GetComponent<Transform>();
+		//if (tf == nullptr)
+		//	return;
 
-		const Vector3& pos = tf->GetPosition();
+		//const Vector3& pos = tf->GetPosition();
 
-		posXEdit->SetElementText(floatToWstr(pos._x));
-		posYEdit->SetElementText(floatToWstr(pos._y));
-		posZEdit->SetElementText(floatToWstr(pos._z));
+		//posXEdit->SetElementText(floatToWstr(pos._x));
+		//posYEdit->SetElementText(floatToWstr(pos._y));
+		//posZEdit->SetElementText(floatToWstr(pos._z));
 	}
 }

@@ -17,7 +17,7 @@ namespace my
 
         virtual const wchar_t* GetWindowClassName() override { return L"STATIC"; };
 
-        virtual void OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) override;
+        virtual bool OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam) override;
 
     };
 }

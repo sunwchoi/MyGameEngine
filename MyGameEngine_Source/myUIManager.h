@@ -41,6 +41,14 @@ namespace my
 
 			return static_cast<T*>(widget ? widget : widget = new T(position));
 		}
+
+		template<typename T>
+		static T* CreateWidget(const std::string& xmlFile, const Vector2& position)
+		{
+			Widget*& widget = _widgets[T::StaticClassID()];
+
+			return static_cast<T*>(widget ? widget : widget = new T(xmlFile, position));
+		}
 		
 		static void AddToViewport(Widget* widget);
 		static void RemoveFromParent(Widget* widget);

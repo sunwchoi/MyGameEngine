@@ -9,7 +9,7 @@ namespace my
 {
 	EditorWidget::EditorWidget()
 	{
-		Widget* widget = UIManager::CreateWidget<EditorObjectViewWidget>();
+		Widget* widget = UIManager::CreateWidget<EditorObjectViewWidget>("..\\xml\\EditorObjectView.xml", Vector2::Zero);
 		SetChild(widget);
 	}
 

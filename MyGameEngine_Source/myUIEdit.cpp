@@ -21,7 +21,11 @@ namespace my
 		__super::Destroy();
 	}
 
-	void UIEdit::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
+	bool UIEdit::OnUIEvent(UINT message, WPARAM wParam, LPARAM lParam)
 	{
+		if (GetHWND() != HWND(lParam))
+			return false;
+
+		return true;
 	}
 }
