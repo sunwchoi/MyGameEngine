@@ -1,0 +1,9 @@
+..\\myml\\EditorObjectView.myss
+
+<panel>
+    <text>ObjectView</text>
+    <text width="15">x: </text><edit></edit>
+    <text width="15">y: </text><edit/>
+    <text width="15">z: </text><edit/>
+    <button>Update</button>
+</panel>

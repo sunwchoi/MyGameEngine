@@ -3,6 +3,7 @@
 #include "myUIButton.h"
 #include "myUIEdit.h"
 #include "myUIElement.h"
+#include "myUIPanel.h"
 #include "myUIText.h"
 #include "myXmlUtil.h"
 
@@ -15,50 +16,38 @@ namespace my
 	Widget::Widget(const std::string& xmlFile, const Vector2& position)
 		: _position(position)
 	{
-		XmlNode* root = LoadXmlFile(xmlFile);
+		XmlNode* root = LoadMymlFile(xmlFile);
 		UIElement* parent = nullptr;
-		root->Traverse([ & ](const XmlNode* node)
+		root->TraverseSafely(
+			[ & ](const XmlNode* node)
 			{
-				// 포지션, 사이즈 계산
-				Vector2 pos = parent? parent->GetPos() : position;
-				Vector2 scale = parent ? parent->GetScale() : Vector2::Zero;
-
-				auto it = node->_attributes.find("x");
-				if (it != node->_attributes.end())
-					pos._x = std::stoi(it->second);
-
-				it = node->_attributes.find("y");
-				if (it != node->_attributes.end())
-					pos._y = std::stoi(it->second);
-
-				it = node->_attributes.find("width");
-				if (it != node->_attributes.end())
-					scale._x = std::stoi(it->second);
-
-				it = node->_attributes.find("height");
-				if (it != node->_attributes.end())
-					scale._y = std::stoi(it->second);
-
 				UIElement* element = nullptr;
 				if (node->_tag == "button")
-					element = new UIButton(pos, scale, L"button");
+					element = new UIButton(parent, node);
 				else if (node->_tag == "text")
-				{
-					std::wstring tmp;
-					tmp.assign(node->_text.begin(), node->_text.end());
-					element = new UIText(pos, scale, tmp);
-				}
+					element = new UIText(parent, node);
 				else if (node->_tag == "edit")
-					element = new UIEdit(pos, scale, L"edit");
+					element = new UIEdit(parent, node);
+				else if (node->_tag == "panel")
+					element = new UIPanel(parent, node);
 
 				MY_ASSERT(element);
 
-				if (parent)
-					parent->AddChild(element);
-				else
+				if (parent == nullptr)
+				{
 					_rootElement = element;
+					YGNodeStyleSetHeight(_rootElement->GetYGNodeRef(), 500.f);
+					YGNodeStyleSetWidth(_rootElement->GetYGNodeRef(), 500.f);
+					YGNodeStyleSetFlexDirection(_rootElement->GetYGNodeRef(), YGFlexDirectionRow);
+					YGNodeStyleSetJustifyContent(_rootElement->GetYGNodeRef(), YGJustifyFlexStart);
+					YGNodeStyleSetAlignItems(_rootElement->GetYGNodeRef(), YGAlignFlexStart);
+				}
 
 				parent = element;
+			},
+			[&](const XmlNode* node)
+			{
+				parent = parent != nullptr ? parent->GetParent() : nullptr;
 			}
 		);
 
@@ -79,7 +68,11 @@ namespace my
 		if (_rootElement == nullptr)
 			return;
 
-		_rootElement->Construct();
+		YGNodeCalculateLayout(_rootElement->GetYGNodeRef(), YGUndefined, YGUndefined, YGDirectionLTR);
+		
+		_rootElement->Traverse([](UIElement* element) {
+			element->Construct();
+		}, [](UIElement*) {});
 	}
 
 	void Widget::Destroy()

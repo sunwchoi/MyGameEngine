@@ -7,7 +7,7 @@ namespace my
         public UIElement
     {
     public:
-        UIEdit(const Vector2& pos, const Vector2& scale, const std::wstring& text);
+        UIEdit(UIElement* element, const XmlNode* node);
         virtual ~UIEdit();
 
         virtual HWND Construct();

@@ -117,4 +117,120 @@ namespace my
         size_t pos = 0;
         return parseNode(nullptr, buffer.str(), pos);
     }
+
+    void LoadMyssFile(const std::string& filename, __out std::unordered_map<std::string, std::unordered_map<std::string, std::string>>& styleMap)
+    {
+        std::ifstream file(filename);
+        MY_ASSERT(file.is_open());
+
+        std::string line;
+        std::string currentClass;
+        bool inBlock = false;
+
+        while (std::getline(file, line))
+        {
+            // 공백 및 탭 제거
+            line.erase(0, line.find_first_not_of(" \t\r\n"));
+            line.erase(line.find_last_not_of(" \t\r\n") + 1);
+
+            if (line.empty() || line.starts_with("/*")) // 빈 줄 or 주석
+                continue;
+
+            // 클래스 시작 (.classname {)
+            if (line.starts_with(".") && line.find('{') != std::string::npos)
+            {
+                size_t nameStart = 1; // '.' 이후부터
+                size_t nameEnd = line.find('{');
+                currentClass = line.substr(nameStart, nameEnd - nameStart);
+                // 공백 제거
+                currentClass.erase(currentClass.find_last_not_of(" \t\r\n") + 1);
+                inBlock = true;
+                continue;
+            }
+
+            // 블록 끝 (})
+            if (line.find('}') != std::string::npos)
+            {
+                currentClass.clear();
+                inBlock = false;
+                continue;
+            }
+
+            // 블록 내부
+            if (inBlock && !currentClass.empty())
+            {
+                size_t colonPos = line.find(':');
+                size_t semicolonPos = line.find(';');
+
+                if (colonPos == std::string::npos)
+                    continue;
+
+                std::string key = line.substr(0, colonPos);
+                std::string value = (semicolonPos != std::string::npos)
+                    ? line.substr(colonPos + 1, semicolonPos - colonPos - 1)
+                    : line.substr(colonPos + 1);
+
+                // trim
+                auto trim = [](std::string& s) {
+                    s.erase(0, s.find_first_not_of(" \t\r\n"));
+                    s.erase(s.find_last_not_of(" \t\r\n") + 1);
+                    };
+                trim(key);
+                trim(value);
+
+                styleMap[currentClass][key] = value;
+            }
+        }
+    }
+
+    void ReplaceClassToStyle(XmlNode* node, const std::unordered_map<std::string, std::unordered_map<std::string, std::string>>& styleMap)
+    {
+        auto classAttribute = node->_attributes.find("class");
+        if (classAttribute == node->_attributes.end())
+            return;
+
+        std::string className = classAttribute->second;
+        auto styleByClassIter = styleMap.find(className);
+        if (styleByClassIter == styleMap.end())
+        {
+            MY_ASSERT_MSG(false, "class이름 잘못입력");
+            return;
+        }
+
+        for (auto styleByClass : styleByClassIter->second)
+            node->_attributes[styleByClass.first] = styleByClass.second;
+
+
+        
+    }
+
+    XmlNode* LoadMymlFile(const std::string& filename)
+    {
+        const std::string ext = filename.substr(filename.find_last_of(".") + 1);
+        MY_ASSERT(ext == "myml");
+
+        std::ifstream file(filename);
+        MY_ASSERT(file);
+
+        std::string myssFilename;
+        std::getline(file, myssFilename);
+
+        // 공백 제거 (양쪽)
+        myssFilename.erase(0, myssFilename.find_first_not_of(" \t\r\n"));
+        myssFilename.erase(myssFilename.find_last_not_of(" \t\r\n") + 1);
+
+        // 스타일시트 경로 파싱
+        std::unordered_map<std::string, std::unordered_map<std::string, std::string>> styleMap;
+        LoadMyssFile(myssFilename, styleMap);
+
+        // 나머지 XML 내용 전체 읽기
+        std::stringstream buffer;
+        buffer << file.rdbuf();
+
+        size_t pos = 0;
+        XmlNode* node = parseNode(nullptr, buffer.str(), pos);
+        node->Traverse([&styleMap](XmlNode* node) { ReplaceClassToStyle(node, styleMap); }, [](XmlNode*){});
+
+        return node;
+    }
 }

@@ -276,6 +276,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)myITree.h">
       <Filter>Containers</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)clay.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">

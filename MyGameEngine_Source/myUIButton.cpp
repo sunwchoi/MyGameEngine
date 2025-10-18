@@ -2,8 +2,8 @@
 
 namespace my
 {
-	UIButton::UIButton(const Vector2& pos, const Vector2& scale, const std::wstring& text)
-		: UIElement(pos, scale, text)
+	UIButton::UIButton(UIElement* parent, const XmlNode* node)
+		: UIElement(parent, node)
 	{
 	}
 

@@ -2,8 +2,8 @@
 
 namespace my
 {
-	UIText::UIText(const Vector2& pos, const Vector2& scale, const std::wstring& text)
-		: UIElement(pos, scale, text)
+	UIText::UIText(UIElement* parent, const XmlNode* node)
+		: UIElement(parent, node)
 	{
 	}
 

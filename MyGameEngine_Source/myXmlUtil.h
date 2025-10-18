@@ -15,4 +15,6 @@ namespace my
 	};
 
 	XmlNode* LoadXmlFile(const std::string& filename);
+	XmlNode* LoadMymlFile(const std::string& filename);
+
 }

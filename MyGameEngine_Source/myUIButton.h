@@ -10,7 +10,7 @@ namespace my
         public UIElement
     {
     public:
-        UIButton(const Vector2& pos, const Vector2& scale, const std::wstring& text);
+        UIButton(UIElement* parent, const XmlNode* node);
         virtual ~UIButton();
 
         virtual HWND Construct();

@@ -9,7 +9,7 @@ namespace my
         public UIElement
     {
     public:
-        UIText(const Vector2& pos, const Vector2& scale, const std::wstring& text);
+        UIText(UIElement* parent, const XmlNode* node);
         ~UIText();
 
         virtual HWND Construct();
