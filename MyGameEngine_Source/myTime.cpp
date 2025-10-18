@@ -1,4 +1,4 @@
-#include "myTime.h"
+﻿#include "myTime.h"
 
 namespace my
 {

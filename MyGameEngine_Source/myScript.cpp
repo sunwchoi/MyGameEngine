@@ -1,4 +1,4 @@
-#include "myScript.h"
+﻿#include "myScript.h"
 
 namespace my
 {

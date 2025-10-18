@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <windows.h>
 #include "Component.h"
@@ -63,7 +63,7 @@ namespace my
 					return *ret;
 			}
 
-			MY_ASSERT_MSG(false, "¹Ýµå½Ã ÀÖ¾î¾ßÇÏ´Â Component°¡ ¾ø½À´Ï´Ù.");
+			MY_ASSERT_MSG(false, "ë°˜ë“œì‹œ ìžˆì–´ì•¼í•˜ëŠ” Componentê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return *ret;
 		}
 
@@ -78,7 +78,7 @@ namespace my
 					return *ret;
 			}
 
-			MY_ASSERT_MSG(false, "¹Ýµå½Ã ÀÖ¾î¾ßÇÏ´Â Component°¡ ¾ø½À´Ï´Ù.");
+			MY_ASSERT_MSG(false, "ë°˜ë“œì‹œ ìžˆì–´ì•¼í•˜ëŠ” Componentê°€ ì—†ìŠµë‹ˆë‹¤.");
 			return *ret;
 		}
 

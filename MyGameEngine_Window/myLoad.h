@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../MyGameEngine_Source/mySceneManager.h"
 #include "../MyGameEngine_Source/myTexture.h"

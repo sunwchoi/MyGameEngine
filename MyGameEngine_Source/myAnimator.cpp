@@ -1,4 +1,4 @@
-#include "myAnimator.h"
+ï»¿#include "myAnimator.h"
 #include "myAnimation.h"
 #include "myAssert.h"
 
@@ -74,7 +74,7 @@ namespace my
 	void Animator::BindCompleteEvent(const std::wstring& name, const std::function<void()>& func)
 	{
 		Animation* animation = FindAnimation(name);
-		MY_ASSERT_MSG(animation != nullptr, "¾ø´Â ¾Ö´Ï¸ÞÀÌ¼Ç ÀÌ¸§ÀÌ µé¾î¿Í¼± ¾ÈµË´Ï´Ù.");
+		MY_ASSERT_MSG(animation != nullptr, "ì—†ëŠ” ì• ë‹ˆë©”ì´ì…˜ ì´ë¦„ì´ ë“¤ì–´ì™€ì„  ì•ˆë©ë‹ˆë‹¤.");
 
 		animation->BindCompleteEvent(func);
 	}

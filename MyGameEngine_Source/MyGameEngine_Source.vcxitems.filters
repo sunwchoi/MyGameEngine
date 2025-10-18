@@ -118,6 +118,7 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)myDebugDrawer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)myXmlUtil.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)myUIPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Common.h" />
@@ -277,6 +278,7 @@
       <Filter>Containers</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)clay.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)myUIPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Containers">

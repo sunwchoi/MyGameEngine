@@ -1,4 +1,4 @@
-#include "myGraphicDevice_DX11.h"
+ï»¿#include "myGraphicDevice_DX11.h"
 #include "myApplication.h"
 #include "myAssert.h"
 #include "myRenderer.h"
@@ -247,10 +247,10 @@ namespace my
 		Microsoft::WRL::ComPtr<IDXGIAdapter>    pAdapter = nullptr;
 		Microsoft::WRL::ComPtr<IDXGIFactory>    pFactory = nullptr;
 
-		MY_ASSERT_MSG(SUCCEEDED(_device->QueryInterface(__uuidof(IDXGIDevice), (void**)pDXGIDevice.GetAddressOf())), "SwapChain»ı¼º ½ÇÆĞ");
-		MY_ASSERT_MSG(SUCCEEDED(pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)pAdapter.GetAddressOf())), "SwapChain»ı¼º ½ÇÆĞ");
-		MY_ASSERT_MSG(SUCCEEDED(pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)pFactory.GetAddressOf())), "SwapChain»ı¼º ½ÇÆĞ");
-		MY_ASSERT_MSG(SUCCEEDED(pFactory->CreateSwapChain(_device.Get(), &swapChainDesc, _swapChain.GetAddressOf())), "SwapChain»ı¼º ½ÇÆĞ");
+		MY_ASSERT_MSG(SUCCEEDED(_device->QueryInterface(__uuidof(IDXGIDevice), (void**)pDXGIDevice.GetAddressOf())), "SwapChainìƒì„± ì‹¤íŒ¨");
+		MY_ASSERT_MSG(SUCCEEDED(pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)pAdapter.GetAddressOf())), "SwapChainìƒì„± ì‹¤íŒ¨");
+		MY_ASSERT_MSG(SUCCEEDED(pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)pFactory.GetAddressOf())), "SwapChainìƒì„± ì‹¤íŒ¨");
+		MY_ASSERT_MSG(SUCCEEDED(pFactory->CreateSwapChain(_device.Get(), &swapChainDesc, _swapChain.GetAddressOf())), "SwapChainìƒì„± ì‹¤íŒ¨");
 
 		_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)_renderTarget.GetAddressOf());
 		_device->CreateRenderTargetView(_renderTarget.Get(), nullptr, _renderTargetView.GetAddressOf());
@@ -270,8 +270,8 @@ namespace my
 		depthStencilDesc.SampleDesc.Quality = 0;
 
 
-		MY_ASSERT_MSG(SUCCEEDED(_device->CreateTexture2D(&depthStencilDesc, nullptr, _depthStencilBuffer.GetAddressOf())), "DepthStencilBuffer »ı¼º½ÇÆĞ");
-		MY_ASSERT_MSG(SUCCEEDED(_device->CreateDepthStencilView(_depthStencilBuffer.Get(), nullptr, _depthStencilView.GetAddressOf())), "DepthStencilView »ı¼º½ÇÆĞ");
+		MY_ASSERT_MSG(SUCCEEDED(_device->CreateTexture2D(&depthStencilDesc, nullptr, _depthStencilBuffer.GetAddressOf())), "DepthStencilBuffer ìƒì„±ì‹¤íŒ¨");
+		MY_ASSERT_MSG(SUCCEEDED(_device->CreateDepthStencilView(_depthStencilBuffer.Get(), nullptr, _depthStencilView.GetAddressOf())), "DepthStencilView ìƒì„±ì‹¤íŒ¨");
 	}
 
 	void GraphicDevice_DX11::LoadShader()
@@ -313,7 +313,7 @@ namespace my
 
 	GraphicDevice_DX11::BufferWrapper::BufferWrapper(ID3D11Device* device, const Mesh& mesh)
 	{
-		MY_ASSERT_MSG(device, "BufferWrapper »ı¼ºÀÚ È£Ãâ ½ÃÁ¡¿¡ device°¡ ¾øÀ¸¸é ¾ÈµÊ.");
+		MY_ASSERT_MSG(device, "BufferWrapper ìƒì„±ì í˜¸ì¶œ ì‹œì ì— deviceê°€ ì—†ìœ¼ë©´ ì•ˆë¨.");
 
 		D3D11_BUFFER_DESC bufferDesc = {};
 
@@ -331,7 +331,7 @@ namespace my
 
 	GraphicDevice_DX11::BufferWrapper::BufferWrapper(ID3D11Device* device, void* src, size_t size)
 	{
-		MY_ASSERT_MSG(device, "BufferWrapper »ı¼ºÀÚ È£Ãâ ½ÃÁ¡¿¡ device°¡ ¾øÀ¸¸é ¾ÈµÊ.");
+		MY_ASSERT_MSG(device, "BufferWrapper ìƒì„±ì í˜¸ì¶œ ì‹œì ì— deviceê°€ ì—†ìœ¼ë©´ ì•ˆë¨.");
 
 		D3D11_BUFFER_DESC constantBufferDesc = {};
 

@@ -1,4 +1,4 @@
-#include "myShader.h"
+ï»¿#include "myShader.h"
 #include "myAssert.h"
 #include "myApplication.h"
 #include "myGraphicDevice_DX11.h"
@@ -21,7 +21,7 @@ namespace my
 
 	void Shader::Load(const std::wstring& path)
 	{
-		MY_ASSERT_MSG((uint8)eStageType::Count == 2 && _stageType != eStageType::Count, "stage Å¸ÀÔÀº Vertex, Pixel µÑ Áß ÇÏ³ª");
+		MY_ASSERT_MSG((uint8)eStageType::Count == 2 && _stageType != eStageType::Count, "stage íƒ€ì…ì€ Vertex, Pixel ë‘˜ ì¤‘ í•˜ë‚˜");
 
 		DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
 		shaderFlags |= D3DCOMPILE_DEBUG;
@@ -45,7 +45,7 @@ namespace my
 			OutputDebugStringA((char*)errorBlob->GetBufferPointer());
 			errorBlob->Release();
 		}
-		MY_ASSERT_MSG(SUCCEEDED(rv), "Shader ÄÄÆÄÀÏ ½ÇÆĞ");
+		MY_ASSERT_MSG(SUCCEEDED(rv), "Shader ì»´íŒŒì¼ ì‹¤íŒ¨");
 
 		const Microsoft::WRL::ComPtr<ID3D11Device>& device = application.GetGraphicDevice()->GetDevice();
 		

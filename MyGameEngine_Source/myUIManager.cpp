@@ -1,4 +1,4 @@
-#include "myUIManager.h"
+ï»¿#include "myUIManager.h"
 #include "myWidget.h"
 #include "myAssert.h"
 
@@ -9,7 +9,7 @@ namespace my
 
 	void UIManager::AddToViewport(Widget* widget)
 	{
-		MY_ASSERT_MSG(widget, "widgetÀÌ nullptrÀÔ´Ï´Ù");
+		MY_ASSERT_MSG(widget, "widgetì´ nullptrì…ë‹ˆë‹¤");
 	
 		Traverse(widget, [](Widget* w) -> eTraversalState
 			{
@@ -23,16 +23,16 @@ namespace my
 
 	void UIManager::RemoveFromParent(Widget* removeTarget)
 	{
-		MY_ASSERT_MSG(removeTarget, "widgetÀÌ nullptrÀÔ´Ï´Ù");
+		MY_ASSERT_MSG(removeTarget, "widgetì´ nullptrì…ë‹ˆë‹¤");
 
 		for (int i = 0; i < _currentWidgetRoots.size(); i++)
 		{
-			// ÀÚ½Ä¿¡¼­ »èÁ¦ÇÒ widgetÃ£±â
+			// ìì‹ì—ì„œ ì‚­ì œí•  widgetì°¾ê¸°
 			Traverse(_currentWidgetRoots[i], [removeTarget](Widget* widget) -> eTraversalState
 				{
 					if (widget == removeTarget)
 					{
-						// Ã£Àº À§Á¬ºÎÅÍ ¼øÈ¸ÇÏ¸é¼­ Destroy
+						// ì°¾ì€ ìœ„ì ¯ë¶€í„° ìˆœíšŒí•˜ë©´ì„œ Destroy
 						Traverse(widget, [](Widget* w)->eTraversalState {
 							w->Destroy();
 							return eTraversalState::Go;
@@ -45,7 +45,7 @@ namespace my
 				}
 			);
 
-			// »èÁ¦µÈ WidgetÀÌ root¿´´Ù¸é »èÁ¦
+			// ì‚­ì œëœ Widgetì´ rootì˜€ë‹¤ë©´ ì‚­ì œ
 			if (removeTarget == _currentWidgetRoots[i])
 			{
 				_currentWidgetRoots.erase(_currentWidgetRoots.begin() + i);

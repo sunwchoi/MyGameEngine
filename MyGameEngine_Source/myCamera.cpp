@@ -1,4 +1,4 @@
-#include "myCamera.h"
+﻿#include "myCamera.h"
 #include "myApplication.h"
 
 extern my::Application application;

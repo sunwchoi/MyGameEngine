@@ -1,4 +1,4 @@
-#include "myPlayerScript.h"
+ï»¿#include "myPlayerScript.h"
 #include "myRenderer.h"
 #include "Transform.h"
 #include "myGameObject.h"
@@ -44,7 +44,7 @@ namespace my
 
 	void PlayerScript::Update()
 	{
-		//if (_comboIndex) //ÄŞº¸ °ø°İ Áß ÀÏ¶§
+		//if (_comboIndex) //ì½¤ë³´ ê³µê²© ì¤‘ ì¼ë•Œ
 		//{
 		//	_comboTime -= Time::DeltaTime();
 		//	if (_comboTime <= 0)
@@ -106,7 +106,7 @@ namespace my
 
 	void PlayerScript::Idle()
 	{
-		//Attack ¿ì¼± Ã³¸®
+		//Attack ìš°ì„  ì²˜ë¦¬
 		if (Input::GetKey(eKeyCode::A))
 		{
 			_state = ePlayerState::Attack;
@@ -132,13 +132,13 @@ namespace my
 	void PlayerScript::Move()
 	{
 		
-		if (Input::GetKey(eKeyCode::A)) //Attack ¿ì¼± Ã³¸®
+		if (Input::GetKey(eKeyCode::A)) //Attack ìš°ì„  ì²˜ë¦¬
 		{
 			_state = ePlayerState::Attack;
 			return;
 		}
 		else if ((_direction == ePlayerDirection::Left && Input::GetKeyUp(eKeyCode::LEFT))
-				|| (_direction == ePlayerDirection::Right && Input::GetKeyUp(eKeyCode::RIGHT))) //ÀÌµ¿ÀÌ ³¡³­ °æ¿ì
+				|| (_direction == ePlayerDirection::Right && Input::GetKeyUp(eKeyCode::RIGHT))) //ì´ë™ì´ ëë‚œ ê²½ìš°
 		{
 			_state = ePlayerState::Idle;
 			return;

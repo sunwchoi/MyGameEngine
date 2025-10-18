@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "myResource.h"
 #include "Common.h"
@@ -27,7 +27,7 @@ namespace my
 
 		virtual void Load(const std::wstring& path) override;
 
-		//Shader Å¬·¡½º´Â ÆÄ½Ì¿ëµµÀÌ±â¶§¹®¿¡ Getter¿¡ µû·Î const¸¦ ºÙÀÌÁö ¾ÊÀ½
+		//Shader í´ë˜ìŠ¤ëŠ” íŒŒì‹±ìš©ë„ì´ê¸°ë•Œë¬¸ì— Getterì— ë”°ë¡œ constë¥¼ ë¶™ì´ì§€ ì•ŠìŒ
 		ID3D11DeviceChild* GetRawShader() const { return _rawShader; };
 		ID3DBlob* GetBlob() const { return _blob; };
 

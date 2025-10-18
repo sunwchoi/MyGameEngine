@@ -1,4 +1,4 @@
-#include "myDebugDrawer.h"
+ï»¿#include "myDebugDrawer.h"
 
 #include <algorithm>
 
@@ -78,51 +78,51 @@ namespace my
         vector<Vector3> vertices(segments * 2 + 2);
         vector<uint32> indices;
 
-        // ¾Æ·¡ Áß½ÉÁ¡
+        // ì•„ë˜ ì¤‘ì‹¬ì 
         vertices[0] = origin;
-        // À§ Áß½ÉÁ¡
+        // ìœ„ ì¤‘ì‹¬ì 
         vertices[1] = top;
 
-        // ¾Æ·¡ ¿ø°ú À§ ¿øÀÇ Á¤Á¡µé
+        // ì•„ë˜ ì›ê³¼ ìœ„ ì›ì˜ ì •ì ë“¤
         for (int i = 0; i < segments; i++)
         {
             float angle = (i / float(segments)) * 2 * math::PI;
             float x = cosf(angle) * radius;
             float z = sinf(angle) * radius;
 
-            // ¾Æ·¡ ¿ø Á¤Á¡
+            // ì•„ë˜ ì› ì •ì 
             vertices[2 + i] = origin + Vector3(x, 0, z);
-            // À§ ¿ø Á¤Á¡
+            // ìœ„ ì› ì •ì 
             vertices[2 + segments + i] = top + Vector3(x, 0, z);
         }
 
-        // ÀÎµ¦½º »ı¼º
+        // ì¸ë±ìŠ¤ ìƒì„±
         for (int i = 0; i < segments; i++)
         {
             int next = (i + 1) % segments;
 
-            // ¾Æ·¡ ¸é (origin Áß½É)
+            // ì•„ë˜ ë©´ (origin ì¤‘ì‹¬)
             indices.push_back(0);
             indices.push_back(2 + next);
             indices.push_back(2 + i);
 
-            // À§ ¸é (top Áß½É)
+            // ìœ„ ë©´ (top ì¤‘ì‹¬)
             indices.push_back(1);
             indices.push_back(2 + segments + i);
             indices.push_back(2 + segments + next);
 
-            // ¿·¸é (2°³ »ï°¢Çü)
+            // ì˜†ë©´ (2ê°œ ì‚¼ê°í˜•)
             int bottomCurrent = 2 + i;
             int bottomNext = 2 + next;
             int topCurrent = 2 + segments + i;
             int topNext = 2 + segments + next;
 
-            // Ã¹ ¹øÂ° »ï°¢Çü
+            // ì²« ë²ˆì§¸ ì‚¼ê°í˜•
             indices.push_back(bottomCurrent);
             indices.push_back(topCurrent);
             indices.push_back(bottomNext);
 
-            // µÎ ¹øÂ° »ï°¢Çü
+            // ë‘ ë²ˆì§¸ ì‚¼ê°í˜•
             indices.push_back(bottomNext);
             indices.push_back(topCurrent);
             indices.push_back(topNext);
@@ -137,19 +137,19 @@ namespace my
         float halfDepth = depth * 0.5f;
         float halfHeight = height * 0.5f;
 
-        // 8°³ Á¤Á¡
+        // 8ê°œ ì •ì 
         vector<Vector3> vertices;
-        vertices.push_back(Vector3(-halfWidth, -halfHeight, -halfDepth));  // 0: ¿ŞÂÊ ¾Æ·¡ µÚ
-        vertices.push_back(Vector3(halfWidth, -halfHeight, -halfDepth));  // 1: ¿À¸¥ÂÊ ¾Æ·¡ µÚ
-        vertices.push_back(Vector3(halfWidth, -halfHeight, halfDepth));  // 2: ¿À¸¥ÂÊ ¾Æ·¡ ¾Õ
-        vertices.push_back(Vector3(-halfWidth, -halfHeight, halfDepth));  // 3: ¿ŞÂÊ ¾Æ·¡ ¾Õ
+        vertices.push_back(Vector3(-halfWidth, -halfHeight, -halfDepth));  // 0: ì™¼ìª½ ì•„ë˜ ë’¤
+        vertices.push_back(Vector3(halfWidth, -halfHeight, -halfDepth));  // 1: ì˜¤ë¥¸ìª½ ì•„ë˜ ë’¤
+        vertices.push_back(Vector3(halfWidth, -halfHeight, halfDepth));  // 2: ì˜¤ë¥¸ìª½ ì•„ë˜ ì•
+        vertices.push_back(Vector3(-halfWidth, -halfHeight, halfDepth));  // 3: ì™¼ìª½ ì•„ë˜ ì•
 
-        vertices.push_back(Vector3(-halfWidth, halfHeight, -halfDepth));  // 4: ¿ŞÂÊ À§ µÚ
-        vertices.push_back(Vector3(halfWidth, halfHeight, -halfDepth));  // 5: ¿À¸¥ÂÊ À§ µÚ
-        vertices.push_back(Vector3(halfWidth, halfHeight, halfDepth));  // 6: ¿À¸¥ÂÊ À§ ¾Õ
-        vertices.push_back(Vector3(-halfWidth, halfHeight, halfDepth));  // 7: ¿ŞÂÊ À§ ¾Õ
+        vertices.push_back(Vector3(-halfWidth, halfHeight, -halfDepth));  // 4: ì™¼ìª½ ìœ„ ë’¤
+        vertices.push_back(Vector3(halfWidth, halfHeight, -halfDepth));  // 5: ì˜¤ë¥¸ìª½ ìœ„ ë’¤
+        vertices.push_back(Vector3(halfWidth, halfHeight, halfDepth));  // 6: ì˜¤ë¥¸ìª½ ìœ„ ì•
+        vertices.push_back(Vector3(-halfWidth, halfHeight, halfDepth));  // 7: ì™¼ìª½ ìœ„ ì•
 
-        // 36°³ ÀÎµ¦½º (6¸é * 2»ï°¢Çü * 3Á¤Á¡)
+        // 36ê°œ ì¸ë±ìŠ¤ (6ë©´ * 2ì‚¼ê°í˜• * 3ì •ì )
         uint32 tempIndices[] = {
             0, 2, 1,  0, 3, 2,
             4, 5, 6,  4, 6, 7,

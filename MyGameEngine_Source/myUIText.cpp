@@ -1,4 +1,4 @@
-#include "myUIText.h"
+﻿#include "myUIText.h"
 
 namespace my
 {

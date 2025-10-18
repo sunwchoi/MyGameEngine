@@ -1,4 +1,4 @@
-#include "myMaterial.h"
+ï»¿#include "myMaterial.h"
 #include "myAssert.h"
 
 namespace my
@@ -19,7 +19,7 @@ namespace my
 		std::string pathStr(path.begin(), path.end());
 		
 		fopen_s(&file, pathStr.c_str(), "r");
-		MY_ASSERT_MSG(file, ".mtlÆÄÀÏ open ½ÇÆĞ");
+		MY_ASSERT_MSG(file, ".mtlíŒŒì¼ open ì‹¤íŒ¨");
 
 		char id[1024];
 

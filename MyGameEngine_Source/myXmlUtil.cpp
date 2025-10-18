@@ -1,4 +1,4 @@
-#include "myXmlUtil.h"
+ï»¿#include "myXmlUtil.h"
 
 #include <fstream>
 #include <iostream>
@@ -21,7 +21,7 @@ namespace my
             while (pos < str.size() && str[pos] != '"') {
                 value += str[pos++];
             }
-            ++pos; // " ³Ñ¾î°¡±â
+            ++pos; // " ë„˜ì–´ê°€ê¸°
         }
         return value;
     }
@@ -35,12 +35,12 @@ namespace my
         if (xml[pos] != '<') return nullptr;
         ++pos;
 
-        // ÅÂ±× ÀĞ±â
+        // íƒœê·¸ ì½ê¸°
         while (pos < xml.size() && (isalnum(xml[pos]) || xml[pos] == '_' || xml[pos] == '-')) {
             node->_tag += xml[pos++];
         }
 
-        // ¼Ó¼º ÀĞ±â
+        // ì†ì„± ì½ê¸°
         while (true) {
             pos = skipWhitespace(xml, pos);
 
@@ -71,12 +71,12 @@ namespace my
             node->_attributes[attrName] = attrValue;
         }
 
-        // ÀÚ½Ä/ÅØ½ºÆ® ÀĞ±â
+        // ìì‹/í…ìŠ¤íŠ¸ ì½ê¸°
         while (pos < xml.size()) {
             pos = skipWhitespace(xml, pos);
             if (xml[pos] == '<')
             {
-                // Á¾·á ÅÂ±×
+                // ì¢…ë£Œ íƒœê·¸
                 if (xml[pos + 1] == '/')
                 {
                     pos += 2;
@@ -86,7 +86,7 @@ namespace my
                     ++pos;
                     return node;
                 }
-                // ¾Æ´Ï¸é ÀÚ½Ä ÀĞ±â
+                // ì•„ë‹ˆë©´ ìì‹ ì½ê¸°
                 else
                 {
                     node->AddChild(parseNode(node, xml, pos));
@@ -94,7 +94,7 @@ namespace my
             }
             else
             {
-                // ÅØ½ºÆ® ÀĞ±â
+                // í…ìŠ¤íŠ¸ ì½ê¸°
                 while (pos < xml.size() && xml[pos] != '<') {
                     node->_text += xml[pos++];
                 }
@@ -129,26 +129,26 @@ namespace my
 
         while (std::getline(file, line))
         {
-            // °ø¹é ¹× ÅÇ Á¦°Å
+            // ê³µë°± ë° íƒ­ ì œê±°
             line.erase(0, line.find_first_not_of(" \t\r\n"));
             line.erase(line.find_last_not_of(" \t\r\n") + 1);
 
-            if (line.empty() || line.starts_with("/*")) // ºó ÁÙ or ÁÖ¼®
+            if (line.empty() || line.starts_with("/*")) // ë¹ˆ ì¤„ or ì£¼ì„
                 continue;
 
-            // Å¬·¡½º ½ÃÀÛ (.classname {)
+            // í´ë˜ìŠ¤ ì‹œì‘ (.classname {)
             if (line.starts_with(".") && line.find('{') != std::string::npos)
             {
-                size_t nameStart = 1; // '.' ÀÌÈÄºÎÅÍ
+                size_t nameStart = 1; // '.' ì´í›„ë¶€í„°
                 size_t nameEnd = line.find('{');
                 currentClass = line.substr(nameStart, nameEnd - nameStart);
-                // °ø¹é Á¦°Å
+                // ê³µë°± ì œê±°
                 currentClass.erase(currentClass.find_last_not_of(" \t\r\n") + 1);
                 inBlock = true;
                 continue;
             }
 
-            // ºí·Ï ³¡ (})
+            // ë¸”ë¡ ë (})
             if (line.find('}') != std::string::npos)
             {
                 currentClass.clear();
@@ -156,7 +156,7 @@ namespace my
                 continue;
             }
 
-            // ºí·Ï ³»ºÎ
+            // ë¸”ë¡ ë‚´ë¶€
             if (inBlock && !currentClass.empty())
             {
                 size_t colonPos = line.find(':');
@@ -193,7 +193,7 @@ namespace my
         auto styleByClassIter = styleMap.find(className);
         if (styleByClassIter == styleMap.end())
         {
-            MY_ASSERT_MSG(false, "classÀÌ¸§ Àß¸øÀÔ·Â");
+            MY_ASSERT_MSG(false, "classì´ë¦„ ì˜ëª»ì…ë ¥");
             return;
         }
 
@@ -215,15 +215,15 @@ namespace my
         std::string myssFilename;
         std::getline(file, myssFilename);
 
-        // °ø¹é Á¦°Å (¾çÂÊ)
+        // ê³µë°± ì œê±° (ì–‘ìª½)
         myssFilename.erase(0, myssFilename.find_first_not_of(" \t\r\n"));
         myssFilename.erase(myssFilename.find_last_not_of(" \t\r\n") + 1);
 
-        // ½ºÅ¸ÀÏ½ÃÆ® °æ·Î ÆÄ½Ì
+        // ìŠ¤íƒ€ì¼ì‹œíŠ¸ ê²½ë¡œ íŒŒì‹±
         std::unordered_map<std::string, std::unordered_map<std::string, std::string>> styleMap;
         LoadMyssFile(myssFilename, styleMap);
 
-        // ³ª¸ÓÁö XML ³»¿ë ÀüÃ¼ ÀĞ±â
+        // ë‚˜ë¨¸ì§€ XML ë‚´ìš© ì „ì²´ ì½ê¸°
         std::stringstream buffer;
         buffer << file.rdbuf();
 

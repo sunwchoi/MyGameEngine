@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "myAssert.h"
 #include <functional>
@@ -40,7 +40,7 @@ namespace my
 
 		Ret Execute(Args... args)
 		{
-			MY_ASSERT_MSG(_function, "¹ÙÀÎµùµÈ ÇÔ¼ö°¡ ¾ø´Âµ¥ Execute È£ÃâÁß.");
+			MY_ASSERT_MSG(_function, "ë°”ì¸ë”©ëœ í•¨ìˆ˜ê°€ ì—†ëŠ”ë° Execute í˜¸ì¶œì¤‘.");
 
 			return _function(std::forward<Args>(args)...);
 		}

@@ -1,4 +1,4 @@
-#include "myFbxLoadManager.h"
+ï»¿#include "myFbxLoadManager.h"
 
 namespace my
 {
@@ -10,12 +10,12 @@ namespace my
 
 	FbxLoadManager::~FbxLoadManager()
 	{
-		_manager->Destroy(); // sceneµµ °°ÀÌ DestroyµÊ
+		_manager->Destroy(); // sceneë„ ê°™ì´ Destroyë¨
 	}
 
 	void FbxLoadManager::LoadSubMesh(const std::wstring& path, vector<Mesh>& subMesh)
 	{
-		MY_ASSERT_MSG(subMesh.empty(), "SubMesh´Â ¿©±â¼­ ºñ¾îÀÖ¾î¾ß ÇÔ");
+		MY_ASSERT_MSG(subMesh.empty(), "SubMeshëŠ” ì—¬ê¸°ì„œ ë¹„ì–´ìˆì–´ì•¼ í•¨");
 
 		if (_manager == nullptr)
 		{
@@ -102,7 +102,7 @@ namespace my
 			subMesh.back().setMaterial(new Material(L"subMeshMtl"));
 
 			int materialCount = node->GetMaterialCount();
-			MY_ASSERT_MSG(materialCount >= 1, "1°³ÀÇ material¸¸ Ã³¸®");
+			MY_ASSERT_MSG(materialCount >= 1, "1ê°œì˜ materialë§Œ ì²˜ë¦¬");
 
 			FbxSurfaceMaterial* material = node->GetMaterial(0);
 			Vector3& diffuse = subMesh.back().getMaterial()->_diffuse;

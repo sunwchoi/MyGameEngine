@@ -1,4 +1,4 @@
-#include "myTexture.h"
+﻿#include "myTexture.h"
 #include "myApplication.h"
 
 extern my::Application application;

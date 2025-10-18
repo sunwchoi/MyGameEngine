@@ -1,4 +1,4 @@
-#include "myRotator.h"
+﻿#include "myRotator.h"
 
 #include <cmath> // cos, sin
 

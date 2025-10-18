@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "map.hpp"
 #include "vector.hpp"
@@ -18,9 +18,9 @@ namespace my
 	{
 		enum eTraversalState : uint8
 		{
-			Go,			//¼øÈ¸
-			Continue,	//ÀÚ½Ä ¼øÈ¸ Áß´Ü, ÇüÁ¦ ³ëµåºÎÅÍ ´Ù½Ã ¼øÈ¸ ½ÃÀÛ
-			Break,		//ÀüÃ¼ ¼øÈ¸ Áß´Ü
+			Go,			//ìˆœíšŒ
+			Continue,	//ìì‹ ìˆœíšŒ ì¤‘ë‹¨, í˜•ì œ ë…¸ë“œë¶€í„° ë‹¤ì‹œ ìˆœíšŒ ì‹œì‘
+			Break,		//ì „ì²´ ìˆœíšŒ ì¤‘ë‹¨
 
 			Count
 		};

@@ -1,4 +1,4 @@
-#include "myPlayScene.h"
+ï»¿#include "myPlayScene.h"
 #include "myGameObject.h"
 #include "Transform.h"
 #include "SpriteRenderer.h"
@@ -34,7 +34,7 @@ namespace my
 
 	void PlayScene::Initialize()
 	{
-		//player Ãß°¡
+		//player ì¶”ê°€
 		_player = new GameObject();
 		_player->AddComponent<Transform>();
 		MeshRenderer* meshRenderer = _player->AddComponent<MeshRenderer>();
@@ -73,10 +73,10 @@ namespace my
 		//animator->PlayAnimation(L"RightIdle");
 
 
-		// ÀÓ½Ã ¼±ÅÃ
+		// ìž„ì‹œ ì„ íƒ
 		application.SetSelectedObject(_player);
 	
-		// background Ãß°¡
+		// background ì¶”ê°€
 		//GameObject* background = new GameObject();
 		//background->AddComponent<Transform>();
 

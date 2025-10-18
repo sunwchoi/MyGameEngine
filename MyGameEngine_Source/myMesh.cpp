@@ -1,4 +1,4 @@
-#include "myMesh.h"
+ï»¿#include "myMesh.h"
 #include "myResources.h"
 
 namespace my
@@ -15,18 +15,18 @@ namespace my
     void Mesh::Load(const std::wstring& path)
     {
         const std::wstring ext = path.substr(path.find_last_of(L".") + 1);
-        MY_ASSERT_MSG(ext == L"obj", ".objÀÌ¿ÜÀÇ ÆÄÀÏÀº ¾ÆÁ÷ ±â´É ¾øÀ½");
+        MY_ASSERT_MSG(ext == L"obj", ".objì´ì™¸ì˜ íŒŒì¼ì€ ì•„ì§ ê¸°ëŠ¥ ì—†ìŒ");
 
         if (ext == L"obj")
         {
-            //objÆÄÀÏ ÆÄ½Ì
+            //objíŒŒì¼ íŒŒì‹±
             std::string pathStr;
             pathStr.assign(path.begin(), path.end());
 
             FILE* file = nullptr;
 
             fopen_s(&file, pathStr.c_str(), "r");
-            MY_ASSERT_MSG(file, ".objÆÄÀÏ open ½ÇÆĞ");
+            MY_ASSERT_MSG(file, ".objíŒŒì¼ open ì‹¤íŒ¨");
 
             vector<Vector3> vertices;
             vector<uint32> indices;
@@ -45,11 +45,11 @@ namespace my
             }
             fclose(file);
             
-            //¸Ş½Ã µ¥ÀÌÅÍ·Î ÀçÀÔ·Â
+            //ë©”ì‹œ ë°ì´í„°ë¡œ ì¬ì…ë ¥
             reinputVertices(vertices, indices);
 
 
-            //mtl ÆÄÀÏ ·Îµå
+            //mtl íŒŒì¼ ë¡œë“œ
             std::string mtlPathStr(mtlPath);
             std::wstring resourceDir = L"..\\Resource\\" + std::wstring(mtlPathStr.begin(), mtlPathStr.end());
             
@@ -95,7 +95,7 @@ namespace my
 
     void Mesh::reinputVertices(vector<Vector3>& vertices, vector<uint32>& indices)
     {
-        //¸Ş½Ã µ¥ÀÌÅÍ·Î ÀçÀÔ·Â
+        //ë©”ì‹œ ë°ì´í„°ë¡œ ì¬ì…ë ¥
         for (int i = 0; i < indices.size(); i += 3) {
             Vector3 v1 = vertices[indices[i]],
                 v2 = vertices[indices[i + 1]],

@@ -1,4 +1,4 @@
-#include "myEditorApplication.h"
+﻿#include "myEditorApplication.h"
 #include "myUIManager.h"
 #include "myEditorWidget.h"
 
@@ -26,31 +26,31 @@ namespace my
 
 		//HWND hEditX, hEditY, hEditZ;
 
-		//// X �Է�â
+		//// X 입력창
 		//hEditX = CreateWindow(L"EDIT", L"123.3",
 		//	WS_VISIBLE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
 		//	60, 18, 60, 24,
 		//	hwnd, (HMENU)0, NULL, NULL);
 
-		//// Y �Է�â
+		//// Y 입력창
 		//hEditY = CreateWindow(L"EDIT", L"",
 		//	WS_VISIBLE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL,
 		//	130, 18, 60, 24,
 		//	hwnd, (HMENU)1, NULL, NULL);
 
-		//// Z �Է�â
+		//// Z 입력창
 		//hEditZ = CreateWindow(L"EDIT", L"",
 		//	WS_VISIBLE | WS_CHILD | WS_BORDER | ES_AUTOHSCROLL | ES_NUMBER,
 		//	200, 18, 60, 24,
 		//	hwnd, (HMENU)2, NULL, NULL);
 
 		//CreateWindow(
-		//	L"BUTTON",            // Ŭ���� �̸�
-		//	L"Click Me",          // ��ư �ؽ�Ʈ
-		//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, // ��Ÿ��
-		//	0, 0, 100, 100,     // ��ġ �� ũ��
-		//	hwnd,                // �θ� ������ �ڵ�
-		//	(HMENU)1,    // ��ư ID
+		//	L"BUTTON",            // 클래스 이름
+		//	L"Click Me",          // 버튼 텍스트
+		//	WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON, // 스타일
+		//	0, 0, 100, 100,     // 위치 및 크기
+		//	hwnd,                // 부모 윈도우 핸들
+		//	(HMENU)1,    // 버튼 ID
 		//	(HINSTANCE)GetWindowLongPtr(hwnd, GWLP_HINSTANCE),
 		//	NULL
 		//);

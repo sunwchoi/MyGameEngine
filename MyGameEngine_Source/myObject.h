@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <myGameObject.h>
 #include <Layer.h>

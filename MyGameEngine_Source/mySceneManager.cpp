@@ -1,4 +1,4 @@
-#include "mySceneManager.h"
+﻿#include "mySceneManager.h"
 #include "myScene.h"
 
 namespace my

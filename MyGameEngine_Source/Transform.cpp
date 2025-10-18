@@ -1,4 +1,4 @@
-#include "Transform.h"
+Ôªø#include "Transform.h"
 #include "myTime.h"
 #include "Input.h"
 
@@ -64,7 +64,7 @@ namespace my
 		float cosRoll = cosf(_rotation._roll);
 		float sinRoll = sinf(_rotation._roll);
 
-		// »∏¿¸µ» ±‚¡ÿ ∫§≈ÕµÈ
+		// ÌöåÏ†ÑÎêú Í∏∞Ï§Ä Î≤°ÌÑ∞Îì§
 		right._x = cosYaw * cosRoll + sinYaw * sinPitch * sinRoll;
 		right._y = cosPitch * sinRoll;
 		right._z = -sinYaw * cosRoll + cosYaw * sinPitch * sinRoll;

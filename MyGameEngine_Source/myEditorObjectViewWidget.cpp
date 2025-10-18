@@ -1,4 +1,4 @@
-#include "myEditorObjectViewWidget.h"
+ï»¿#include "myEditorObjectViewWidget.h"
 #include "myUIText.h"
 #include "myUIEdit.h"
 #include "myUIButton.h"
@@ -6,7 +6,7 @@
 #include "Transform.h"
 #include "myGameObject.h"
 
-//¼Ò¼ö Ãâ·Â¿ë ÀÓ½Ã Çì´õ
+//ì†Œìˆ˜ ì¶œë ¥ìš© ì„ì‹œ í—¤ë”
 #include <sstream>
 #include <iomanip>
 

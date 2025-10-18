@@ -1,4 +1,4 @@
-#include "myResources.h"
+﻿#include "myResources.h"
 
 namespace my
 {

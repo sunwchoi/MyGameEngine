@@ -1,4 +1,4 @@
-#include "myCameraScript.h"
+﻿#include "myCameraScript.h"
 
 #include <iostream>
 

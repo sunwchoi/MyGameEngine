@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "myScript.h"
 #include "Common.h"
 
@@ -53,11 +53,11 @@ namespace my
         BoxCollider2D*      _bodyCollider;
         CircleCollider2D*   _attackCollider;
 
-        // State °ü·Ã
+        // State ê´€ë ¨
         ePlayerDirection    _direction;
         ePlayerState        _state;
         
-        // Attack°ü·Ã
+        // Attackê´€ë ¨
         bool                _bAttack;
         uint8               _comboIndex;
         float               _comboTime;

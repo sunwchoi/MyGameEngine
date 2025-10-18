@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <Windows.h>
 
@@ -23,12 +23,12 @@ namespace my
 
 
 	private:
-		HWND	_hwnd;				// À©µµ¿ì ÇÚµé
-		HDC		_hdc;				// DC ÇÚµé
-		HBITMAP	_backBitmap;		// ´õºí¹öÆÛ¸µ ¹é¹öÆÛ
-		HDC		_backHdc;			// ´õºí¹öÆÛ¸µ ¹é¹öÆÛ DC ÇÚµé 
-		UINT	_width;				// Ã¢ ³Êºñ
-		UINT	_height;			// Ã¢ ³ôÀÌ
+		HWND	_hwnd;				// ìœˆë„ìš° í•¸ë“¤
+		HDC		_hdc;				// DC í•¸ë“¤
+		HBITMAP	_backBitmap;		// ë”ë¸”ë²„í¼ë§ ë°±ë²„í¼
+		HDC		_backHdc;			// ë”ë¸”ë²„í¼ë§ ë°±ë²„í¼ DC í•¸ë“¤ 
+		UINT	_width;				// ì°½ ë„ˆë¹„
+		UINT	_height;			// ì°½ ë†’ì´
 
 		EditorWidget* widget;
 	};

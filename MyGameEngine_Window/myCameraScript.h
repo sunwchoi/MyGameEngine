@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "myScript.h"
 
 namespace my

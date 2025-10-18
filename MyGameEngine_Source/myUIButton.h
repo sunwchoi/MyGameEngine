@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "myUIElement.h"
 #include "myDelegate.h"
 

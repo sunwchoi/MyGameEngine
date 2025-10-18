@@ -1,4 +1,4 @@
-#include "myApplication.h"
+ï»¿#include "myApplication.h"
 #include "myTime.h"
 #include "mySceneManager.h"
 #include "Input.h"
@@ -13,7 +13,7 @@ namespace my
 		LoadResource();
 		LoadScene();
 
-		// ¸â¹öº¯¼ö ÃÊ±âÈ­
+		// ë©¤ë²„ë³€ìˆ˜ ì´ˆê¸°í™”
 		_hwnd = hwnd;
 		_hdc = GetDC( hwnd );
 		_width = width;
@@ -27,14 +27,14 @@ namespace my
 		HBITMAP oldBitmap = (HBITMAP)SelectObject( _backHdc, _backBitmap );
 		DeleteObject( oldBitmap );
 
-		// À©µµ¿ì ÀÛ¾÷¿µ¿ª È­¸éÅ©±â Àç¼³Á¤
+		// ìœˆë„ìš° ì‘ì—…ì˜ì—­ í™”ë©´í¬ê¸° ì¬ì„¤ì •
 		RECT rect = { 0, 0, width, height };
 
 		AdjustWindowRect( &rect, WS_OVERLAPPED, false );
 		SetWindowPos( _hwnd, nullptr, 0, 0, _width, _height, 0 );
 		ShowWindow( _hwnd, 0 );
 
-		//¿£Áø initialize
+		//ì—”ì§„ initialize
 		Input::Initialize();
 		Time::Initialize();
 

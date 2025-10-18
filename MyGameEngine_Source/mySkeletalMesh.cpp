@@ -1,4 +1,4 @@
-#include "mySkeletalMesh.h"
+ï»¿#include "mySkeletalMesh.h"
 #include "myFbxLoadManager.h"
 
 extern my::FbxLoadManager g_fbxLoadManager;
@@ -17,7 +17,7 @@ namespace my
 	void SkeletalMesh::Load(const std::wstring& path)
 	{
 		const std::wstring ext = path.substr(path.find_last_of(L".") + 1);
-		MY_ASSERT_MSG(ext == L"fbx", ".fbxÀÌ¿ÜÀÇ ÆÄÀÏÀº ±â´É ¾øÀ½");
+		MY_ASSERT_MSG(ext == L"fbx", ".fbxì´ì™¸ì˜ íŒŒì¼ì€ ê¸°ëŠ¥ ì—†ìŒ");
 
 		g_fbxLoadManager.LoadSubMesh(path, _subMesh);
 	}

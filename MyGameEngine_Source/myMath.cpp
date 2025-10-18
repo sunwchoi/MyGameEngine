@@ -1,4 +1,4 @@
-#include "myMath.h"
+﻿#include "myMath.h"
 #include "myAssert.h"
 #include <cmath>
 

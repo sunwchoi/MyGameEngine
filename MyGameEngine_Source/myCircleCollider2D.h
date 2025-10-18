@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "myCollider2D.h"
 
 namespace my

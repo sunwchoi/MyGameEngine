@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "myMath.h"
 #include "myMesh.h"
@@ -70,7 +70,7 @@ namespace my
 			ID3D11Buffer* _raw;
 
 		private:
-			BufferWrapper(const BufferWrapper& other) = default; // º¹»ç ±ÝÁö
+			BufferWrapper(const BufferWrapper& other) = default; // ë³µì‚¬ ê¸ˆì§€
 		};
 
 		friend BufferWrapper;

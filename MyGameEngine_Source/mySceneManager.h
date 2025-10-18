@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <map>
 #include <string>
@@ -24,7 +24,7 @@ namespace my
 
 			_scenes[name] = scene;
 			
-			// ¸¸µé¾îÁø Scene ¸®ÅÏ
+			// ë§Œë“¤ì–´ì§„ Scene ë¦¬í„´
 			return scene;
 		}
 
